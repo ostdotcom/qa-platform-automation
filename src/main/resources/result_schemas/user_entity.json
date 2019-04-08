@@ -1,0 +1,150 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "user"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "user"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "user": {
+          "$id": "#/properties/data/properties/user",
+          "type": "object",
+          "title": "The User Schema",
+          "required": [
+            "id",
+            "token_id",
+            "token_holder_address",
+            "device_manager_address",
+            "recovery_address",
+            "recovery_owner_address",
+            "type",
+            "status",
+            "updated_timestamp"
+          ],
+          "properties": {
+            "id": {
+              "$id": "#/properties/data/properties/user/properties/id",
+              "type": ["string"],
+              "title": "The Id Schema",
+              "default": "",
+              "maxLength":  36,
+              "minLength":  36,
+              "examples": [
+                "2d41e3fc-bfec-4456-bc4d-9c2cfd0ef5da"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "token_id": {
+              "$id": "#/properties/data/properties/user/properties/token_id",
+              "type": "integer",
+              "title": "The Token_id Schema",
+              "default": null,
+              "examples": [
+                1203
+              ]
+            },
+            "token_holder_address": {
+              "$id": "#/properties/data/properties/user/properties/token_holder_address",
+              "type": ["string","null"],
+              "title": "The Token_holder_address Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "device_manager_address": {
+              "$id": "#/properties/data/properties/user/properties/device_manager_address",
+              "type": ["string","null"],
+              "title": "The Device_manager_address Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "recovery_address": {
+              "$id": "#/properties/data/properties/user/properties/recovery_address",
+              "type": ["string","null"],
+              "title": "The Recovery_address Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "recovery_owner_address": {
+              "$id": "#/properties/data/properties/user/properties/recovery_owner_address",
+              "type": ["string","null"],
+              "title": "The Recovery_owner_address Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "type": {
+              "$id": "#/properties/data/properties/user/properties/type",
+              "type": "string",
+              "title": "The Type Schema",
+              "default": "",
+              "examples": [
+                "user"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "status": {
+              "$id": "#/properties/data/properties/user/properties/status",
+              "type": "number",
+              "title": "The Status Schema",
+              "default": "",
+              "enum": ["CREATED","ACTIVE"],
+              "examples": [
+                "CREATED"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "updated_timestamp": {
+              "$id": "#/properties/data/properties/user/properties/updated_timestamp",
+              "type": "integer",
+              "title": "The Updated_timestamp Schema",
+              "format": "date-time",
+              "date-time": "",
+              "default": 0,
+              "examples": [
+
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
