@@ -9,7 +9,7 @@ public class UsersSteps extends Base_API {
 
 
     @When("^I make post request to create user$")
-    public void iMakePostRequestToCreateUser() {
+    public void post_user() {
 
         usersService = services.users;
         HashMap<String,Object> params = new HashMap<>();
@@ -21,5 +21,15 @@ public class UsersSteps extends Base_API {
         System.out.println("response: " + response.toString() );
     }
 
-
+    @When("^I make GET request to get users list$")
+    public void get_users_list() {
+        usersService = services.users;
+        HashMap<String,Object> params = new HashMap<>();
+        try {
+            response = usersService.getList(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("response: " + response.toString() );
+    }
 }

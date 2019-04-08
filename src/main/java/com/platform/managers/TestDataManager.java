@@ -30,9 +30,12 @@ public class TestDataManager {
 
     /**
      * Add key which are presents in test_data.json file
-     * For nested json object, create a new class and all the key in that class. Ex. EconomyManager
+     * For nested json object, create a new class and define all the key in that class. Ex. EconomyManager
      */
     public String apiEndpoint;
     public List<EconomyManager> economy;
+
+
+    public static EconomyManager economy1 = TestDataManager.data.economy.get(0);
 
 }

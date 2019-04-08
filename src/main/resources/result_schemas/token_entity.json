@@ -1,0 +1,288 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "token"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "token"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "token": {
+          "$id": "#/properties/data/properties/token",
+          "type": "object",
+          "title": "The Token Schema",
+          "required": [
+            "id",
+            "name",
+            "symbol",
+            "conversion_factor",
+            "total_supply",
+            "decimals",
+            "origin_chain",
+            "auxiliary_chains",
+            "updated_timestamp"
+          ],
+          "properties": {
+            "id": {
+              "$id": "#/properties/data/properties/token/properties/id",
+              "type": "integer",
+              "title": "The Id Schema",
+              "default": 0,
+              "examples": [
+                1203
+              ]
+            },
+            "name": {
+              "$id": "#/properties/data/properties/token/properties/name",
+              "type": "string",
+              "title": "The Name Schema",
+              "default": "",
+              "examples": [
+                "CARE"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "symbol": {
+              "$id": "#/properties/data/properties/token/properties/symbol",
+              "type": "string",
+              "title": "The Symbol Schema",
+              "default": "",
+              "examples": [
+                "CARE"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "conversion_factor": {
+              "$id": "#/properties/data/properties/token/properties/conversion_factor",
+              "type": "integer",
+              "title": "The Conversion_factor Schema",
+              "default": 0,
+              "examples": [
+                500
+              ]
+            },
+            "total_supply": {
+              "$id": "#/properties/data/properties/token/properties/total_supply",
+              "type": "string",
+              "title": "The Total_supply Schema",
+              "default": "",
+              "examples": [
+                "5000100000000000000000000"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "decimals": {
+              "$id": "#/properties/data/properties/token/properties/decimals",
+              "type": "integer",
+              "title": "The Decimals Schema",
+              "default": 0,
+              "examples": [
+                18
+              ]
+            },
+            "origin_chain": {
+              "$id": "#/properties/data/properties/token/properties/origin_chain",
+              "type": "object",
+              "title": "The Origin_chain Schema",
+              "required": [
+                "chain_id",
+                "branded_token",
+                "organization",
+                "stakers"
+              ],
+              "properties": {
+                "chain_id": {
+                  "$id": "#/properties/data/properties/token/properties/origin_chain/properties/chain_id",
+                  "type": "integer",
+                  "title": "The Chain_id Schema",
+                  "default": 0,
+                  "examples": [
+                    3
+                  ]
+                },
+                "branded_token": {
+                  "$id": "#/properties/data/properties/token/properties/origin_chain/properties/branded_token",
+                  "type": "string",
+                  "title": "The Branded_token Schema",
+                  "default": "",
+                  "examples": [
+                    "0x90c9087c5b242673eb9337a1bdb846b5cd034356"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "organization": {
+                  "$id": "#/properties/data/properties/token/properties/origin_chain/properties/organization",
+                  "type": "object",
+                  "title": "The Organization Schema",
+                  "required": [
+                    "contract",
+                    "owner"
+                  ],
+                  "properties": {
+                    "contract": {
+                      "$id": "#/properties/data/properties/token/properties/origin_chain/properties/organization/properties/contract",
+                      "type": "string",
+                      "title": "The Contract Schema",
+                      "default": "",
+                      "examples": [
+                        "0xa4fd52598fce955a699b97dc95d95569d738c294"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "owner": {
+                      "$id": "#/properties/data/properties/token/properties/origin_chain/properties/organization/properties/owner",
+                      "type": "string",
+                      "title": "The Owner Schema",
+                      "default": "",
+                      "examples": [
+                        "0x0e47320adcdf072821907e17f8da4a0a02ab6509"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                },
+                "stakers": {
+                  "$id": "#/properties/data/properties/token/properties/origin_chain/properties/stakers",
+                  "type": "array",
+                  "title": "The Stakers Schema",
+                  "items": {
+                    "$id": "#/properties/data/properties/token/properties/origin_chain/properties/stakers/items",
+                    "type": "string",
+                    "title": "The Items Schema",
+                    "default": "",
+                    "examples": [
+                      "0x0e47320adcdf072821907e17f8da4a0a02ab6509"
+                    ],
+                    "pattern": "^(.*)$"
+                  }
+                }
+              }
+            },
+            "auxiliary_chains": {
+              "$id": "#/properties/data/properties/token/properties/auxiliary_chains",
+              "type": "array",
+              "title": "The Auxiliary_chains Schema",
+              "items": {
+                "$id": "#/properties/data/properties/token/properties/auxiliary_chains/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "required": [
+                  "chain_id",
+                  "utility_branded_token",
+                  "company_token_holders",
+                  "organization"
+                ],
+                "properties": {
+                  "chain_id": {
+                    "$id": "#/properties/data/properties/token/properties/auxiliary_chains/items/properties/chain_id",
+                    "type": "integer",
+                    "title": "The Chain_id Schema",
+                    "default": 0,
+                    "examples": [
+                      199
+                    ]
+                  },
+                  "utility_branded_token": {
+                    "$id": "#/properties/data/properties/token/properties/auxiliary_chains/items/properties/utility_branded_token",
+                    "type": "string",
+                    "title": "The Utility_branded_token Schema",
+                    "default": "",
+                    "examples": [
+                      "0xcde21f7e9a8fa777e2f795b8b604764a40c4f868"
+                    ],
+                    "pattern": "^(.*)$"
+                  },
+                  "company_token_holders": {
+                    "$id": "#/properties/data/properties/token/properties/auxiliary_chains/items/properties/company_token_holders",
+                    "type": "array",
+                    "title": "The Company_token_holders Schema",
+                    "items": {
+                      "$id": "#/properties/data/properties/token/properties/auxiliary_chains/items/properties/company_token_holders/items",
+                      "type": "string",
+                      "title": "The Items Schema",
+                      "default": "",
+                      "examples": [
+                        "0x910f50cdbfbce07eb6a17beee3d0dad0daa3d14f"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  },
+                  "organization": {
+                    "$id": "#/properties/data/properties/token/properties/auxiliary_chains/items/properties/organization",
+                    "type": "object",
+                    "title": "The Organization Schema",
+                    "required": [
+                      "contract",
+                      "owner"
+                    ],
+                    "properties": {
+                      "contract": {
+                        "$id": "#/properties/data/properties/token/properties/auxiliary_chains/items/properties/organization/properties/contract",
+                        "type": "string",
+                        "title": "The Contract Schema",
+                        "default": "",
+                        "examples": [
+                          "0x97f19517f2f8f84bf3cc39f2387001bf55017366"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "owner": {
+                        "$id": "#/properties/data/properties/token/properties/auxiliary_chains/items/properties/organization/properties/owner",
+                        "type": "string",
+                        "title": "The Owner Schema",
+                        "default": "",
+                        "examples": [
+                          "0x0e47320adcdf072821907e17f8da4a0a02ab6509"
+                        ],
+                        "pattern": "^(.*)$"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "updated_timestamp": {
+              "$id": "#/properties/data/properties/token/properties/updated_timestamp",
+              "type": "integer",
+              "title": "The Updated_timestamp Schema",
+              "default": 0,
+              "examples": [
+                1553629518
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

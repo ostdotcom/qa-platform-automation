@@ -21,6 +21,18 @@ public class ResultDriver {
         return result.get("success").getAsBoolean();
     }
 
+    public static int get_auxiliary_chain_id(JsonObject result)
+    {
+        return result.getAsJsonObject("data").getAsJsonObject("token")
+                .getAsJsonArray("auxiliary_chains").get(0)
+                .getAsJsonObject().get("chain_id").getAsInt();
+    }
+
+    public static int get_origin_chain_id(JsonObject result) {
+        return result.getAsJsonObject("data").getAsJsonObject("token")
+                .getAsJsonObject( "origin_chain").get("chain_id").getAsInt();
+    }
+
 
     /**
      * This function will verify json schema depending on the "result_type"
@@ -45,6 +57,13 @@ public class ResultDriver {
                         obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.USER));
                         break;
 
+                    case Constant.RESULT_TYPE.USERS:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.USERS));
+                        break;
+
+                    case Constant.RESULT_TYPE.TOKEN:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.TOKEN));
+                        break;
                     default:
                         throw new AssertionError("Result type '"+get_result_type(response)+"' does not matching with any stored schema.");
                 }
@@ -62,6 +81,7 @@ public class ResultDriver {
         catch (FileNotFoundException f)
         {
             f.printStackTrace();
+            Assert.fail(f.getMessage());
         }
         catch (ValidationException v)
         {
@@ -75,6 +95,5 @@ public class ResultDriver {
     {
         return result.getAsJsonObject("data").get("result_type").getAsString();
     }
-
 
 }

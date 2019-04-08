@@ -1,0 +1,181 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "users",
+        "meta"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "users"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "users": {
+          "$id": "#/properties/data/properties/users",
+          "type": "array",
+          "title": "The Users Schema",
+          "items": {
+            "$id": "#/properties/data/properties/users/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "id",
+              "token_id",
+              "token_holder_address",
+              "device_manager_address",
+              "recovery_address",
+              "recovery_owner_address",
+              "type",
+              "status",
+              "updated_timestamp"
+            ],
+            "properties": {
+              "id": {
+                "$id": "#/properties/data/properties/users/items/properties/id",
+                "type": "string",
+                "title": "The Id Schema",
+                "default": "",
+                "examples": [
+                  "fe6675b1-a8ca-4297-b8f3-6376f42dd83c"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "token_id": {
+                "$id": "#/properties/data/properties/users/items/properties/token_id",
+                "type": "integer",
+                "title": "The Token_id Schema",
+                "default": 0,
+                "examples": [
+                  1203
+                ]
+              },
+              "token_holder_address": {
+                "$id": "#/properties/data/properties/users/items/properties/token_holder_address",
+                "type": ["string","null"],
+                "title": "The Token_holder_address Schema",
+                "default": null,
+                "examples": [
+                  null
+                ]
+              },
+              "device_manager_address": {
+                "$id": "#/properties/data/properties/users/items/properties/device_manager_address",
+                "type": ["string","null"],
+                "title": "The Device_manager_address Schema",
+                "default": null,
+                "examples": [
+                  null
+                ]
+              },
+              "recovery_address": {
+                "$id": "#/properties/data/properties/users/items/properties/recovery_address",
+                "type": ["string","null"],
+                "title": "The Recovery_address Schema",
+                "default": null,
+                "examples": [
+                  null
+                ]
+              },
+              "recovery_owner_address": {
+                "$id": "#/properties/data/properties/users/items/properties/recovery_owner_address",
+                "type": ["string","null"],
+                "title": "The Recovery_owner_address Schema",
+                "default": null,
+                "examples": [
+                  null
+                ]
+              },
+              "type": {
+                "$id": "#/properties/data/properties/users/items/properties/type",
+                "type": "string",
+                "title": "The Type Schema",
+                "default": "",
+                "enum": ["user","company"],
+                "examples": [
+                  "user"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "status": {
+                "$id": "#/properties/data/properties/users/items/properties/status",
+                "type": "string",
+                "title": "The Status Schema",
+                "default": "",
+                "examples": [
+                  "CREATED"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "updated_timestamp": {
+                "$id": "#/properties/data/properties/users/items/properties/updated_timestamp",
+                "type": "integer",
+                "title": "The Updated_timestamp Schema",
+                "default": 0,
+                "examples": [
+                  1553845230
+                ]
+              }
+            }
+          }
+        },
+        "meta": {
+          "$id": "#/properties/data/properties/meta",
+          "type": "object",
+          "title": "The Meta Schema",
+          "required": [
+          ],
+          "properties": {
+            "next_page_payload": {
+              "$id": "#/properties/data/properties/meta/properties/next_page_payload",
+              "type": "object",
+              "title": "The Next_page_payload Schema",
+              "required": [
+                "pagination_identifier"
+              ],
+              "properties": {
+                "pagination_identifier": {
+                  "$id": "#/properties/data/properties/meta/properties/next_page_payload/properties/pagination_identifier",
+                  "type": "string",
+                  "title": "The Pagination_identifier Schema",
+                  "default": "",
+                  "examples": [
+                    "eyJsYXN0RXZhbHVhdGVkS2V5Ijp7InRpZCI6eyJOIjoiMTIwMyJ9LCJ1aWQiOnsiUyI6ImZiOTc4YjU2LTRlNGEtNGFlNy1hZTI2LWUzNWIyODdiNjBhOSJ9fSwicGFnZSI6MiwibGltaXQiOjEwfQ=="
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

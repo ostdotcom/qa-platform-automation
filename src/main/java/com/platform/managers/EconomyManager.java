@@ -18,8 +18,8 @@ public class EconomyManager {
     public String device_address;
     public String session_address;
     public String transaction_Id;
-    public String aux_chain_id;
-    public String origin_chain_id;
+    public int aux_chain_id;
+    public int origin_chain_id;
     public String recivery_owner_address;
 
 }
