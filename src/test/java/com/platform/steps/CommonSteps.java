@@ -1,27 +1,14 @@
 package com.platform.steps;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.ost.OSTSDK;
-import com.platform.Base.Base_API;
+import com.platform.base.Base_API;
 import com.platform.drivers.ResultDriver;
-import com.platform.managers.EconomyManager;
 import com.platform.managers.TestDataManager;
-import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import cucumber.runtime.model.CucumberScenario;
-import net.masterthought.cucumber.generators.OverviewReport;
-import org.everit.json.schema.Schema;
-import org.everit.json.schema.loader.SchemaLoader;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.testng.Assert;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.HashMap;
 
 public class CommonSteps extends Base_API {

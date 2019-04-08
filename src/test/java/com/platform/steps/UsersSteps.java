@@ -1,11 +1,8 @@
 package com.platform.steps;
 
-import com.google.gson.JsonObject;
-import com.platform.Base.Base_API;
-import cucumber.api.java.en.Given;
+import com.platform.base.Base_API;
 import cucumber.api.java.en.When;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 public class UsersSteps extends Base_API {

@@ -1,10 +1,9 @@
-package com.platform.Base;
+package com.platform.base;
 
 import com.google.gson.JsonObject;
 import com.ost.OSTSDK;
 import com.platform.managers.EconomyManager;
 import com.platform.managers.TestDataManager;
-import org.junit.Before;
 
 public  class Base_API {
 
