@@ -46,6 +46,7 @@ public class Constant {
     public static class RESULT_SCHEMA
     {
         private static final String SCHEMAFOLDER = PROJECTPATH+ java.io.File.separatorChar + "src/main/resources/result_schemas";
+        public static final String DETAILEDERROR = SCHEMAFOLDER+ java.io.File.separatorChar + "detailed_error_entity.json";
         public static final String USER = SCHEMAFOLDER+ java.io.File.separatorChar + "user_entity.json";
         public static final String USERS = SCHEMAFOLDER+ java.io.File.separatorChar + "users_entity.json";
         public static final String TOKEN = SCHEMAFOLDER+ java.io.File.separatorChar + "token_entity.json";
