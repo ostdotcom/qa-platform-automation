@@ -122,10 +122,10 @@
             },
             "status": {
               "$id": "#/properties/data/properties/user/properties/status",
-              "type": "number",
+              "type": "string",
               "title": "The Status Schema",
               "default": "",
-              "enum": ["CREATED","ACTIVE"],
+              "enum": ["CREATED","ACTIVATING","ACTIVATED"],
               "examples": [
                 "CREATED"
               ],
