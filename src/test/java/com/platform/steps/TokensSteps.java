@@ -32,7 +32,7 @@ public class TokensSteps extends Base_API {
     public void verify_origin_aux_chainId() {
         int aux_chain_id = TestDataManager.economy1.aux_chain_id;
         int origin_chain_id = TestDataManager.economy1.origin_chain_id;
-        Assert.assertEquals(aux_chain_id,ResultDriver.get_auxiliary_chain_id(response));
-        Assert.assertEquals(origin_chain_id,ResultDriver.get_origin_chain_id(response));
+        Assert.assertEquals("Auxiliary chain ID",aux_chain_id,ResultDriver.get_auxiliary_chain_id(response));
+        Assert.assertEquals("Origin chain ID",origin_chain_id,ResultDriver.get_origin_chain_id(response));
     }
 }
