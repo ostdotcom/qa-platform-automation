@@ -7,12 +7,11 @@ import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import org.testng.Assert;
+import org.junit.Assert;
 
 import java.util.HashMap;
 
 public class CommonSteps extends Base_API {
-
 
 
     @Given("^The Economy is up for actions$")
@@ -29,11 +28,16 @@ public class CommonSteps extends Base_API {
 
     @Then("^I should get success status as (.+)$")
     public void verify_success_status(boolean successStatus) {
-        Assert.assertEquals(successStatus, ResultDriver.get_success_status(response));
+        Assert.assertEquals("API success status",successStatus,ResultDriver.get_success_status(response));
     }
 
     @And("^Response should be expected as the defined JSON schema$")
     public void verify_json_schema() {
         ResultDriver.verify_json_schema(response);
+    }
+
+    @And("^I should get error code as (.+)$")
+    public void get_error_code(String error_code) {
+        Assert.assertEquals("Error code of API response",error_code,ResultDriver.get_error_code(response));
     }
 }
