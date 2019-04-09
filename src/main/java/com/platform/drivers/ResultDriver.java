@@ -46,7 +46,13 @@ public class ResultDriver {
         try {
             if(get_success_status(response)==false)
             {
-               // Write code here to verify generic error message
+                if(is_detailed_error_present(response))
+                {
+                    obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.DETAILEDERROR));
+                }
+                else {
+                   // obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.GENERICERROR));
+                }
             }
             else
             {
@@ -96,4 +102,27 @@ public class ResultDriver {
         return result.getAsJsonObject("data").get("result_type").getAsString();
     }
 
+    private static boolean is_detailed_error_present(JsonObject result){
+        return result.getAsJsonObject("err").has("error_data");
+    }
+
+    public static String get_error_code(JsonObject response) {
+        return response.getAsJsonObject("err").get("code").getAsString();
+    }
+
+    public static String get_user_type(JsonObject response) {
+        return response.getAsJsonObject("data").get("type").getAsString();
+    }
+
+    public static int get_list_number_of_users(JsonObject response) {
+        return response.getAsJsonObject("data").getAsJsonArray("users").size();
+    }
+
+    public static boolean pagination_identifier_present(JsonObject response) {
+        return response.getAsJsonObject("data").getAsJsonObject("meta").getAsJsonObject("next_page_payload").has("pagination_identifier");
+    }
+
+    public static String get_pagination_identifier(JsonObject response) {
+        return response.getAsJsonObject("data").getAsJsonObject("meta").getAsJsonObject("next_page_payload").get("pagination_identifier").getAsString();
+    }
 }
