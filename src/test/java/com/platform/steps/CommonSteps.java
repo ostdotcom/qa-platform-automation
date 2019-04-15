@@ -2,6 +2,7 @@ package com.platform.steps;
 
 import com.ost.OSTSDK;
 import com.platform.base.Base_API;
+import com.platform.constants.Constant;
 import com.platform.drivers.ResultDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.And;
@@ -39,5 +40,36 @@ public class CommonSteps extends Base_API {
     @And("^I should get error code as (.+)$")
     public void get_error_code(String error_code) {
         Assert.assertEquals("Error code of API response",error_code,ResultDriver.get_error_code(response));
+    }
+
+    @Then("^I should get all the (.+) list till last page with pagination identifier$")
+    public void get_list_till_last_with_pagination_identifier(String list_type) {
+
+        String pagination_identifier;
+
+        switch (list_type)
+        {
+            case Constant.RESULT_TYPE.USERS:
+                while (ResultDriver.pagination_identifier_present(response))
+                {
+                    pagination_identifier = ResultDriver.get_pagination_identifier(response);
+                    UsersSteps.get_user_list_with_pagination_identifier(pagination_identifier);
+                }
+                break;
+
+            case Constant.RESULT_TYPE.DEVICES:
+                while (ResultDriver.pagination_identifier_present(response))
+                {
+                    pagination_identifier = ResultDriver.get_pagination_identifier(response);
+                    DevicesSteps.get_device_list_with_pagination_identifier(pagination_identifier);
+                }
+                break;
+        }
+
+    }
+
+    public void continueTillLast(String pagination_identifier)
+    {
+
     }
 }

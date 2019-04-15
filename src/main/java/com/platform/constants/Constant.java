@@ -50,6 +50,8 @@ public class Constant {
         public static final String USER = SCHEMAFOLDER+ java.io.File.separatorChar + "user_entity.json";
         public static final String USERS = SCHEMAFOLDER+ java.io.File.separatorChar + "users_entity.json";
         public static final String TOKEN = SCHEMAFOLDER+ java.io.File.separatorChar + "token_entity.json";
+        public static final String DEVICE = SCHEMAFOLDER+ java.io.File.separatorChar + "device_entity.json";
+        public static final String DEVICES = SCHEMAFOLDER+ java.io.File.separatorChar + "devices_entity.json";
 
     }
 

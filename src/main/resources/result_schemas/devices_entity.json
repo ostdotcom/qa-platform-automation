@@ -1,0 +1,151 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "devices",
+        "meta"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "devices"
+          ],
+          "pattern": ""
+        },
+        "devices": {
+          "$id": "#/properties/data/properties/devices",
+          "type": "array",
+          "title": "The Devices Schema",
+          "items": {
+            "$id": "#/properties/data/properties/devices/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "user_id",
+              "address",
+              "linked_address",
+              "api_signer_address",
+              "status",
+              "updated_timestamp"
+            ],
+            "properties": {
+              "user_id": {
+                "$id": "#/properties/data/properties/devices/items/properties/user_id",
+                "type": "string",
+                "title": "The User_id Schema",
+                "default": "",
+                "examples": [
+                  "9faebb94-0d9f-4ef5-adb1-64e204b2b5fb"
+                ],
+                "pattern": ""
+              },
+              "address": {
+                "$id": "#/properties/data/properties/devices/items/properties/address",
+                "type": "string",
+                "title": "The Address Schema",
+                "default": "",
+                "examples": [
+                  "0xd105856d06cb72fb8c7e8f4ad04f5dc193273c4f"
+                ],
+                "pattern": ""
+              },
+              "linked_address": {
+                "$id": "#/properties/data/properties/devices/items/properties/linked_address",
+                "type": ["null","string"],
+                "title": "The Linked_address Schema",
+                "default": null,
+                "examples": [
+                  null
+                ]
+              },
+              "api_signer_address": {
+                "$id": "#/properties/data/properties/devices/items/properties/api_signer_address",
+                "type": "string",
+                "title": "The Api_signer_address Schema",
+                "default": "",
+                "examples": [
+                  "0x14b0492f9284ee832120c9e71380052cce44a0f7"
+                ],
+                "pattern": ""
+              },
+              "status": {
+                "$id": "#/properties/data/properties/devices/items/properties/status",
+                "type": "string",
+                "title": "The Status Schema",
+                "default": "",
+                "examples": [
+                  "REGISTERED"
+                ],
+                "pattern": ""
+              },
+              "updated_timestamp": {
+                "$id": "#/properties/data/properties/devices/items/properties/updated_timestamp",
+                "type": "integer",
+                "title": "The Updated_timestamp Schema",
+                "default": 0,
+                "examples": [
+                  1554900542
+                ]
+              }
+            }
+          }
+        },
+        "meta": {
+          "$id": "#/properties/data/properties/meta",
+          "type": "object",
+          "title": "The Meta Schema",
+          "required": [
+            "next_page_payload"
+          ],
+          "properties": {
+            "next_page_payload": {
+              "$id": "#/properties/data/properties/meta/properties/next_page_payload",
+              "type": "object",
+              "title": "The Next_page_payload Schema",
+              "required": [
+              ],
+              "properties": {
+                "pagination_identifier": {
+                  "$id": "#/properties/data/properties/meta/properties/next_page_payload/properties/pagination_identifier",
+                  "type": "string",
+                  "title": "The Pagination_identifier Schema",
+                  "default": "",
+                  "examples": [
+                    "eyJsYXN0RXZhbHVhdGVkS2V5Ijp7InVpZCI6eyJTIjoiOWZhZWJiOTQtMGQ5Zi00ZWY1LWFkYjEtNjRlMjA0YjJiNWZiIn0sIndhIjp7IlMiOiIweDE3Yzk5ZjhlMTE4M2NjZmUzMjcyYzljODg2NzZmMzEwZjk4ZjExZTYifX0sInBhZ2UiOjIsImxpbWl0IjoxMH0="
+                  ],
+                  "pattern": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

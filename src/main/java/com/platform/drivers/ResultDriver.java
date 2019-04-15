@@ -70,6 +70,15 @@ public class ResultDriver {
                     case Constant.RESULT_TYPE.TOKEN:
                         obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.TOKEN));
                         break;
+
+                    case Constant.RESULT_TYPE.DEVICE:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.DEVICE));
+                        break;
+
+                    case Constant.RESULT_TYPE.DEVICES:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.DEVICES));
+                        break;
+
                     default:
                         throw new AssertionError("Result type '"+get_result_type(response)+"' does not matching with any stored schema.");
                 }
@@ -125,4 +134,10 @@ public class ResultDriver {
     public static String get_pagination_identifier(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("meta").getAsJsonObject("next_page_payload").get("pagination_identifier").getAsString();
     }
+
+    public static Object get_user_id(JsonObject response) {
+            return response.getAsJsonObject("data").getAsJsonObject("user").get("id").getAsString();
+    }
+
+
 }

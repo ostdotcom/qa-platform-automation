@@ -7,3 +7,5 @@ Feature: Verify token information.
     Then I should get success status as true
     And Verify the origin and auxiliary chain id
     And  Response should be expected as the defined JSON schema
+
+

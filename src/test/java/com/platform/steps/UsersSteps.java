@@ -109,7 +109,7 @@ public class UsersSteps extends Base_API {
         System.out.println("response: " + response.toString() );
     }
 
-    @And("^I should get the list with (.+) members$")
+    @And("^I should get the user list with (.+) members$")
     public void verify_list_with_limit(int expected_limit) {
         int actual_limit= ResultDriver.get_list_number_of_users(response);
         if(expected_limit==actual_limit)
@@ -129,19 +129,9 @@ public class UsersSteps extends Base_API {
         }
     }
 
-    @Then("^I should get all the user list till last page with pagination identifier$")
-    public void get_users_list_till_last_with_pagination_identifier() {
-
-        while (ResultDriver.pagination_identifier_present(response))
-        {
-            pagination_identifier = ResultDriver.get_pagination_identifier(response);
-            get_user_list_with_pagination_identifier(pagination_identifier);
-        }
-    }
-
 
     @When("^I make GET request to get users list with pagination identifier as (.+)$")
-    public void get_user_list_with_pagination_identifier(String pagination_identifier) {
+    public static void get_user_list_with_pagination_identifier(String pagination_identifier) {
         usersService = services.users;
         HashMap<String,Object> params = new HashMap<>();
         params.put("pagination_identifier",pagination_identifier);
@@ -151,5 +141,10 @@ public class UsersSteps extends Base_API {
             e.printStackTrace();
         }
         System.out.println("response: " + response.toString() );
+    }
+
+    @And("^I should get the unique id of the user$")
+    public void get_user_id() {
+        Assert.assertNotNull("User ID: ", ResultDriver.get_user_id(response));
     }
 }
