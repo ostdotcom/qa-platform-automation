@@ -12,7 +12,7 @@ public class AssertionUtils {
         while(waitedSoFar < TimeUnit.SECONDS.toMillis(seconds)){
             long t0 = System.currentTimeMillis();
             if(waitedSoFar > 0){
-                sleepSeconds(5);
+                sleepSeconds(3);
             }
 
             try{

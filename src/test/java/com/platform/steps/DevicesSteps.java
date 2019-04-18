@@ -229,7 +229,7 @@ public class DevicesSteps extends Base_API {
 
 
     @When("^I make GET request to get device list with limit as (.+)$")
-    public void get_device_list_with_limit(int limit) {
+    public void get_device_list_with_limit(Object limit) {
         devicesService = services.devices;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);

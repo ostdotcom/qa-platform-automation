@@ -79,6 +79,14 @@ public class ResultDriver {
                         obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.DEVICES));
                         break;
 
+                    case Constant.RESULT_TYPE.TRANSACTION:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.TRANSACTION));
+                        break;
+
+                    case Constant.RESULT_TYPE.TRANSACTIONS:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.TRANSACTIONS));
+                        break;
+
                     default:
                         throw new AssertionError("Result type '"+get_result_type(response)+"' does not matching with any stored schema.");
                 }
@@ -120,7 +128,7 @@ public class ResultDriver {
     }
 
     public static String get_user_type(JsonObject response) {
-        return response.getAsJsonObject("data").get("type").getAsString();
+        return response.getAsJsonObject("data").getAsJsonObject("user").get("type").getAsString();
     }
 
     public static int get_list_number_of_users(JsonObject response) {

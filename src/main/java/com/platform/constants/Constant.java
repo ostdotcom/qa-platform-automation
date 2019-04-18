@@ -52,7 +52,20 @@ public class Constant {
         public static final String TOKEN = SCHEMAFOLDER+ java.io.File.separatorChar + "token_entity.json";
         public static final String DEVICE = SCHEMAFOLDER+ java.io.File.separatorChar + "device_entity.json";
         public static final String DEVICES = SCHEMAFOLDER+ java.io.File.separatorChar + "devices_entity.json";
+        public static final String TRANSACTION = SCHEMAFOLDER+ java.io.File.separatorChar + "transaction_entity.json";
+        public static final String TRANSACTIONS = SCHEMAFOLDER+ java.io.File.separatorChar + "transactions_entity.json";
 
+    }
+
+    public static class TRANSACTIONS
+    {
+        public static final String PAY = "pay";
+        public static final String DIRECTTRANSFERS = "directTransfers";
+
+        private static final int WAITING_BLOCK_CONFIRMATION = 6;
+        private static final int BLOCKHIGHT = 3;        //Time in sec
+        public static final int TOTALWAIT = 30;       //Time in sec
+        public static final int CONFIRMATION_TIME = (WAITING_BLOCK_CONFIRMATION*BLOCKHIGHT);
     }
 
     private static String getEnvironment()  {

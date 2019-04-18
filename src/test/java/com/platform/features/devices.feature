@@ -178,6 +178,6 @@ Feature: Verify all the functionality related to Devices
   Scenario: Get user device list with Device Address array
     Given The Economy is up for actions
     When I make GET request to get devices list with defined devices address array
-    And I should get error code as true
+    And I should get success status as true
     And Response should be expected as the defined JSON schema
 

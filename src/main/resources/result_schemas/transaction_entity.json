@@ -1,0 +1,319 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "transaction"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "transaction"
+          ],
+          "pattern": ""
+        },
+        "transaction": {
+          "$id": "#/properties/data/properties/transaction",
+          "type": "object",
+          "title": "The Transaction Schema",
+          "required": [
+            "id",
+            "transaction_hash",
+            "from",
+            "to",
+            "nonce",
+            "value",
+            "gas_price",
+            "gas_used",
+            "transaction_fee",
+            "block_confirmation",
+            "status",
+            "updated_timestamp",
+            "block_timestamp",
+            "block_number",
+            "rule_name",
+            "meta_property",
+            "transfers"
+          ],
+          "properties": {
+            "id": {
+              "$id": "#/properties/data/properties/transaction/properties/id",
+              "type": "string",
+              "title": "The Id Schema",
+              "default": "",
+              "examples": [
+                "6460d2d2-a7c6-4365-bdf4-4d24bd9c217e"
+              ],
+              "pattern": ""
+            },
+            "transaction_hash": {
+              "$id": "#/properties/data/properties/transaction/properties/transaction_hash",
+              "type": "null",
+              "title": "The Transaction_hash Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "from": {
+              "$id": "#/properties/data/properties/transaction/properties/from",
+              "type": "null",
+              "title": "The From Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "to": {
+              "$id": "#/properties/data/properties/transaction/properties/to",
+              "type": "string",
+              "title": "The To Schema",
+              "default": "",
+              "examples": [
+                "0xfae609af29acc68a291b8e63a442c93c2adc05d8"
+              ],
+              "pattern": ""
+            },
+            "nonce": {
+              "$id": "#/properties/data/properties/transaction/properties/nonce",
+              "type": "null",
+              "title": "The Nonce Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "value": {
+              "$id": "#/properties/data/properties/transaction/properties/value",
+              "type": "null",
+              "title": "The Value Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "gas_price": {
+              "$id": "#/properties/data/properties/transaction/properties/gas_price",
+              "type": "string",
+              "title": "The Gas_price Schema",
+              "default": "",
+              "examples": [
+                "1000000000"
+              ],
+              "pattern": ""
+            },
+            "gas_used": {
+              "$id": "#/properties/data/properties/transaction/properties/gas_used",
+              "type": "null",
+              "title": "The Gas_used Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "transaction_fee": {
+              "$id": "#/properties/data/properties/transaction/properties/transaction_fee",
+              "type": "null",
+              "title": "The Transaction_fee Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "block_confirmation": {
+              "$id": "#/properties/data/properties/transaction/properties/block_confirmation",
+              "type": "null",
+              "title": "The Block_confirmation Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "status": {
+              "$id": "#/properties/data/properties/transaction/properties/status",
+              "type": "string",
+              "title": "The Status Schema",
+              "default": "",
+              "examples": [
+                "CREATED"
+              ],
+              "pattern": ""
+            },
+            "updated_timestamp": {
+              "$id": "#/properties/data/properties/transaction/properties/updated_timestamp",
+              "type": "integer",
+              "title": "The Updated_timestamp Schema",
+              "default": 0,
+              "examples": [
+                1555333579
+              ]
+            },
+            "block_timestamp": {
+              "$id": "#/properties/data/properties/transaction/properties/block_timestamp",
+              "type": "null",
+              "title": "The Block_timestamp Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "block_number": {
+              "$id": "#/properties/data/properties/transaction/properties/block_number",
+              "type": "null",
+              "title": "The Block_number Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "rule_name": {
+              "$id": "#/properties/data/properties/transaction/properties/rule_name",
+              "type": "null",
+              "title": "The Rule_name Schema",
+              "default": null,
+              "examples": [
+                null
+              ]
+            },
+            "meta_property": {
+              "$id": "#/properties/data/properties/transaction/properties/meta_property",
+              "type": "object",
+              "title": "The Meta_property Schema",
+              "required": [
+                "name",
+                "type",
+                "details"
+              ],
+              "properties": {
+                "name": {
+                  "$id": "#/properties/data/properties/transaction/properties/meta_property/properties/name",
+                  "type": "string",
+                  "title": "The Name Schema",
+                  "default": "",
+                  "examples": [
+                    "12213123"
+                  ],
+                  "pattern": ""
+                },
+                "type": {
+                  "$id": "#/properties/data/properties/transaction/properties/meta_property/properties/type",
+                  "type": "string",
+                  "title": "The Type Schema",
+                  "default": "",
+                  "examples": [
+                    "company_to_user"
+                  ],
+                  "pattern": ""
+                },
+                "details": {
+                  "$id": "#/properties/data/properties/transaction/properties/meta_property/properties/details",
+                  "type": "string",
+                  "title": "The Details Schema",
+                  "default": "",
+                  "examples": [
+                    "details of meta"
+                  ],
+                  "pattern": ""
+                }
+              }
+            },
+            "transfers": {
+              "$id": "#/properties/data/properties/transaction/properties/transfers",
+              "type": "array",
+              "title": "The Transfers Schema",
+              "items": {
+                "$id": "#/properties/data/properties/transaction/properties/transfers/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "required": [
+                  "from",
+                  "from_user_id",
+                  "to",
+                  "to_user_id",
+                  "kind"
+                ],
+                "properties": {
+                  "from": {
+                    "$id": "#/properties/data/properties/transaction/properties/transfers/items/properties/from",
+                    "type": "string",
+                    "title": "The From Schema",
+                    "default": "",
+                    "examples": [
+                      "0xfae609af29acc68a291b8e63a442c93c2adc05d8"
+                    ],
+                    "pattern": ""
+                  },
+                  "from_user_id": {
+                    "$id": "#/properties/data/properties/transaction/properties/transfers/items/properties/from_user_id",
+                    "type": "string",
+                    "title": "The From_user_id Schema",
+                    "default": "",
+                    "examples": [
+                      "cbb33e18-e0bd-4e3c-a9f4-b7d8d51ac70f"
+                    ],
+                    "pattern": ""
+                  },
+                  "to": {
+                    "$id": "#/properties/data/properties/transaction/properties/transfers/items/properties/to",
+                    "type": "string",
+                    "title": "The To Schema",
+                    "default": "",
+                    "examples": [
+                      "0x7b2625b5323f48c4ee9ab0384c7d220598a940db"
+                    ],
+                    "pattern": ""
+                  },
+                  "to_user_id": {
+                    "$id": "#/properties/data/properties/transaction/properties/transfers/items/properties/to_user_id",
+                    "type": "string",
+                    "title": "The To_user_id Schema",
+                    "default": "",
+                    "examples": [
+                      "fc06e566-a266-4ec4-be64-2510b3437c9e"
+                    ],
+                    "pattern": ""
+                  },
+                  "kind": {
+                    "$id": "#/properties/data/properties/transaction/properties/transfers/items/properties/kind",
+                    "type": "string",
+                    "title": "The Kind Schema",
+                    "default": "",
+                    "examples": [
+                      "transfer"
+                    ],
+                    "pattern": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

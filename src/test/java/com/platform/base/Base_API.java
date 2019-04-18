@@ -12,10 +12,6 @@ public  class Base_API {
 
     // In Economy list, whichever economy is on 0th position will be considered as economy_1 and then it will increment by position. (economy_2)
 
-    public static EconomyManager economy_1 = TestDataManager.data.economy.get(0);
-    public static EconomyManager economy_2 = TestDataManager.data.economy.get(1);
-
-
     public static OSTSDK ostObj;
     public static com.ost.services.Manifest services;
 

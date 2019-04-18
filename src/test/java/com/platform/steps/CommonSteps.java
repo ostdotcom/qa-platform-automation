@@ -20,8 +20,8 @@ public class CommonSteps extends Base_API {
 
         HashMap<String,Object> sdkConfig = new HashMap<String,Object>();
         sdkConfig.put("apiEndpoint",TestDataManager.data.apiEndpoint);
-        sdkConfig.put("apiKey",TestDataManager.data.economy.get(0).apiKey);
-        sdkConfig.put("apiSecret",TestDataManager.data.economy.get(0).secretKey);
+        sdkConfig.put("apiKey",TestDataManager.economy1.apiKey);
+        sdkConfig.put("apiSecret",TestDataManager.economy1.secretKey);
 
         ostObj = new OSTSDK(sdkConfig);
         services = (com.ost.services.Manifest) ostObj.services;
