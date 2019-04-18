@@ -146,6 +146,4 @@ public class ResultDriver {
     public static Object get_user_id(JsonObject response) {
             return response.getAsJsonObject("data").getAsJsonObject("user").get("id").getAsString();
     }
-
-
 }
