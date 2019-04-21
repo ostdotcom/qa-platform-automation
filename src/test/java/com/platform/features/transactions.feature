@@ -305,13 +305,10 @@ Feature: Verify execute Transactions and Get transaction functionality
 
 
 
-
-
-
-
-
-
-
+  Scenario: Verify pagination identifier for user
+    Given The Economy is up for actions
+    When I make GET request to get transactions list details with defined user id
+    Then I should get full list of transaction with pagination identifier
 
 
 

@@ -87,6 +87,14 @@ public class ResultDriver {
                         obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.TRANSACTIONS));
                         break;
 
+                    case Constant.RESULT_TYPE.SESSION:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.SESSION));
+                        break;
+
+                    case Constant.RESULT_TYPE.SESSIONS:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.SESSIONS));
+                        break;
+
                     default:
                         throw new AssertionError("Result type '"+get_result_type(response)+"' does not matching with any stored schema.");
                 }

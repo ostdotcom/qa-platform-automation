@@ -1,0 +1,172 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "sessions",
+        "meta"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "sessions"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "sessions": {
+          "$id": "#/properties/data/properties/sessions",
+          "type": "array",
+          "title": "The Sessions Schema",
+          "items": {
+            "$id": "#/properties/data/properties/sessions/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "user_id",
+              "address",
+              "expiration_height",
+              "approx_expiration_timestamp",
+              "spending_limit",
+              "nonce",
+              "status",
+              "updated_timestamp"
+            ],
+            "properties": {
+              "user_id": {
+                "$id": "#/properties/data/properties/sessions/items/properties/user_id",
+                "type": "string",
+                "title": "The User_id Schema",
+                "default": "",
+                "examples": [
+                  "cbb33e18-e0bd-4e3c-a9f4-b7d8d51ac70f"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "address": {
+                "$id": "#/properties/data/properties/sessions/items/properties/address",
+                "type": "string",
+                "title": "The Address Schema",
+                "default": "",
+                "examples": [
+                  "0xff6666c5375e5266f1cef5017f6959869bb2e075"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "expiration_height": {
+                "$id": "#/properties/data/properties/sessions/items/properties/expiration_height",
+                "type": "integer",
+                "title": "The Expiration_height Schema",
+                "default": 0,
+                "examples": [
+                  1000000000
+                ]
+              },
+              "approx_expiration_timestamp": {
+                "$id": "#/properties/data/properties/sessions/items/properties/approx_expiration_timestamp",
+                "type": "integer",
+                "title": "The Approx_expiration_timestamp Schema",
+                "default": 0,
+                "examples": [
+                  4551262257
+                ]
+              },
+              "spending_limit": {
+                "$id": "#/properties/data/properties/sessions/items/properties/spending_limit",
+                "type": "string",
+                "title": "The Spending_limit Schema",
+                "default": "",
+                "examples": [
+                  "5000000000000000000000000"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "nonce": {
+                "$id": "#/properties/data/properties/sessions/items/properties/nonce",
+                "type": "integer",
+                "title": "The Nonce Schema",
+                "default": 0,
+                "examples": [
+                  18
+                ]
+              },
+              "status": {
+                "$id": "#/properties/data/properties/sessions/items/properties/status",
+                "type": "string",
+                "title": "The Status Schema",
+                "default": "",
+                "enum": ["AUTHORIZED","INITITIALIZING","REVOKING","REVOKED"],
+                "examples": [
+                  "AUTHORIZED"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "updated_timestamp": {
+                "$id": "#/properties/data/properties/sessions/items/properties/updated_timestamp",
+                "type": "integer",
+                "title": "The Updated_timestamp Schema",
+                "default": 0,
+                "examples": [
+                  1554302265
+                ]
+              }
+            }
+          }
+        },
+        "meta": {
+          "$id": "#/properties/data/properties/meta",
+          "type": "object",
+          "title": "The Meta Schema",
+          "required": [
+            "next_page_payload"
+          ],
+          "properties": {
+            "next_page_payload": {
+              "$id": "#/properties/data/properties/meta/properties/next_page_payload",
+              "type": "object",
+              "title": "The Next_page_payload Schema",
+              "required": [
+              ],
+              "properties": {
+                "pagination_identifier": {
+                  "$id": "#/properties/data/properties/meta/properties/next_page_payload/properties/pagination_identifier",
+                  "type": "string",
+                  "title": "The Pagination_identifier Schema",
+                  "default": "",
+                  "examples": [
+                    "eyJsYXN0RXZhbHVhdGVkS2V5Ijp7InVpZCI6eyJTIjoiY2JiMzNlMTgtZTBiZC00ZTNjLWE5ZjQtYjdkOGQ1MWFjNzBmIn0sImFkciI6eyJTIjoiMHhmODU5YjRiZGQyMGUwMTdkN2MzYzA3MjhlOTFiYWM0ZjhmZmYzODY0In19LCJwYWdlIjoyLCJsaW1pdCI6MTB9"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

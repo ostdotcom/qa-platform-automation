@@ -1,0 +1,137 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "session"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "session"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "session": {
+          "$id": "#/properties/data/properties/session",
+          "type": "object",
+          "title": "The Session Schema",
+          "required": [
+            "user_id",
+            "address",
+            "expiration_height",
+            "approx_expiration_timestamp",
+            "spending_limit",
+            "nonce",
+            "status",
+            "updated_timestamp"
+          ],
+          "properties": {
+            "user_id": {
+              "$id": "#/properties/data/properties/session/properties/user_id",
+              "type": "string",
+              "title": "The User_id Schema",
+              "default": "",
+              "examples": [
+                "cbb33e18-e0bd-4e3c-a9f4-b7d8d51ac70f"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "address": {
+              "$id": "#/properties/data/properties/session/properties/address",
+              "type": "string",
+              "title": "The Address Schema",
+              "default": "",
+              "examples": [
+                "0xf9def2a0ce430169e80ed3c582555db9179e3bde"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "expiration_height": {
+              "$id": "#/properties/data/properties/session/properties/expiration_height",
+              "type": "integer",
+              "title": "The Expiration_height Schema",
+              "default": 0,
+              "examples": [
+                1000000000
+              ]
+            },
+            "approx_expiration_timestamp": {
+              "$id": "#/properties/data/properties/session/properties/approx_expiration_timestamp",
+              "type": "integer",
+              "title": "The Approx_expiration_timestamp Schema",
+              "default": 0,
+              "examples": [
+                4551262257
+              ]
+            },
+            "spending_limit": {
+              "$id": "#/properties/data/properties/session/properties/spending_limit",
+              "type": "string",
+              "title": "The Spending_limit Schema",
+              "default": "",
+              "examples": [
+                "5000000000000000000000000"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "nonce": {
+              "$id": "#/properties/data/properties/session/properties/nonce",
+              "type": "integer",
+              "title": "The Nonce Schema",
+              "default": 0,
+              "examples": [
+                28
+              ]
+            },
+            "status": {
+              "$id": "#/properties/data/properties/session/properties/status",
+              "type": "string",
+              "title": "The Status Schema",
+              "default": "",
+              "enum": ["AUTHORIZED","INITITIALIZING","REVOKING","REVOKED"],
+              "examples": [
+                "AUTHORIZED"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "updated_timestamp": {
+              "$id": "#/properties/data/properties/session/properties/updated_timestamp",
+              "type": "integer",
+              "title": "The Updated_timestamp Schema",
+              "default": 0,
+              "examples": [
+                1554302265
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

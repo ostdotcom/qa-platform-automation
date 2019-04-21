@@ -15,13 +15,13 @@ import com.platform.managers.TestDataManager;
 import com.platform.utils.AssertionUtils;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
-import org.omg.IOP.TransactionService;
-import sun.jvm.hotspot.utilities.ObjectReader;
 
 import java.io.IOException;
-import java.math.BigInteger;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -202,26 +202,9 @@ public class TransactionsSteps extends Base_API {
     @When("^I make GET request to get Transaction list for defined user$")
     public void get_transactions_list() {
         transactionsService = services.transactions;
-        //ArrayList<HashMap<String, Object>> metaPropertyArray = new ArrayList<HashMap<String, Object>>();
-//HashMap <String,Object> metaPropertyArrayParams = new HashMap<String,Object>();
-//metaPropertyArrayParams.put("name", "transaction_name"); //like, download IMP : Max length 25 characters (numbers alphabets spaces _ - allowed)
-//metaPropertyArrayParams.put("type", "user_to_user"); // user_to_user, company_to_user, user_to_company
-//metaPropertyArrayParams.put("details", "test"); // memo field to add additional info about the transaction .  IMP : Max length 120 characters (numbers alphabets spaces _ - allowed)
-//metaPropertyArray.add(metaPropertyArrayParams);
-//Gson gsonObj = new Gson();
-//String metaPropertyArrayJsonStr = gsonObj.toJson(metaPropertyArray);
-
-//ArrayList<Object> statusArray = new ArrayList<Object>();
-//statusArray.add("CREATED");
-//statusArray.add("SUBMITTED");
-//statusArray.add("SUCCESS");
-//statusArray.add("FAILED");
 
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.company_Id);
-//params.put("status", statusArray);
-//params.put("meta_property", metaPropertyArrayJsonStr);
-//params.put("limit", 10);
         try {
             response = transactionsService.getList( params );
         } catch (IOException e) {
@@ -642,7 +625,7 @@ public class TransactionsSteps extends Base_API {
     public void get_transactions_list_with_pagination_identifier(String pagination_identifier) {
 
         HashMap <String,Object> params = new HashMap<String,Object>();
-        params.put("user_id", TestDataManager.economy1.company_Id);
+        params.put("user_id", TestDataManager.economy1.user_Id);
         params.put("pagination_identifier",pagination_identifier);
 
         try {
@@ -692,5 +675,47 @@ public class TransactionsSteps extends Base_API {
             invalidParameter.printStackTrace();
         }
         System.out.println("response: " + response.toString() );
+    }
+
+    @When("^I make GET request to get transactions list details with defined user id$")
+    public void get_transactions_list_with_userId() {
+
+        HashMap <String,Object> params = new HashMap<String,Object>();
+        params.put("user_id", TestDataManager.economy1.user_Id);
+
+        try {
+            response = transactionsService.getList(params);
+        } catch (OSTAPIService.MissingParameter missingParameter) {
+            missingParameter.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (OSTAPIService.InvalidParameter invalidParameter) {
+            invalidParameter.printStackTrace();
+        }
+        System.out.println("response: " + response.toString() );
+    }
+
+    @Then("^I should get full list of transaction with pagination identifier$")
+    public void get_transaction_list_with_pagination_identifier() {
+
+        String pagination_identifier;
+        int transaction_count = TransactionsDriver.get_transaction_count(response);
+        int count = transaction_count/10;       //We are not adding limit so 10 is default limit
+
+        if(count<=0)
+        {
+            Assert.assertEquals(false,ResultDriver.pagination_identifier_present(response));
+        }
+        else
+        {
+            for(int i = 0; i<count; i++)
+            {
+                pagination_identifier = ResultDriver.get_pagination_identifier(response);
+                get_transactions_list_with_pagination_identifier(pagination_identifier);
+            }
+            Assert.assertEquals("Pagination identifier should not present: ",false,ResultDriver.pagination_identifier_present(response));
+        }
+
+
     }
 }

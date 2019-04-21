@@ -39,7 +39,6 @@ public class Constant {
         public static final String BALANCE = "balance";
         public static final String TRANSACTION = "transaction";
         public static final String TRANSACTIONS = "transactions";
-
     }
 
 
@@ -54,6 +53,8 @@ public class Constant {
         public static final String DEVICES = SCHEMAFOLDER+ java.io.File.separatorChar + "devices_entity.json";
         public static final String TRANSACTION = SCHEMAFOLDER+ java.io.File.separatorChar + "transaction_entity.json";
         public static final String TRANSACTIONS = SCHEMAFOLDER+ java.io.File.separatorChar + "transactions_entity.json";
+        public static final String SESSION = SCHEMAFOLDER+ java.io.File.separatorChar + "session_entity.json";
+        public static final String SESSIONS = SCHEMAFOLDER+ java.io.File.separatorChar + "sessions_entity.json";
 
     }
 

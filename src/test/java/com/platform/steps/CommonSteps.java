@@ -4,6 +4,7 @@ import com.ost.OSTSDK;
 import com.platform.base.Base_API;
 import com.platform.constants.Constant;
 import com.platform.drivers.ResultDriver;
+import com.platform.drivers.SessionDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -64,6 +65,17 @@ public class CommonSteps extends Base_API {
                     DevicesSteps.get_device_list_with_pagination_identifier(pagination_identifier);
                 }
                 break;
+
+            case Constant.RESULT_TYPE.SESSIONS:
+                while (ResultDriver.pagination_identifier_present(response))
+                {
+                    pagination_identifier = ResultDriver.get_pagination_identifier(response);
+                    SessionSteps.get_sessions_list_with_pagination_identifier(pagination_identifier);
+                }
+                break;
+
+            default:
+                throw new AssertionError("Result type is not valid for pagination identifier");
         }
 
     }
