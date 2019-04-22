@@ -95,6 +95,29 @@ public class ResultDriver {
                         obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.SESSIONS));
                         break;
 
+                    case Constant.RESULT_TYPE.PRICEPOINT:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.PRICEPOINT));
+                        break;
+
+                    case Constant.RESULT_TYPE.DEVICEMANAGER:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.DEVICEMANAGER));
+                        break;
+
+
+                    case Constant.RESULT_TYPE.CHAIN:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.CHAIN));
+                        break;
+
+
+                    case Constant.RESULT_TYPE.RULE:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.RULE));
+                        break;
+
+
+                    case Constant.RESULT_TYPE.RECOVERYOWNER:
+                        obj= jsonParser.parse(new FileReader(Constant.RESULT_SCHEMA.RECOVERYOWNER));
+                        break;
+
                     default:
                         throw new AssertionError("Result type '"+get_result_type(response)+"' does not matching with any stored schema.");
                 }
@@ -153,5 +176,9 @@ public class ResultDriver {
 
     public static Object get_user_id(JsonObject response) {
             return response.getAsJsonObject("data").getAsJsonObject("user").get("id").getAsString();
+    }
+
+    public static String get_recovery_owner_address(JsonObject response) {
+        return response.getAsJsonObject("data").getAsJsonObject("user").get("recovery_owner_address").getAsString();
     }
 }

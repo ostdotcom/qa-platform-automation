@@ -5,8 +5,10 @@ import com.google.gson.JsonObject;
 import com.platform.constants.Constant;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.hu.Ha;
+import org.web3j.utils.Convert;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -133,19 +135,24 @@ public class TransactionsDriver {
         String tokenHolderSender;
 
 
-        public PayParamsBuilder() {
+        public PayParamsBuilder(String price_point) {
             super();
             this.ruleName=Constant.TRANSACTIONS.PAY;
             this.toAddress = TestDataManager.economy1.pricer_TR;
             this.payCurrencyCode = "USD";
-            this.ostToUsd="23757000000000000";      //add price point API
+            this.ostToUsd=Convert.toWei(price_point, Convert.Unit.ETHER).toBigInteger()+"";      //add price point API
             this.tokenHolderSender=TestDataManager.economy1.company_TH;
         }
+
 
         public PayParamsBuilder setTokenHolderSender(String tokenHolderSender) {
             this.tokenHolderSender = tokenHolderSender;
             return this;
+
+
         }
+
+
 
         public PayParamsBuilder setOstToUsd(String ostToUsd) {
             this.ostToUsd = ostToUsd;

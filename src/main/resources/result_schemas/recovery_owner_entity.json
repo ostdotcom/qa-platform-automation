@@ -1,0 +1,95 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "recovery_owner"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "recovery_owner"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "recovery_owner": {
+          "$id": "#/properties/data/properties/recovery_owner",
+          "type": "object",
+          "title": "The Recovery_owner Schema",
+          "required": [
+            "user_id",
+            "address",
+            "status",
+            "updated_timestamp"
+          ],
+          "properties": {
+            "user_id": {
+              "$id": "#/properties/data/properties/recovery_owner/properties/user_id",
+              "type": "string",
+              "title": "The User_id Schema",
+              "default": "",
+              "examples": [
+                "fc06e566-a266-4ec4-be64-2510b3437c9e"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "address": {
+              "$id": "#/properties/data/properties/recovery_owner/properties/address",
+              "type": "string",
+              "title": "The Address Schema",
+              "default": "",
+              "examples": [
+                "0x6d4c1b11baf867ee2da53f7df7cc2cdd16282ad9"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "status": {
+              "$id": "#/properties/data/properties/recovery_owner/properties/status",
+              "type": "string",
+              "title": "The Status Schema",
+              "default": "",
+              "examples": [
+                "AUTHORIZED"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "updated_timestamp": {
+              "$id": "#/properties/data/properties/recovery_owner/properties/updated_timestamp",
+              "type": "integer",
+              "title": "The Updated_timestamp Schema",
+              "default": 0,
+              "examples": [
+                1554449482
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

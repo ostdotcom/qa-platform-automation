@@ -1,0 +1,116 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "device_manager"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "device_manager"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "device_manager": {
+          "$id": "#/properties/data/properties/device_manager",
+          "type": "object",
+          "title": "The Device_manager Schema",
+          "required": [
+            "user_id",
+            "address",
+            "requirement",
+            "nonce",
+            "status",
+            "updated_timestamp"
+          ],
+          "properties": {
+            "user_id": {
+              "$id": "#/properties/data/properties/device_manager/properties/user_id",
+              "type": "string",
+              "title": "The User_id Schema",
+              "default": "",
+              "examples": [
+                "fc06e566-a266-4ec4-be64-2510b3437c9e"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "address": {
+              "$id": "#/properties/data/properties/device_manager/properties/address",
+              "type": "string",
+              "title": "The Address Schema",
+              "default": "",
+              "examples": [
+                "0xdb4335b414a2f35f75d95ccf113ca06640e9ef20"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "requirement": {
+              "$id": "#/properties/data/properties/device_manager/properties/requirement",
+              "type": "integer",
+              "title": "The Requirement Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "nonce": {
+              "$id": "#/properties/data/properties/device_manager/properties/nonce",
+              "type": "integer",
+              "title": "The Nonce Schema",
+              "default": 0,
+              "examples": [
+                10
+              ]
+            },
+            "status": {
+              "$id": "#/properties/data/properties/device_manager/properties/status",
+              "type": "string",
+              "title": "The Status Schema",
+              "default": "",
+              "enum": ["ACTIVATED"],
+              "examples": [
+                "ACTIVATED"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "updated_timestamp": {
+              "$id": "#/properties/data/properties/device_manager/properties/updated_timestamp",
+              "type": "integer",
+              "title": "The Updated_timestamp Schema",
+              "default": 0,
+              "examples": [
+                1555915618
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

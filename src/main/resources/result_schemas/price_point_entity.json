@@ -1,0 +1,93 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "price_point"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "price_point"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "price_point": {
+          "$id": "#/properties/data/properties/price_point",
+          "type": "object",
+          "title": "The Price_point Schema",
+          "required": [
+            "OST"
+          ],
+          "properties": {
+            "OST": {
+              "$id": "#/properties/data/properties/price_point/properties/OST",
+              "type": "object",
+              "title": "The Ost Schema",
+              "required": [
+                "USD",
+                "decimals",
+                "updated_timestamp"
+              ],
+              "properties": {
+                "USD": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/USD",
+                  "type": "number",
+                  "title": "The Usd Schema",
+                  "default": 0.0,
+                  "examples": [
+                    0.026812
+                  ]
+                },
+                "decimals": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/decimals",
+                  "type": "integer",
+                  "title": "The Decimals Schema",
+                  "default": 0,
+                  "enum": [18],
+                  "examples": [
+                    18
+                  ]
+                },
+                "updated_timestamp": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/updated_timestamp",
+                  "type": "integer",
+                  "title": "The Updated_timestamp Schema",
+                  "default": 0,
+                  "examples": [
+                    1555905613
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

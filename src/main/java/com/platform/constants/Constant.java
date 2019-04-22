@@ -35,7 +35,7 @@ public class Constant {
         public static final String DEVICEMANAGER = "device_manager";
         public static final String SESSION = "session";
         public static final String SESSIONS = "sessions";
-        public static final String RECOVERY = "recovery_owner";
+        public static final String RECOVERYOWNER = "recovery_owner";
         public static final String BALANCE = "balance";
         public static final String TRANSACTION = "transaction";
         public static final String TRANSACTIONS = "transactions";
@@ -55,6 +55,11 @@ public class Constant {
         public static final String TRANSACTIONS = SCHEMAFOLDER+ java.io.File.separatorChar + "transactions_entity.json";
         public static final String SESSION = SCHEMAFOLDER+ java.io.File.separatorChar + "session_entity.json";
         public static final String SESSIONS = SCHEMAFOLDER+ java.io.File.separatorChar + "sessions_entity.json";
+        public static final String PRICEPOINT = SCHEMAFOLDER+ java.io.File.separatorChar + "price_point_entity.json";
+        public static final String DEVICEMANAGER = SCHEMAFOLDER+ java.io.File.separatorChar + "device_manager_entity.json";
+        public static final String CHAIN = SCHEMAFOLDER+ java.io.File.separatorChar + "chain_entity.json";
+        public static final String RECOVERYOWNER = SCHEMAFOLDER+ java.io.File.separatorChar + "recovery_owner_entity.json";
+        public static final String RULE = SCHEMAFOLDER+ java.io.File.separatorChar + "rule_entity.json";
 
     }
 

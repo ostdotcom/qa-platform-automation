@@ -1,0 +1,104 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "chain"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "chain"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "chain": {
+          "$id": "#/properties/data/properties/chain",
+          "type": "object",
+          "title": "The Chain Schema",
+          "required": [
+            "id",
+            "type",
+            "block_height",
+            "block_time",
+            "updated_timestamp"
+          ],
+          "properties": {
+            "id": {
+              "$id": "#/properties/data/properties/chain/properties/id",
+              "type": "integer",
+              "title": "The Id Schema",
+              "default": 0,
+              "examples": [
+                199
+              ]
+            },
+            "type": {
+              "$id": "#/properties/data/properties/chain/properties/type",
+              "type": "string",
+              "title": "The Type Schema",
+              "default": "",
+              "enum": ["Origin","Auxiliary"],
+              "examples": [
+                "Auxiliary"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "block_height": {
+              "$id": "#/properties/data/properties/chain/properties/block_height",
+              "type": "integer",
+              "title": "The Block_height Schema",
+              "default": 0,
+              "examples": [
+                1554589
+              ]
+            },
+            "block_time": {
+              "$id": "#/properties/data/properties/chain/properties/block_time",
+              "type": "integer",
+              "title": "The Block_time Schema",
+              "default": 0,
+              "examples": [
+                3
+              ]
+            },
+            "updated_timestamp": {
+              "$id": "#/properties/data/properties/chain/properties/updated_timestamp",
+              "type": "integer",
+              "title": "The Updated_timestamp Schema",
+              "default": 0,
+              "examples": [
+                1555926026
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

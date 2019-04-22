@@ -26,7 +26,7 @@ public  class Base_API {
     public static com.ost.services.Balance balancesService;
     public static com.ost.services.RecoveryOwners recoveryOwnersService;
     public static com.ost.services.Tokens tokensService;
-
+    public static com.ost.services.Chains chainsService;
     public static JsonObject response;
 
 

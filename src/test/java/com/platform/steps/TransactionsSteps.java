@@ -6,10 +6,7 @@ import com.ost.services.OSTAPIService;
 import com.ost.services.Transactions;
 import com.platform.base.Base_API;
 import com.platform.constants.Constant;
-import com.platform.drivers.BalanceDriver;
-import com.platform.drivers.ResultDriver;
-import com.platform.drivers.TokenDriver;
-import com.platform.drivers.TransactionsDriver;
+import com.platform.drivers.*;
 
 import com.platform.managers.TestDataManager;
 import com.platform.utils.AssertionUtils;
@@ -18,10 +15,12 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+import org.web3j.utils.Convert;
 
 import java.io.IOException;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,15 +110,17 @@ public class TransactionsSteps extends Base_API {
         TokensSteps tokensSteps = new TokensSteps();
         tokensSteps.get_tokens();
         String conversion_factor = TokenDriver.get_conversion_factor(response);
-        String pricePoint = "0.027953";
+        PricePointSteps.get_price_point_with_aux_chain_id();
+        String pricePoint = PricePointDriver.get_ost_price(response);
+        BigDecimal test = Convert.toWei(pricePoint, Convert.Unit.ETHER);
         String transferredUbt = TransactionsDriver.get_ubt_from_usd(usdInWei,pricePoint,conversion_factor);
 
-        System.out.println("about to transfer UBT: "+transferredUbt);
+        System.out.println("About to transfer UBT: "+transferredUbt);
 
         ArrayList<String> amount= new ArrayList<String>();
         amount.add(usdInWei);
         transactionsService = services.transactions;
-        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder()
+        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
                 .setAmount(amount)
                 .build();
         try {
@@ -275,8 +276,10 @@ public class TransactionsSteps extends Base_API {
             amount.add(usdInWei);
             to_user_token_holder.add(TestDataManager.economy1.user_TH);
         }
+        PricePointSteps.get_price_point_with_aux_chain_id();
+        String pricePoint = PricePointDriver.get_ost_price(response);
 
-        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder()
+        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
                 .setAmount(amount)
                 .setUser2TokenHolderAddress(to_user_token_holder)
                 .build();
@@ -303,7 +306,10 @@ public class TransactionsSteps extends Base_API {
         ArrayList<String> amount= new ArrayList<String>();
         amount.add(TransactionsDriver.add(company_old_Balance,"10"));
 
-        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder()
+        PricePointSteps.get_price_point_with_aux_chain_id();
+        String pricePoint = PricePointDriver.get_ost_price(response);
+
+        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
                 .setAmount(amount)
                 .build();
 
@@ -342,7 +348,11 @@ public class TransactionsSteps extends Base_API {
 
     @When("^I make POST request to execute transaction with direct transfer's rule via pay method$")
     public void execute_transaction_DTrule_c2u_pay() {
-        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder()
+
+        PricePointSteps.get_price_point_with_aux_chain_id();
+        String pricePoint = PricePointDriver.get_ost_price(response);
+
+        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
                 .setToAddress(TestDataManager.economy1.directTransfer_TR)
                 .build();
 
@@ -474,7 +484,11 @@ public class TransactionsSteps extends Base_API {
     @When("^I make POST request to execute transaction with pricer as(.+) via pay method$")
     public void execute_transaction_pricer_c2u_Pay(String pricer) {
         transactionsService = services.transactions;
-        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder()
+
+        PricePointSteps.get_price_point_with_aux_chain_id();
+        String pricePoint = PricePointDriver.get_ost_price(response);
+
+        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
                .setOstToUsd(pricer)
                 .build();
 
@@ -494,8 +508,11 @@ public class TransactionsSteps extends Base_API {
     @When("^I make POST request to execute transaction with currency as (.+) via pay method$")
     public void execute_transaction_currency_c2u_DT(String currencyCode) {
 
+        PricePointSteps.get_price_point_with_aux_chain_id();
+        String pricePoint = PricePointDriver.get_ost_price(response);
+
         transactionsService = services.transactions;
-        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder()
+        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
                 .setPayCurrencyCode(currencyCode)
                 .build();
         try {
@@ -513,8 +530,11 @@ public class TransactionsSteps extends Base_API {
     @When("^I make POST request of execute transaction with method name (.+) via pay method$")
     public void execute_transaction_method_c2u_pay(String methodName) {
 
+        PricePointSteps.get_price_point_with_aux_chain_id();
+        String pricePoint = PricePointDriver.get_ost_price(response);
+
         transactionsService = services.transactions;
-        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder()
+        HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
                 .setRuleName(methodName)
                 .build();
         try {
@@ -715,7 +735,5 @@ public class TransactionsSteps extends Base_API {
             }
             Assert.assertEquals("Pagination identifier should not present: ",false,ResultDriver.pagination_identifier_present(response));
         }
-
-
     }
 }
