@@ -1,5 +1,6 @@
 Feature: Verify all the functionality related to Devices
 
+  @sanity @devices
   Scenario: Create new device and get device details for defined user
     Given The Economy is up for actions
     When  I make POST request to create device with defined user
@@ -8,7 +9,7 @@ Feature: Verify all the functionality related to Devices
     And Device status should be REGISTERED
     And Response should be expected as the defined JSON schema
 
-
+  @devices
   Scenario Outline: Create new device with invalid user ID
     Given The Economy is up for actions
     When I make POST request to create device with user as <user ID>
@@ -24,7 +25,7 @@ Feature: Verify all the functionality related to Devices
       | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
 #      |                                         | false           | NOT_FOUND   |
 
-
+  @devices
   Scenario Outline: Create new device with invalid device address
     Given The Economy is up for actions
     When I make POST request to create device with device address as <device address>
@@ -39,7 +40,7 @@ Feature: Verify all the functionality related to Devices
       | 12345.12345_12345                           | false           | BAD_REQUEST |
       | avfbdf  ^!@$$@$#%&*                         | false           | BAD_REQUEST |
 
-
+  @devices
   Scenario Outline: Create new device with invalid api signer address
     Given The Economy is up for actions
     When I make POST request to create device with api signer address as <api signer address>
@@ -55,7 +56,7 @@ Feature: Verify all the functionality related to Devices
       | avfbdf  ^!@$$@$#%&*                         | false           | BAD_REQUEST |
 
 
-
+  @sanity @devices
   Scenario: Get user device details for a defined user and device id
     Given The Economy is up for actions
     When I make GET request to get user device details for defined user and device address
@@ -63,7 +64,7 @@ Feature: Verify all the functionality related to Devices
     And Response should be expected as the defined JSON schema
 
 
-
+  @devices
   Scenario Outline: Get user device details with invalid user ID
     Given The Economy is up for actions
     When I make GET request to get device details with user id as <user ID>
@@ -78,7 +79,7 @@ Feature: Verify all the functionality related to Devices
       | 12345.12345_12345                       | false           | NOT_FOUND   |
       | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
 
-
+  @devices
   Scenario Outline: : Get user device details with invalid device address
     Given The Economy is up for actions
     When I make GET request to get device with device address as <device address>
@@ -94,7 +95,7 @@ Feature: Verify all the functionality related to Devices
       | avfbdf  ^!@$$@$#%&*                         | false           | BAD_REQUEST |
 
 
-
+  @sanity @devices
   Scenario: Get user device list for a defined user
     Given The Economy is up for actions
     When I make GET request to get device lists for a defined user
@@ -102,7 +103,7 @@ Feature: Verify all the functionality related to Devices
     And Response should be expected as the defined JSON schema
 
 
-
+  @devices
   Scenario Outline: Get user device list with invalid user ID
     Given The Economy is up for actions
     When I make GET request to get device lists with user id as <user ID>
@@ -118,7 +119,7 @@ Feature: Verify all the functionality related to Devices
       | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
 
 
-
+  @sanity @devices
   Scenario Outline: Get user device list with limit
     Given The Economy is up for actions
     When I make GET request to get device list with limit as <limit>
@@ -133,7 +134,7 @@ Feature: Verify all the functionality related to Devices
       | 25    |
 
 
-
+  @devices
   Scenario Outline: Get user device list with invalid limit
     Given The Economy is up for actions
     When I make GET request to get device list with limit as <limit>
@@ -153,14 +154,14 @@ Feature: Verify all the functionality related to Devices
       | 25.42   | BAD_REQUEST |
 
 
-
+  @devices
   Scenario: Get user device list with valid pagination identifier
     Given The Economy is up for actions
     When I make GET request to get device lists for a defined user
     Then I should get all the devices list till last page with pagination identifier
 
 
-
+  @devices
   Scenario Outline: Get user device list with invalid pagination identifier
     Given The Economy is up for actions
     When I make GET request to get device list with pagination identifier as <pagination identifier>
@@ -174,7 +175,7 @@ Feature: Verify all the functionality related to Devices
   #above pagination identifier is from different economy or from different request
 
 
-
+  @sanity @devices
   Scenario: Get user device list with Device Address array
     Given The Economy is up for actions
     When I make GET request to get devices list with defined devices address array

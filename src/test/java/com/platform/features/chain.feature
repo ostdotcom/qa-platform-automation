@@ -1,6 +1,7 @@
 Feature: Verify get Chain details functionality
 
 
+  @sanity @chain
   Scenario: Verify auxiliary chain data
     Given The Economy is up for actions
     When I make GET request to get chain details of auxiliary chain
@@ -8,7 +9,7 @@ Feature: Verify get Chain details functionality
     And Response should be expected as the defined JSON schema
 
 
-
+  @sanity @chain
   Scenario: Verify origin chain data
     Given The Economy is up for actions
     When I make GET request to get chain details of origin chain
@@ -16,7 +17,7 @@ Feature: Verify get Chain details functionality
     And Response should be expected as the defined JSON schema
 
 
-
+  @chain
   Scenario Outline: Verify chain data with invalid chain id
     Given The Economy is up for actions
     When I make GET request to get chain details with chain as <chain id>

@@ -1,0 +1,245 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "data"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "result_type",
+        "rules"
+      ],
+      "properties": {
+        "result_type": {
+          "$id": "#/properties/data/properties/result_type",
+          "type": "string",
+          "title": "The Result_type Schema",
+          "default": "",
+          "examples": [
+            "rules"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "rules": {
+          "$id": "#/properties/data/properties/rules",
+          "type": "array",
+          "title": "The Rules Schema",
+          "items": {
+            "$id": "#/properties/data/properties/rules/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "id",
+              "token_id",
+              "name",
+              "address",
+              "abi",
+              "updated_timestamp"
+            ],
+            "properties": {
+              "id": {
+                "$id": "#/properties/data/properties/rules/items/properties/id",
+                "type": "integer",
+                "title": "The Id Schema",
+                "default": 0,
+                "examples": [
+                  1
+                ]
+              },
+              "token_id": {
+                "$id": "#/properties/data/properties/rules/items/properties/token_id",
+                "type": "integer",
+                "title": "The Token_id Schema",
+                "default": 0,
+                "examples": [
+                  1287
+                ]
+              },
+              "name": {
+                "$id": "#/properties/data/properties/rules/items/properties/name",
+                "type": "string",
+                "title": "The Name Schema",
+                "default": "",
+                "enum": ["Pricer", "Direct Transfer"],
+                "examples": [
+                  "Pricer"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "address": {
+                "$id": "#/properties/data/properties/rules/items/properties/address",
+                "type": "string",
+                "title": "The Address Schema",
+                "default": "",
+                "examples": [
+                  "0x4a9d65044535984fe06a368c1575d3b4a877c726"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "abi": {
+                "$id": "#/properties/data/properties/rules/items/properties/abi",
+                "type": "array",
+                "title": "The Abi Schema",
+                "items": {
+                  "$id": "#/properties/data/properties/rules/items/properties/abi/items",
+                  "type": "object",
+                  "title": "The Items Schema",
+                  "required": [
+                  ],
+                  "properties": {
+                    "constant": {
+                      "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/constant",
+                      "type": "boolean",
+                      "title": "The Constant Schema",
+                      "default": false,
+                      "examples": [
+                        true
+                      ]
+                    },
+                    "inputs": {
+                      "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/inputs",
+                      "type": "array",
+                      "title": "The Inputs Schema",
+                      "items": {
+                        "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/inputs/items",
+                        "type": "object",
+                        "title": "The Items Schema",
+                        "required": [
+                          "name",
+                          "type"
+                        ],
+                        "properties": {
+                          "name": {
+                            "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/inputs/items/properties/name",
+                            "type": "string",
+                            "title": "The Name Schema",
+                            "default": "",
+                            "examples": [
+                              ""
+                            ],
+                            "pattern": "^(.*)$"
+                          },
+                          "type": {
+                            "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/inputs/items/properties/type",
+                            "type": "string",
+                            "title": "The Type Schema",
+                            "default": "",
+                            "examples": [
+                              "bytes3"
+                            ],
+                            "pattern": "^(.*)$"
+                          }
+                        }
+                      }
+                    },
+                    "name": {
+                      "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/name",
+                      "type": "string",
+                      "title": "The Name Schema",
+                      "default": "",
+                      "examples": [
+                        "baseCurrencyPriceAcceptanceMargins"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "outputs": {
+                      "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/outputs",
+                      "type": "array",
+                      "title": "The Outputs Schema",
+                      "items": {
+                        "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/outputs/items",
+                        "type": "object",
+                        "title": "The Items Schema",
+                        "required": [
+                          "name",
+                          "type"
+                        ],
+                        "properties": {
+                          "name": {
+                            "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/outputs/items/properties/name",
+                            "type": "string",
+                            "title": "The Name Schema",
+                            "default": "",
+                            "examples": [
+                              ""
+                            ],
+                            "pattern": "^(.*)$"
+                          },
+                          "type": {
+                            "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/outputs/items/properties/type",
+                            "type": "string",
+                            "title": "The Type Schema",
+                            "default": "",
+                            "examples": [
+                              "uint256"
+                            ],
+                            "pattern": "^(.*)$"
+                          }
+                        }
+                      }
+                    },
+                    "payable": {
+                      "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/payable",
+                      "type": "boolean",
+                      "title": "The Payable Schema",
+                      "default": false,
+                      "examples": [
+                        false
+                      ]
+                    },
+                    "stateMutability": {
+                      "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/stateMutability",
+                      "type": "string",
+                      "title": "The Statemutability Schema",
+                      "default": "",
+                      "examples": [
+                        "view"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "type": {
+                      "$id": "#/properties/data/properties/rules/items/properties/abi/items/properties/type",
+                      "type": "string",
+                      "title": "The Type Schema",
+                      "default": "",
+                      "examples": [
+                        "function"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                }
+              },
+              "updated_timestamp": {
+                "$id": "#/properties/data/properties/rules/items/properties/updated_timestamp",
+                "type": "integer",
+                "title": "The Updated_timestamp Schema",
+                "default": 0,
+                "examples": [
+                  1554302237
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -29,7 +29,7 @@ public class Constant {
         public static final String CHAIN = "chain";
         public static final String PRICEPOINT = "price_point";
         public static final String TOKEN = "token";
-        public static final String RULE = "rule";
+        public static final String RULE = "rules";
         public static final String DEVICE = "device";
         public static final String DEVICES = "devices";
         public static final String DEVICEMANAGER = "device_manager";
@@ -59,7 +59,7 @@ public class Constant {
         public static final String DEVICEMANAGER = SCHEMAFOLDER+ java.io.File.separatorChar + "device_manager_entity.json";
         public static final String CHAIN = SCHEMAFOLDER+ java.io.File.separatorChar + "chain_entity.json";
         public static final String RECOVERYOWNER = SCHEMAFOLDER+ java.io.File.separatorChar + "recovery_owner_entity.json";
-        public static final String RULE = SCHEMAFOLDER+ java.io.File.separatorChar + "rule_entity.json";
+        public static final String RULE = SCHEMAFOLDER+ java.io.File.separatorChar + "rules_entity.json";
 
     }
 

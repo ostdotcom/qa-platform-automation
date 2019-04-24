@@ -2,14 +2,14 @@ Feature: Verify Session related functionality.
 
 
 
-
+  @sanity @session
   Scenario: Verify GET Session detail for a defined user
     Given The Economy is up for actions
     When I make GET request to get session for defined session address
     Then I should get success status as true
     And Response should be expected as the defined JSON schema
-    
 
+  @session
   Scenario Outline: Verify GET Session detail for a invalid session address
     Given The Economy is up for actions
     When I make GET request to get session details with session address as <session address>
@@ -23,7 +23,7 @@ Feature: Verify Session related functionality.
     | 0x557e631a3d556f7ad62382fe079ed76397f02133  | NOT_FOUND     |
     | fvenrjfner                                  | BAD_REQUEST   |
 
-
+  @sanity @session
     Scenario: Verify GET session list for company and verify session details also
       Given The Economy is up for actions
       When I make GET request to get transactions list for a company
@@ -33,7 +33,7 @@ Feature: Verify Session related functionality.
       Then I should get success status as true
       And Response should be expected as the defined JSON schema
 
-
+  @sanity @session
     Scenario Outline: Verify GET Session list with limit
       Given The Economy is up for actions
       When I make GET request to get Session list with limit as <limit>
@@ -47,7 +47,7 @@ Feature: Verify Session related functionality.
         | 10    |
         | 25    |
 
-
+  @session
   Scenario Outline: Verify GET Session list with invalid limit
     Given The Economy is up for actions
     When I make GET request to get Session list with limit as <limit>
@@ -67,13 +67,13 @@ Feature: Verify Session related functionality.
     | 25.42   | BAD_REQUEST |
 
 
-
+  @session
   Scenario: Verify valid pagination identifier functionality
     Given The Economy is up for actions
     When I make GET request to get transactions list for a company
     Then I should get all the sessions list till last page with pagination identifier
 
-
+  @session
   Scenario Outline: Verify invalid pagination identifier
     Given The Economy is up for actions
     When I make GET request to get session list with pagination identifier as <pagination identifier>

@@ -15,7 +15,7 @@ import java.io.File;
 @CucumberOptions(
         plugin = {"pretty", "json:target/cucumber/cucumber.json","html:target/cucumber/cucumber-pretty"},
         glue = "com.platform.steps/",
-        //tags = "@test",
+        //tags = "@sanity",
         features = "src/test/java/com/platform/features/"
 )
 

@@ -288,8 +288,7 @@ public class DevicesSteps extends Base_API {
         params.put("user_id", TestDataManager.economy1.user_Id);
 
         ArrayList<Object> addressesArray = new ArrayList<Object>();
-        addressesArray.add("0x5906ae461eb6283cf15b0257d3206e74d83a6bd4");
-        addressesArray.add("0xab248ef66ee49f80e75266595aa160c8c1abdd5a");
+        addressesArray.add(TestDataManager.economy1.device_address);
         params.put("addresses", addressesArray);
 
         try {

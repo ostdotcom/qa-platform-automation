@@ -1,6 +1,6 @@
 Feature: Verify Recovery owner functionality
 
-
+  @sanity @recovery_owner
   Scenario: Verify recovery owner functionality for defined user
     Given The Economy is up for actions
     When I make GET request to get recovery owner details for defined user
@@ -9,7 +9,7 @@ Feature: Verify Recovery owner functionality
 
 
 
-
+  @recovery_owner
   Scenario Outline: Verify recovery owner functionality for defined user
     Given The Economy is up for actions
     When I make GET request to get recovery owner details for user with recovery owner address as <recovery owner address>

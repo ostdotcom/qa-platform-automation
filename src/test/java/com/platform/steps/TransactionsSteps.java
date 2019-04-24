@@ -218,9 +218,8 @@ public class TransactionsSteps extends Base_API {
         System.out.println("response: " + response.toString() );
     }
 
-    @When("^I make POST request of Company transfers (\\d+) UBT in wei to same user multiple times via direct transfer method$")
-    public void execute_transaction_multiple_transfers_DT(String ubtInWei) {
-        int numberOfTransfers = 3;
+    @When("^I make POST request of Company transfers (\\d+) UBT in wei to same user (.+) times via direct transfer method$")
+    public void execute_transaction_multiple_transfers_DT(String ubtInWei, int numberOfTransfers ) {
         transactionsService = services.transactions;
 
         company_old_Balance = getBalance(TestDataManager.economy1.company_Id);
@@ -252,17 +251,15 @@ public class TransactionsSteps extends Base_API {
         }
         System.out.println("response: " + response.toString() );
 
-        company_new_Balance = TransactionsDriver.subtract(company_old_Balance,ubtInWei);
-        user_new_Balance = TransactionsDriver.add(user_old_Balance,ubtInWei);
+        company_new_Balance = TransactionsDriver.subtract(company_old_Balance,ubtInWei,numberOfTransfers);
+        user_new_Balance = TransactionsDriver.add(user_old_Balance,ubtInWei,numberOfTransfers);
     }
 
 
-    @When("^I make POST request of Company transfers (\\d+) USD in wei to same user multiple times via pay method$")
-    public void execute_transactions_multiple_transfers_pay(String usdInWei) {
+    @When("^I make POST request of Company transfers (\\d+) USD in wei to same user (.+) times via pay method$")
+    public void execute_transactions_multiple_transfers_pay(String usdInWei, int numberOfTransfers) {
 
-        int numberOfTransfers = 3;
         transactionsService = services.transactions;
-
         company_old_Balance = getBalance(TestDataManager.economy1.company_Id);
         user_old_Balance = getBalance(TestDataManager.economy1.user_Id);
 

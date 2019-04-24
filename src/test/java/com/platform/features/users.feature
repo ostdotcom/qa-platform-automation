@@ -1,7 +1,7 @@
 Feature: Verify all the functionality related to Users.
 
 
-  @test
+  @sanity @users
   Scenario: Create New user
     Given The Economy is up for actions
     When I make POST request to create user
@@ -9,14 +9,14 @@ Feature: Verify all the functionality related to Users.
     And I should get the unique id of the user
     And  Response should be expected as the defined JSON schema
 
-
+  @sanity @users
   Scenario: Get all users list
     Given The Economy is up for actions
     When I make GET request to get users list
     Then I should get success status as true
     And  Response should be expected as the defined JSON schema
 
-
+  @sanity @users
   Scenario: Get user's details with defined user ID
     Given The Economy is up for actions
     When I make GET request to get user details
@@ -24,7 +24,7 @@ Feature: Verify all the functionality related to Users.
     And  type should be user
     And Response should be expected as the defined JSON schema
 
-
+  @sanity @users
   Scenario: Get company user's details with defined company ID
     Given The Economy is up for actions
     When I make GET request to get company user details
@@ -32,7 +32,7 @@ Feature: Verify all the functionality related to Users.
     And  type should be company
     And Response should be expected as the defined JSON schema
 
-
+  @users
   Scenario Outline: Verify the get user details API with wrong or invalid user ID
     Given The Economy is up for actions
     When I make GET request to get user details with <user ID>
@@ -51,7 +51,7 @@ Feature: Verify all the functionality related to Users.
 #    |                                         | false           | NOT_FOUND   |
 
 
-
+  @sanity
   Scenario Outline: Verify the valid limit for user list
     Given The Economy is up for actions
     When I make GET request to get users list with limit as <limit>
@@ -65,7 +65,7 @@ Feature: Verify all the functionality related to Users.
     | 10    |
     | 25    |
 
-
+  @users
   Scenario Outline: Verify the invalid limit for user list
     Given The Economy is up for actions
     When I make GET request to get users list with limit as <limit>
@@ -86,12 +86,13 @@ Feature: Verify all the functionality related to Users.
 
 
     # This scenario will fetch all the members with bunch of 10-10 users. This will consume lot of time, so try to exclude from regular run
+  @users
   Scenario: Verify valid pagination identifier functionality
     Given The Economy is up for actions
     When I make GET request to get users list
     Then I should get all the users list till last page with pagination identifier
 
-
+  @users
   Scenario Outline: Verify invalid pagination identifier
     Given The Economy is up for actions
     When I make GET request to get users list with pagination identifier as <pagination identifier>

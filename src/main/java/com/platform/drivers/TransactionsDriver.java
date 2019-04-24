@@ -29,14 +29,14 @@ public class TransactionsDriver {
         return response.getAsJsonObject("data").getAsJsonObject("transaction").get("status").getAsString();
     }
 
-    public static String subtract(String oldBalance, String trasferredUBT) {
+    public static String subtract(String oldBalance, String transferredUBT) {
 
-        BigDecimal expectedValue = new BigDecimal(oldBalance).subtract(new BigDecimal(trasferredUBT));
+        BigDecimal expectedValue = new BigDecimal(oldBalance).subtract(new BigDecimal(transferredUBT));
         return expectedValue.toString();
     }
 
-    public static String add(String oldBalance, String trasferredUBT) {
-        BigDecimal expectedValue = new BigDecimal(oldBalance).add(new BigDecimal(trasferredUBT));
+    public static String add(String oldBalance, String transferredUBT) {
+        BigDecimal expectedValue = new BigDecimal(oldBalance).add(new BigDecimal(transferredUBT));
         return expectedValue.toString();
     }
 
@@ -54,6 +54,16 @@ public class TransactionsDriver {
         return response.getAsJsonObject("data").getAsJsonArray("transactions").size()+"";
     }
 
+    public static String subtract(String oldBalance, String transferredUBT, int numOfTransfers) {
+
+        BigDecimal expectedValue = new BigDecimal(oldBalance).subtract(new BigDecimal(transferredUBT).multiply(new BigDecimal(numOfTransfers)));
+        return expectedValue.toString();
+    }
+
+    public static String add(String oldBalance, String transferredUBT,int numOfTransfers) {
+        BigDecimal expectedValue = new BigDecimal(oldBalance).add(new BigDecimal(transferredUBT).multiply(new BigDecimal(numOfTransfers)));
+        return expectedValue.toString();
+    }
     public static abstract class ExecuteTransactionParamBuilder {
         String userId;
         String toAddress;
