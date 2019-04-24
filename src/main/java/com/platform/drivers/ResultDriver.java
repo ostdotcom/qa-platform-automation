@@ -12,6 +12,8 @@ import org.junit.Assert;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResultDriver {
 
@@ -130,7 +132,6 @@ public class ResultDriver {
 
             Schema schema = SchemaLoader.load(jsonSchema);
             schema.validate(jsonResponse);
-
         }
         catch (FileNotFoundException f)
         {
@@ -139,8 +140,7 @@ public class ResultDriver {
         }
         catch (ValidationException v)
         {
-            System.out.println(v.getMessage());
-            Assert.fail(v.getMessage());
+            Assert.fail(v.getCausingExceptions().toString());
         }
     }
 
