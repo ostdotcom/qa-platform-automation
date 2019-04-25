@@ -154,11 +154,11 @@ Feature: Verify all the functionality related to Devices
       | 25.42   | BAD_REQUEST |
 
 
-  @devices
-  Scenario: Get user device list with valid pagination identifier
-    Given The Economy is up for actions
-    When I make GET request to get device lists for a defined user
-    Then I should get all the devices list till last page with pagination identifier
+#  @devices
+#  Scenario: Get user device list with valid pagination identifier
+#    Given The Economy is up for actions
+#    When I make GET request to get device lists for a defined user
+#    Then I should get all the devices list till last page with pagination identifier
 
 
   @devices

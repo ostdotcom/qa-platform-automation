@@ -332,11 +332,11 @@ Feature: Verify execute Transactions and Get transaction functionality
       | acters      | user_to_company   | test_details- 12  |
     Then I should get success status as true
 
-  @transactions
-  Scenario: Verify pagination identifier for user
-    Given The Economy is up for actions
-    When I make GET request to get transactions list details with defined user id
-    Then I should get full list of transaction with pagination identifier
+#  @transactions
+#  Scenario: Verify pagination identifier for user
+#    Given The Economy is up for actions
+#    When I make GET request to get transactions list details with defined user id
+#    Then I should get full list of transaction with pagination identifier
 
 
 
