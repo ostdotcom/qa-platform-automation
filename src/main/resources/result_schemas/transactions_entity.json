@@ -78,7 +78,7 @@
               },
               "transaction_hash": {
                 "$id": "#/properties/data/properties/transactions/items/properties/transaction_hash",
-                "type": "string",
+                "type": ["string","null"],
                 "title": "The Transaction_hash Schema",
                 "default": "",
                 "examples": [
@@ -108,7 +108,7 @@
               },
               "nonce": {
                 "$id": "#/properties/data/properties/transactions/items/properties/nonce",
-                "type": "integer",
+                "type": ["string","null"],
                 "title": "The Nonce Schema",
                 "default": 0,
                 "examples": [
@@ -176,7 +176,7 @@
               },
               "updated_timestamp": {
                 "$id": "#/properties/data/properties/transactions/items/properties/updated_timestamp",
-                "type": "integer",
+                "type": ["string","null"],
                 "title": "The Updated_timestamp Schema",
                 "default": 0,
                 "examples": [
@@ -185,7 +185,7 @@
               },
               "block_timestamp": {
                 "$id": "#/properties/data/properties/transactions/items/properties/block_timestamp",
-                "type": "integer",
+                "type": ["string","null"],
                 "title": "The Block_timestamp Schema",
                 "default": 0,
                 "examples": [
@@ -194,7 +194,7 @@
               },
               "block_number": {
                 "$id": "#/properties/data/properties/transactions/items/properties/block_number",
-                "type": "integer",
+                "type": ["string","null"],
                 "title": "The Block_number Schema",
                 "default": 0,
                 "examples": [
