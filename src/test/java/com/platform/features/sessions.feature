@@ -67,11 +67,11 @@ Feature: Verify Session related functionality.
     | 25.42   | BAD_REQUEST |
 
 
-  @session
-  Scenario: Verify valid pagination identifier functionality
-    Given The Economy is up for actions
-    When I make GET request to get transactions list for a company
-    Then I should get all the sessions list till last page with pagination identifier
+#  @session
+#  Scenario: Verify valid pagination identifier functionality
+#    Given The Economy is up for actions
+#    When I make GET request to get transactions list for a company
+#    Then I should get all the sessions list till last page with pagination identifier
 
   @session
   Scenario Outline: Verify invalid pagination identifier

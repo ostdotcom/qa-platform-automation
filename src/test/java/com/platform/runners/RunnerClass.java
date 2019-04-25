@@ -13,15 +13,16 @@ import java.io.File;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty", "json:target/cucumber/cucumber.json","html:target/cucumber/cucumber-pretty"},
+        plugin = {"pretty", "json:target/cucumber/","html:target/cucumber/cucumber-pretty"},
         glue = "com.platform.steps/",
-        //tags = "@sanity",
+        //tags = "@users",
         features = "src/test/java/com/platform/features/"
 )
 
 public class RunnerClass {
         @AfterClass
         public static void writeExtentReport() {
+          //  Configuration configuration = new Configuration();
     }
 }
 

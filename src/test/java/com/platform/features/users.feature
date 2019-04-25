@@ -86,11 +86,11 @@ Feature: Verify all the functionality related to Users.
 
 
     # This scenario will fetch all the members with bunch of 10-10 users. This will consume lot of time, so try to exclude from regular run
-  @users
-  Scenario: Verify valid pagination identifier functionality
-    Given The Economy is up for actions
-    When I make GET request to get users list
-    Then I should get all the users list till last page with pagination identifier
+
+#  Scenario: Verify valid pagination identifier functionality
+#    Given The Economy is up for actions
+#    When I make GET request to get users list
+#    Then I should get all the users list till last page with pagination identifier
 
   @users
   Scenario Outline: Verify invalid pagination identifier
