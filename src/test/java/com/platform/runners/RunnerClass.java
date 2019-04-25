@@ -16,7 +16,8 @@ import java.io.File;
         plugin = {"pretty", "json:target/cucumber/","html:target/cucumber/cucumber-pretty"},
         glue = "com.platform.steps/",
         //tags = "@users",
-        features = "src/test/java/com/platform/features/"
+        features = "src/test/java/com/platform/features/",
+        monochrome = true
 )
 
 public class RunnerClass {

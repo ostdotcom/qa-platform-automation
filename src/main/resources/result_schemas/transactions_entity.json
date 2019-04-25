@@ -117,7 +117,7 @@
               },
               "value": {
                 "$id": "#/properties/data/properties/transactions/items/properties/value",
-                "type": "string",
+                "type": ["string","null"],
                 "title": "The Value Schema",
                 "default": "",
                 "examples": [
@@ -127,7 +127,7 @@
               },
               "gas_price": {
                 "$id": "#/properties/data/properties/transactions/items/properties/gas_price",
-                "type": "string",
+                "type": ["string","null"],
                 "title": "The Gas_price Schema",
                 "default": "",
                 "examples": [
@@ -137,7 +137,7 @@
               },
               "gas_used": {
                 "$id": "#/properties/data/properties/transactions/items/properties/gas_used",
-                "type": "integer",
+                "type": ["string","null"],
                 "title": "The Gas_used Schema",
                 "default": 0,
                 "examples": [
@@ -146,7 +146,7 @@
               },
               "transaction_fee": {
                 "$id": "#/properties/data/properties/transactions/items/properties/transaction_fee",
-                "type": "string",
+                "type": ["string","null"],
                 "title": "The Transaction_fee Schema",
                 "default": "",
                 "examples": [
@@ -156,7 +156,7 @@
               },
               "block_confirmation": {
                 "$id": "#/properties/data/properties/transactions/items/properties/block_confirmation",
-                "type": "integer",
+                "type": ["integer","null"],
                 "title": "The Block_confirmation Schema",
                 "default": 0,
                 "examples": [
@@ -168,6 +168,7 @@
                 "type": "string",
                 "title": "The Status Schema",
                 "default": "",
+                "enum": ["CREATED","SUBMITTED","MINED","SUCCESS","FAILED"],
                 "examples": [
                   "SUCCESS"
                 ],
