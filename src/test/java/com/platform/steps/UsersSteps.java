@@ -3,6 +3,7 @@ package com.platform.steps;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.drivers.ResultDriver;
+import com.platform.drivers.UsersDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -146,5 +147,30 @@ public class UsersSteps extends Base_API {
     @And("^I should get the unique id of the user$")
     public void get_user_id() {
         Assert.assertNotNull("User ID: ", ResultDriver.get_user_id(response));
+    }
+
+    @And("^User's status is (.+)$")
+    public void verify_user_status(String status) {
+        Assert.assertEquals("Status of New user created: ",status, UsersDriver.get_user_status(response));
+    }
+
+    @And("^Token holder address should be null$")
+    public void verify_token_holder_is_null() {
+        Assert.assertTrue("Token holder should be",UsersDriver.is_token_holder_address_null(response));
+    }
+
+    @And("^Device manager address should be null$")
+    public void verify_device_manager_is_null() {
+        Assert.assertTrue("Device Manager should be",UsersDriver.is_device_manager_null(response));
+    }
+
+    @And("^Recovery address should be null$")
+    public void verify_recovery_is_null() {
+        Assert.assertTrue("Device Manager should be",UsersDriver.is_recovery_address_null(response));
+    }
+
+    @And("^Recovery Owner address should be null$")
+    public void verify_recovery_owner_is_null() {
+        Assert.assertTrue("Device Manager should be",UsersDriver.is_recovery_owner_address_null(response));
     }
 }

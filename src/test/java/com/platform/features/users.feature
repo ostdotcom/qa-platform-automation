@@ -7,7 +7,12 @@ Feature: Verify all the functionality related to Users.
     When I make POST request to create user
     Then I should get success status as true
     And I should get the unique id of the user
-    And  Response should be expected as the defined JSON schema
+    And User's status is CREATED
+    And Token holder address should be null
+    And Device manager address should be null
+    And Recovery address should be null
+    And Recovery Owner address should be null
+    And Response should be expected as the defined JSON schema
 
   @sanity @users
   Scenario: Get all users list
