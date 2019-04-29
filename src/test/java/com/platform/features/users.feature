@@ -56,7 +56,7 @@ Feature: Verify all the functionality related to Users.
 #    |                                         | false           | NOT_FOUND   |
 
 
-  @sanity
+  @sanity @users
   Scenario Outline: Verify the valid limit for user list
     Given The Economy is up for actions
     When I make GET request to get users list with limit as <limit>

@@ -3,6 +3,7 @@ package com.platform.steps;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.drivers.ResultDriver;
+import com.platform.drivers.UsersDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 
 public class DeviceManagerSteps {
 
-    ResultDriver resultDriver = new ResultDriver();
+    UsersDriver usersDriver = new UsersDriver();
 
     private Base_API base;
 
@@ -41,7 +42,7 @@ public class DeviceManagerSteps {
     @And("^I make GET request to get device manager for the newly created user$")
     public void get_device_manager_with_new_user() {
 
-        String userId = resultDriver.get_user_id(base.response)+"";
+        String userId = usersDriver.get_user_id(base.response)+"";
 
         base.deviceManagersService = base.services.deviceManagers;
         HashMap <String,Object> params = new HashMap<String,Object>();

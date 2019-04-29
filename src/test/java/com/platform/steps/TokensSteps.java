@@ -3,6 +3,7 @@ package com.platform.steps;
 import com.google.gson.JsonObject;
 import com.platform.base.Base_API;
 import com.platform.drivers.ResultDriver;
+import com.platform.drivers.TokenDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 
 public class TokensSteps  {
 
-    ResultDriver resultDriver = new ResultDriver();
+    TokenDriver tokenDriver = new TokenDriver();
 
     private Base_API base;
 
@@ -39,7 +40,7 @@ public class TokensSteps  {
     public void verify_origin_aux_chainId() {
         int aux_chain_id = TestDataManager.economy1.aux_chain_id;
         int origin_chain_id = TestDataManager.economy1.origin_chain_id;
-        Assert.assertEquals("Auxiliary chain ID",aux_chain_id,resultDriver.get_auxiliary_chain_id(base.response));
-        Assert.assertEquals("Origin chain ID",origin_chain_id,resultDriver.get_origin_chain_id(base.response));
+        Assert.assertEquals("Auxiliary chain ID",aux_chain_id,tokenDriver.get_auxiliary_chain_id(base.response));
+        Assert.assertEquals("Origin chain ID",origin_chain_id,tokenDriver.get_origin_chain_id(base.response));
     }
 }

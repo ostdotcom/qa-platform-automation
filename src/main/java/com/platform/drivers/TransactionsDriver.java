@@ -16,17 +16,22 @@ import java.util.HashMap;
 
 public class TransactionsDriver {
 
+    public JsonObject get_transaction_object(JsonObject response)
+    {
+        return response.getAsJsonObject("data").getAsJsonObject("transaction");
+    }
+
 
     public  String getTransactionId(JsonObject response) {
-       return response.getAsJsonObject("data").getAsJsonObject("transaction").get("id").getAsString();
+       return get_transaction_object(response).get("id").getAsString();
     }
 
     public  String getFromUserId(JsonObject response) {
-        return response.getAsJsonObject("data").getAsJsonObject("transaction").getAsJsonArray("transfers").get(0).getAsJsonObject().get("from_user_id").getAsString();
+        return get_transaction_object(response).getAsJsonArray("transfers").get(0).getAsJsonObject().get("from_user_id").getAsString();
     }
 
     public  String getTransactionStatus(JsonObject response) {
-        return response.getAsJsonObject("data").getAsJsonObject("transaction").get("status").getAsString();
+        return get_transaction_object(response).get("status").getAsString();
     }
 
     public  String subtract(String oldBalance, String transferredUBT) {
@@ -158,8 +163,6 @@ public class TransactionsDriver {
         public PayParamsBuilder setTokenHolderSender(String tokenHolderSender) {
             this.tokenHolderSender = tokenHolderSender;
             return this;
-
-
         }
 
 

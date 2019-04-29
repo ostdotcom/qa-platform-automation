@@ -3,6 +3,7 @@ package com.platform.steps;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.drivers.ResultDriver;
+import com.platform.drivers.UsersDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.When;
 
@@ -11,7 +12,7 @@ import java.util.HashMap;
 
 public class RecoveryOwnerSteps {
 
-    ResultDriver resultDriver = new ResultDriver();
+    UsersDriver usersDriver = new UsersDriver();
     private Base_API base;
 
     public RecoveryOwnerSteps(Base_API base) {
@@ -29,7 +30,7 @@ public class RecoveryOwnerSteps {
 
         UsersSteps usersSteps = new UsersSteps(base);
         usersSteps.get_user_with_invalid_userID(TestDataManager.economy1.user_Id);
-        String recovery_owner_address = resultDriver.get_recovery_owner_address(base.response);
+        String recovery_owner_address = usersDriver.get_recovery_owner_address(base.response);
 
         params.put("recovery_owner_address",recovery_owner_address);
         try {

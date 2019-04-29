@@ -105,7 +105,7 @@ public class UsersSteps {
 
     @And("^type should be (.+)$")
     public void verify_user_type(String user_type) {
-        Assert.assertEquals("User type",user_type, resultDriver.get_user_type(base.response));
+        Assert.assertEquals("User type",user_type, usersDriver.get_user_type(base.response));
     }
 
     @When("^I make GET request to get users list with limit as (.+)$")
@@ -124,7 +124,7 @@ public class UsersSteps {
 
     @And("^I should get the user list with (.+) members$")
     public void verify_list_with_limit(int expected_limit) {
-        int actual_limit= resultDriver.get_list_number_of_users(base.response);
+        int actual_limit= usersDriver.get_list_number_of_users(base.response);
         if(expected_limit==actual_limit)
         {
             Assert.assertTrue(true);
@@ -158,7 +158,7 @@ public class UsersSteps {
 
     @And("^I should get the unique id of the user$")
     public void get_user_id() {
-        Assert.assertNotNull("User ID: ", resultDriver.get_user_id(base.response));
+        Assert.assertNotNull("User ID: ", usersDriver.get_user_id(base.response));
     }
 
     @And("^User's status is (.+)$")
