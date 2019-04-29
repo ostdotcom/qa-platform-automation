@@ -48,11 +48,11 @@ Feature: Verify all the functionality related to Users.
     Examples:
     | user ID                                 | success status  | error code  |
     | 2d971b59-1cda-4fb4-a022-8b2fa65c7622    | false           | NOT_FOUND   |
-    | test abdsd                              | false           | NOT_FOUND   |
-    | 12345.12345_12345                       | false           | NOT_FOUND   |
+#    | test abdsd                              | false           | NOT_FOUND   |
+#    | 12345.12345_12345                       | false           | NOT_FOUND   |
 #    |    2d971b59-1cda-4fb4-a022-8b2fa65c7622 | false           | NOT_FOUND   |     //not working properly as gherkin do not consider spaces
 #    | 2d971b59-1cda-4fb4-a022-8b2fa65c7622    | false           | NOT_FOUND   |    // same as above
-    | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
+#    | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
 #    |                                         | false           | NOT_FOUND   |
 
 

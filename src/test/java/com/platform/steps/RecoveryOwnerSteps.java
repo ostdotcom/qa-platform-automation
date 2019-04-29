@@ -9,24 +9,31 @@ import cucumber.api.java.en.When;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class RecoveryOwnerSteps extends Base_API {
+public class RecoveryOwnerSteps {
+
+    ResultDriver resultDriver = new ResultDriver();
+    private Base_API base;
+
+    public RecoveryOwnerSteps(Base_API base) {
+        this.base = base;
+    }
 
 
     @When("^I make GET request to get recovery owner details for defined user$")
     public void get_recovery_owner_defined_user() {
 
-        recoveryOwnersService = services.recoveryOwners;
+        base.recoveryOwnersService = base.services.recoveryOwners;
 
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
 
-        UsersSteps usersSteps = new UsersSteps();
+        UsersSteps usersSteps = new UsersSteps(base);
         usersSteps.get_user_with_invalid_userID(TestDataManager.economy1.user_Id);
-        String recovery_owner_address = ResultDriver.get_recovery_owner_address(response);
+        String recovery_owner_address = resultDriver.get_recovery_owner_address(base.response);
 
         params.put("recovery_owner_address",recovery_owner_address);
         try {
-            response = recoveryOwnersService.get( params );
+            base.response = base.recoveryOwnersService.get( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -34,18 +41,18 @@ public class RecoveryOwnerSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make GET request to get recovery owner details for user with recovery owner address as (.+)$")
     public void get_recovery_owner_details_with_recovery_owner_address(String recovery_owner_address) {
 
-        recoveryOwnersService = services.recoveryOwners;
+        base.recoveryOwnersService = base.services.recoveryOwners;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
         params.put("recovery_owner_address",recovery_owner_address);
         try {
-            response = recoveryOwnersService.get( params );
+            base.response = base.recoveryOwnersService.get( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -53,6 +60,6 @@ public class RecoveryOwnerSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 }

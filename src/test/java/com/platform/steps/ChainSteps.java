@@ -10,18 +10,24 @@ import cucumber.api.java.en.When;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class ChainSteps extends Base_API {
+public class ChainSteps {
 
+
+    private Base_API base;
+
+    public ChainSteps(Base_API base) {
+        this.base = base;
+    }
 
 
     @When("^I make GET request to get chain details of auxiliary chain$")
     public void get_chain_details_aux() {
 
-        chainsService = services.chains;
+        base.chainsService = base.services.chains;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("chain_id", TestDataManager.economy1.aux_chain_id);
         try {
-            response = chainsService.get( params );
+            base.response = base.chainsService.get( params );
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         } catch (IOException e) {
@@ -29,18 +35,18 @@ public class ChainSteps extends Base_API {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
 
     }
 
     @When("^I make GET request to get chain details of origin chain$")
     public void get_chain_details_origin() {
 
-        chainsService = services.chains;
+        base.chainsService = base.services.chains;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("chain_id", TestDataManager.economy1.origin_chain_id);
         try {
-            response = chainsService.get( params );
+            base.response = base.chainsService.get( params );
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         } catch (IOException e) {
@@ -48,17 +54,17 @@ public class ChainSteps extends Base_API {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make GET request to get chain details with chain as (.+)$")
     public void get_chain_details_with_chain_id(String chainId) {
 
-        chainsService = services.chains;
+        base.chainsService = base.services.chains;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("chain_id", chainId);
         try {
-            response = chainsService.get( params );
+            base.response = base.chainsService.get( params );
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         } catch (IOException e) {
@@ -66,7 +72,7 @@ public class ChainSteps extends Base_API {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
 
     }
 }

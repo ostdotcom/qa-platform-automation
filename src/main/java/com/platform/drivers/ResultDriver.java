@@ -18,19 +18,19 @@ import java.util.List;
 public class ResultDriver {
 
 
-    public static boolean get_success_status(JsonObject result)
+    public boolean get_success_status(JsonObject result)
     {
         return result.get("success").getAsBoolean();
     }
 
-    public static int get_auxiliary_chain_id(JsonObject result)
+    public int get_auxiliary_chain_id(JsonObject result)
     {
         return result.getAsJsonObject("data").getAsJsonObject("token")
                 .getAsJsonArray("auxiliary_chains").get(0)
                 .getAsJsonObject().get("chain_id").getAsInt();
     }
 
-    public static int get_origin_chain_id(JsonObject result) {
+    public int get_origin_chain_id(JsonObject result) {
         return result.getAsJsonObject("data").getAsJsonObject("token")
                 .getAsJsonObject( "origin_chain").get("chain_id").getAsInt();
     }
@@ -40,7 +40,7 @@ public class ResultDriver {
      * This function will verify json schema depending on the "result_type"
      * @param response - Json object which will come in response after API call
      */
-    public static void verify_json_schema(JsonObject response) {
+    public void verify_json_schema(JsonObject response) {
 
         JsonParser jsonParser = new JsonParser();
         Object obj=null;
@@ -145,40 +145,40 @@ public class ResultDriver {
     }
 
 
-    public static String get_result_type(JsonObject result)
+    public String get_result_type(JsonObject result)
     {
         return result.getAsJsonObject("data").get("result_type").getAsString();
     }
 
-    private static boolean is_detailed_error_present(JsonObject result){
+    private  boolean is_detailed_error_present(JsonObject result){
         return result.getAsJsonObject("err").has("error_data");
     }
 
-    public static String get_error_code(JsonObject response) {
+    public  String get_error_code(JsonObject response) {
         return response.getAsJsonObject("err").get("code").getAsString();
     }
 
-    public static String get_user_type(JsonObject response) {
+    public  String get_user_type(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("user").get("type").getAsString();
     }
 
-    public static int get_list_number_of_users(JsonObject response) {
+    public  int get_list_number_of_users(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonArray("users").size();
     }
 
-    public static boolean pagination_identifier_present(JsonObject response) {
+    public  boolean pagination_identifier_present(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("meta").getAsJsonObject("next_page_payload").has("pagination_identifier");
     }
 
-    public static String get_pagination_identifier(JsonObject response) {
+    public  String get_pagination_identifier(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("meta").getAsJsonObject("next_page_payload").get("pagination_identifier").getAsString();
     }
 
-    public static Object get_user_id(JsonObject response) {
+    public  Object get_user_id(JsonObject response) {
             return response.getAsJsonObject("data").getAsJsonObject("user").get("id").getAsString();
     }
 
-    public static String get_recovery_owner_address(JsonObject response) {
+    public  String get_recovery_owner_address(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("user").get("recovery_owner_address").getAsString();
     }
 }

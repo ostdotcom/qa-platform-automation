@@ -3,6 +3,7 @@ package com.platform.steps;
 import com.ost.OSTSDK;
 import com.platform.base.Base_API;
 import com.platform.constants.Constant;
+import com.platform.drivers.BalanceDriver;
 import com.platform.drivers.ResultDriver;
 import com.platform.drivers.SessionDriver;
 import com.platform.managers.TestDataManager;
@@ -13,8 +14,18 @@ import org.junit.Assert;
 
 import java.util.HashMap;
 
-public class CommonSteps extends Base_API {
+public class CommonSteps  {
 
+    private Base_API base;
+
+    public CommonSteps(Base_API base) {
+        this.base = base;
+    }
+
+    ResultDriver resultDriver = new ResultDriver();
+    UsersSteps usersSteps = new UsersSteps(base);
+    DevicesSteps devicesSteps = new DevicesSteps(base);
+    SessionSteps sessionSteps = new SessionSteps(base);
 
     @Given("^The Economy is up for actions$")
     public void initialize_economy() {
@@ -24,23 +35,23 @@ public class CommonSteps extends Base_API {
         sdkConfig.put("apiKey",TestDataManager.economy1.apiKey);
         sdkConfig.put("apiSecret",TestDataManager.economy1.secretKey);
 
-        ostObj = new OSTSDK(sdkConfig);
-        services = (com.ost.services.Manifest) ostObj.services;
+        base.ostObj = new OSTSDK(sdkConfig);
+        base.services = (com.ost.services.Manifest) base.ostObj.services;
     }
 
     @Then("^I should get success status as (.+)$")
     public void verify_success_status(boolean successStatus) {
-        Assert.assertEquals("API success status",successStatus,ResultDriver.get_success_status(response));
+        Assert.assertEquals("API success status",successStatus,resultDriver.get_success_status(base.response));
     }
 
     @And("^Response should be expected as the defined JSON schema$")
     public void verify_json_schema() {
-        ResultDriver.verify_json_schema(response);
+        resultDriver.verify_json_schema(base.response);
     }
 
     @And("^I should get error code as (.+)$")
     public void get_error_code(String error_code) {
-        Assert.assertEquals("Error code of API response",error_code,ResultDriver.get_error_code(response));
+        Assert.assertEquals("Error code of API base.response",error_code,resultDriver.get_error_code(base.response));
     }
 
     @Then("^I should get all the (.+) list till last page with pagination identifier$")
@@ -51,26 +62,26 @@ public class CommonSteps extends Base_API {
         switch (list_type)
         {
             case Constant.RESULT_TYPE.USERS:
-                while (ResultDriver.pagination_identifier_present(response))
+                while (resultDriver.pagination_identifier_present(base.response))
                 {
-                    pagination_identifier = ResultDriver.get_pagination_identifier(response);
-                    UsersSteps.get_user_list_with_pagination_identifier(pagination_identifier);
+                    pagination_identifier = resultDriver.get_pagination_identifier(base.response);
+                    usersSteps.get_user_list_with_pagination_identifier(pagination_identifier);
                 }
                 break;
 
             case Constant.RESULT_TYPE.DEVICES:
-                while (ResultDriver.pagination_identifier_present(response))
+                while (resultDriver.pagination_identifier_present(base.response))
                 {
-                    pagination_identifier = ResultDriver.get_pagination_identifier(response);
-                    DevicesSteps.get_device_list_with_pagination_identifier(pagination_identifier);
+                    pagination_identifier = resultDriver.get_pagination_identifier(base.response);
+                    devicesSteps.get_device_list_with_pagination_identifier(pagination_identifier);
                 }
                 break;
 
             case Constant.RESULT_TYPE.SESSIONS:
-                while (ResultDriver.pagination_identifier_present(response))
+                while (resultDriver.pagination_identifier_present(base.response))
                 {
-                    pagination_identifier = ResultDriver.get_pagination_identifier(response);
-                    SessionSteps.get_sessions_list_with_pagination_identifier(pagination_identifier);
+                    pagination_identifier = resultDriver.get_pagination_identifier(base.response);
+                    sessionSteps.get_sessions_list_with_pagination_identifier(pagination_identifier);
                 }
                 break;
 

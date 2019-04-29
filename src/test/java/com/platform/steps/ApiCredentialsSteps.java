@@ -12,6 +12,11 @@ import java.util.HashMap;
 
 public class ApiCredentialsSteps extends Base_API {
 
+    private Base_API base;
+
+    public ApiCredentialsSteps(Base_API base) {
+        this.base = base;
+    }
 
     @Given("^The economy with wrong API key is setup$")
     public void setup_economy_with_wrong_API_key() {
@@ -21,8 +26,8 @@ public class ApiCredentialsSteps extends Base_API {
         sdkConfig.put("apiKey","vge5y5v5y5yb5y5y5wbby");
         sdkConfig.put("apiSecret",TestDataManager.economy1.secretKey);
 
-        ostObj = new OSTSDK(sdkConfig);
-        services = (com.ost.services.Manifest) ostObj.services;
+        base.ostObj = new OSTSDK(sdkConfig);
+        base.services = (com.ost.services.Manifest)base.ostObj.services;
     }
 
     @Given("^The economy with wrong Secret key is setup$")
@@ -33,8 +38,8 @@ public class ApiCredentialsSteps extends Base_API {
         sdkConfig.put("apiKey",TestDataManager.economy1.apiKey);
         sdkConfig.put("apiSecret","ckef09r4vj404v4m0t5t059tmvtu5my2vy06uy");
 
-        ostObj = new OSTSDK(sdkConfig);
-        services = (com.ost.services.Manifest) ostObj.services;
+        base.ostObj = new OSTSDK(sdkConfig);
+        base.services = (com.ost.services.Manifest)base.ostObj.services;
     }
 
     @Given("^The economy with wrong api endpoint is setup$")
@@ -45,7 +50,7 @@ public class ApiCredentialsSteps extends Base_API {
         sdkConfig.put("apiKey",TestDataManager.economy1.apiKey);
         sdkConfig.put("apiSecret",TestDataManager.economy1.secretKey);
 
-        ostObj = new OSTSDK(sdkConfig);
-        services = (com.ost.services.Manifest) ostObj.services;
+        base.ostObj = new OSTSDK(sdkConfig);
+        base.services = (com.ost.services.Manifest)base.ostObj.services;
     }
 }

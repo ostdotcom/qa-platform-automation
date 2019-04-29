@@ -17,50 +17,50 @@ import java.util.HashMap;
 public class TransactionsDriver {
 
 
-    public static String getTransactionId(JsonObject response) {
+    public  String getTransactionId(JsonObject response) {
        return response.getAsJsonObject("data").getAsJsonObject("transaction").get("id").getAsString();
     }
 
-    public static String getFromUserId(JsonObject response) {
+    public  String getFromUserId(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("transaction").getAsJsonArray("transfers").get(0).getAsJsonObject().get("from_user_id").getAsString();
     }
 
-    public static String getTransactionStatus(JsonObject response) {
+    public  String getTransactionStatus(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("transaction").get("status").getAsString();
     }
 
-    public static String subtract(String oldBalance, String transferredUBT) {
+    public  String subtract(String oldBalance, String transferredUBT) {
 
         BigDecimal expectedValue = new BigDecimal(oldBalance).subtract(new BigDecimal(transferredUBT));
         return expectedValue.toString();
     }
 
-    public static String add(String oldBalance, String transferredUBT) {
+    public  String add(String oldBalance, String transferredUBT) {
         BigDecimal expectedValue = new BigDecimal(oldBalance).add(new BigDecimal(transferredUBT));
         return expectedValue.toString();
     }
 
-    public static String get_ubt_from_usd(String usdInWei, String pricePoint, String conversion_factor) {
+    public  String get_ubt_from_usd(String usdInWei, String pricePoint, String conversion_factor) {
         BigDecimal expectedValue = new BigDecimal(usdInWei).divide(new BigDecimal(pricePoint),5, RoundingMode.HALF_EVEN).multiply(new BigDecimal(conversion_factor));
         return expectedValue.toString();
     }
 
-    public static int get_transaction_count(JsonObject response) {
+    public  int get_transaction_count(JsonObject response) {
 
         return  response.getAsJsonObject("data").getAsJsonObject("meta").get("total_no").getAsInt();
     }
 
-    public static String get_list_number_of_transaction(JsonObject response) {
+    public  String get_list_number_of_transaction(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonArray("transactions").size()+"";
     }
 
-    public static String subtract(String oldBalance, String transferredUBT, int numOfTransfers) {
+    public  String subtract(String oldBalance, String transferredUBT, int numOfTransfers) {
 
         BigDecimal expectedValue = new BigDecimal(oldBalance).subtract(new BigDecimal(transferredUBT).multiply(new BigDecimal(numOfTransfers)));
         return expectedValue.toString();
     }
 
-    public static String add(String oldBalance, String transferredUBT,int numOfTransfers) {
+    public  String add(String oldBalance, String transferredUBT,int numOfTransfers) {
         BigDecimal expectedValue = new BigDecimal(oldBalance).add(new BigDecimal(transferredUBT).multiply(new BigDecimal(numOfTransfers)));
         return expectedValue.toString();
     }
@@ -233,17 +233,6 @@ public class TransactionsDriver {
             params.put("raw_calldata", jsonStr);
             params.put("meta_property", metaProperty);
             return params;
-        }
-    }
-
-
-    public static class GetTransactionsParams
-    {
-
-
-        public GetTransactionsParams()
-        {
-
         }
     }
 }

@@ -15,22 +15,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DevicesSteps extends Base_API {
+public class DevicesSteps {
 
     EthAddress ethAddress = new EthAddress();
     String deviceAddress;
+
+    DevicesDriver devicesDriver = new DevicesDriver();
+    ResultDriver resultDriver = new ResultDriver();
+
+
+    private Base_API base;
+
+    public DevicesSteps(Base_API base) {
+        this.base = base;
+    }
 
 
     @When("^I make POST request to create device with defined user$")
     public void create_device() {
 
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("user_id",TestDataManager.economy1.user_Id);
         params.put("address",ethAddress.getNewEthAddress() );
         params.put("api_signer_address", ethAddress.getNewEthAddress());
         try {
-            response = devicesService.create( params );
+            base.response = base.devicesService.create( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -38,20 +48,20 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
 
     @And("^I should get newly created device details$")
     public void get_device_address() {
-        devicesService = services.devices;
-        deviceAddress = DevicesDriver.get_device_address(response);
+        base.devicesService = base.services.devices;
+        deviceAddress = devicesDriver.get_device_address(base.response);
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
         params.put("device_address", deviceAddress);
-        JsonObject response = null;
+//        JsonObject base.response = null;
         try {
-            response = devicesService.get( params );
+            base.response = base.devicesService.get( params );
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         } catch (IOException e) {
@@ -59,19 +69,19 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make POST request to create device with user as (.+)$")
     public void create_device_with_userId(String userId) {
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("user_id",userId);
         params.put("address",ethAddress.getNewEthAddress() );
         params.put("api_signer_address", ethAddress.getNewEthAddress());
         System.out.println(params);
         try {
-            response = devicesService.create( params );
+            base.response = base.devicesService.create( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -79,12 +89,12 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make POST request to create device with device address as (.+)$")
     public void create_device_with_device_address(String deviceAddress) {
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("user_id",TestDataManager.economy1.user_Id);
         params.put("address",deviceAddress );
@@ -93,7 +103,7 @@ public class DevicesSteps extends Base_API {
         System.out.println(params);
 
         try {
-            response = devicesService.create( params );
+            base.response = base.devicesService.create( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -101,19 +111,19 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make POST request to create device with api signer address as (.+)$")
     public void create_device_with_api_signer(String api_signer_address) {
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("user_id",TestDataManager.economy1.user_Id);
         params.put("address",ethAddress.getNewEthAddress() );
         params.put("api_signer_address", api_signer_address);
         System.out.println(params);
         try {
-            response = devicesService.create( params );
+            base.response = base.devicesService.create( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -121,19 +131,19 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make GET request to get user device details for defined user and device address$")
     public void get_device_with_user_device_address() {
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
         params.put("device_address", TestDataManager.economy1.device_address);
 
         System.out.println(params);
         try {
-            response = devicesService.get( params );
+            base.response = base.devicesService.get( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -141,25 +151,25 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @And("^Device status should be (.+)$")
     public void get_device_status(String deviceStatus) {
-        Assert.assertEquals(deviceStatus,DevicesDriver.get_device_status(response));
+        Assert.assertEquals(deviceStatus,devicesDriver.get_device_status(base.response));
     }
 
     @When("^I make GET request to get device details with user id as (.+)$")
     public void get_device_with_userID(String userId) {
 
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("user_id", userId);
         params.put("device_address", TestDataManager.economy1.device_address);
 
         System.out.println(params);
         try {
-            response = devicesService.get( params );
+            base.response = base.devicesService.get( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -167,20 +177,20 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make GET request to get device with device address as (.+)$")
     public void get_device_with_device_address(String deviceAddress) {
 
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
         params.put("device_address", deviceAddress);
 
         System.out.println(params);
         try {
-            response = devicesService.get( params );
+            base.response = base.devicesService.get( params );
         } catch (IOException e) {
             e.printStackTrace();
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
@@ -188,17 +198,17 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make GET request to get device lists for a defined user$")
     public void get_devices_list() {
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
         System.out.println(params);
         try {
-            response = devicesService.getList( params );
+            base.response = base.devicesService.getList( params );
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         } catch (IOException e) {
@@ -206,17 +216,17 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make GET request to get device lists with user id as (.+)$")
     public void get_device_list_with_userID(String userID) {
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", userID);
         System.out.println(params);
         try {
-            response = devicesService.getList( params );
+            base.response = base.devicesService.getList( params );
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         } catch (IOException e) {
@@ -224,19 +234,19 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
 
     @When("^I make GET request to get device list with limit as (.+)$")
     public void get_device_list_with_limit(Object limit) {
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
         params.put("limit",limit);
         System.out.println(params);
         try {
-            response = devicesService.getList( params );
+            base.response = base.devicesService.getList( params );
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         } catch (IOException e) {
@@ -244,19 +254,19 @@ public class DevicesSteps extends Base_API {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @And("^I should get the device list with (.+) members$")
     public void verify_list_with_limit(int expected_limit) {
-        int actual_limit= DevicesDriver.get_list_number_of_devices(response);
+        int actual_limit= devicesDriver.get_list_number_of_devices(base.response);
         if(expected_limit==actual_limit)
         {
             Assert.assertTrue(true);
         }
         else
         {
-            if(ResultDriver.pagination_identifier_present(response))
+            if(resultDriver.pagination_identifier_present(base.response))
             {
                 Assert.fail("Limit is not validate");
             }
@@ -268,22 +278,22 @@ public class DevicesSteps extends Base_API {
     }
 
     @When("^I make GET request to get device list with pagination identifier as (.+)$")
-    public static void get_device_list_with_pagination_identifier(String pagination_identifier) {
-        devicesService = services.devices;
+    public void get_device_list_with_pagination_identifier(String pagination_identifier) {
+        base.devicesService = base.services.devices;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
         params.put("pagination_identifier",pagination_identifier);
         try {
-            response = devicesService.getList(params);
+            base.response = base.devicesService.getList(params);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 
     @When("^I make GET request to get devices list with defined devices address array$")
     public void get_devices_list_with_address_array() {
-        devicesService = services.devices;
+        base.devicesService = base.services.devices;
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
 
@@ -292,10 +302,10 @@ public class DevicesSteps extends Base_API {
         params.put("addresses", addressesArray);
 
         try {
-            response = devicesService.getList(params);
+            base.response = base.devicesService.getList(params);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("response: " + response.toString() );
+        System.out.println("base.response: " + base.response.toString() );
     }
 }

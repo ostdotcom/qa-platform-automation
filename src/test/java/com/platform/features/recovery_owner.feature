@@ -21,4 +21,4 @@ Feature: Verify Recovery owner functionality
     | recovery owner address                       | error code   |
     | 0xfae609af29acc68a291b8e63a442c93c2adc05d8   | NOT_FOUND    |
     | d47af60e-c29e-484f-b7c1-32c637028f33         | BAD_REQUEST  |
-    | jbvervjrvijeverviorjvierjj r3e3 fwef         | BAD_REQUEST  |
+#    | jbvervjrvijeverviorjvierjj r3e3 fwef         | BAD_REQUEST  |

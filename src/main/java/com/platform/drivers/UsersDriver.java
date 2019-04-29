@@ -4,23 +4,23 @@ import com.google.gson.JsonObject;
 
 public class UsersDriver {
 
-    public static String get_user_status(JsonObject response) {
+    public  String get_user_status(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("user").get("status").getAsString();
     }
 
-    public static boolean is_token_holder_address_null(JsonObject response) {
+    public  boolean is_token_holder_address_null(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("user").get("token_holder_address").isJsonNull();
     }
 
-    public static boolean is_device_manager_null(JsonObject response) {
+    public  boolean is_device_manager_null(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("user").get("device_manager_address").isJsonNull();
     }
 
-    public static boolean is_recovery_address_null(JsonObject response) {
+    public  boolean is_recovery_address_null(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("user").get("recovery_address").isJsonNull();
     }
 
-    public static boolean is_recovery_owner_address_null(JsonObject response) {
+    public  boolean is_recovery_owner_address_null(JsonObject response) {
         return response.getAsJsonObject("data").getAsJsonObject("user").get("recovery_owner_address").isJsonNull();
     }
 }

@@ -20,9 +20,9 @@ Feature: Verify all the functionality related to Devices
     Examples:
       | user ID                                 | success status  | error code  |
       | 2d971b59-1cda-4fb4-a022-8b2fa65c7622    | false           | NOT_FOUND   |
-      | test abdsd                              | false           | NOT_FOUND   |
-      | 12345.12345_12345                       | false           | NOT_FOUND   |
-      | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
+#      | test abdsd                              | false           | NOT_FOUND   |
+#      | 12345.12345_12345                       | false           | NOT_FOUND   |
+#      | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
 #      |                                         | false           | NOT_FOUND   |
 
   @devices
@@ -75,9 +75,9 @@ Feature: Verify all the functionality related to Devices
     Examples:
       | user ID                                 | success status  | error code  |
       | 2d971b59-1cda-4fb4-a022-8b2fa65c7622    | false           | NOT_FOUND   |
-      | test abdsd                              | false           | NOT_FOUND   |
-      | 12345.12345_12345                       | false           | NOT_FOUND   |
-      | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
+#      | test abdsd                              | false           | NOT_FOUND   |
+#      | 12345.12345_12345                       | false           | NOT_FOUND   |
+#      | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
 
   @devices
   Scenario Outline: : Get user device details with invalid device address
@@ -91,8 +91,8 @@ Feature: Verify all the functionality related to Devices
       | device address                              | success status  | error code  |
       | 1Ea365269A3e6c8fa492eca9A531BFaC8bA1649W    | false           | BAD_REQUEST |
       | d971b59-1cda-4fb4-a022-8b2fa65c7622         | false           | BAD_REQUEST |
-      | 12345.12345_12345                           | false           | BAD_REQUEST |
-      | avfbdf  ^!@$$@$#%&*                         | false           | BAD_REQUEST |
+#      | 12345.12345_12345                           | false           | BAD_REQUEST |
+#      | avfbdf  ^!@$$@$#%&*                         | false           | BAD_REQUEST |
 
 
   @sanity @devices
@@ -114,9 +114,9 @@ Feature: Verify all the functionality related to Devices
     Examples:
       | user ID                                 | success status  | error code  |
       | 2d971b59-1cda-4fb4-a022-8b2fa65c7622    | false           | NOT_FOUND   |
-      | test abdsd                              | false           | NOT_FOUND   |
-      | 12345.12345_12345                       | false           | NOT_FOUND   |
-      | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
+#      | test abdsd                              | false           | NOT_FOUND   |
+#      | 12345.12345_12345                       | false           | NOT_FOUND   |
+#      | avfbdf  ^!@$$@$#%&*                     | false           | NOT_FOUND   |
 
 
   @sanity @devices

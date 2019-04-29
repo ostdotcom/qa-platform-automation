@@ -28,4 +28,4 @@ Feature: Verify get Chain details functionality
     | chain id  | error code    |
     | 1000      | NOT_FOUND     |
     | diewd     | BAD_REQUEST   |
-    | -#656     | BAD_REQUEST   |
+#    | -#656     | BAD_REQUEST   |
