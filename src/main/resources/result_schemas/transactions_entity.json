@@ -108,7 +108,7 @@
               },
               "nonce": {
                 "$id": "#/properties/data/properties/transactions/items/properties/nonce",
-                "type": ["string","null"],
+                "type": ["integer","null"],
                 "title": "The Nonce Schema",
                 "default": 0,
                 "examples": [
@@ -137,7 +137,7 @@
               },
               "gas_used": {
                 "$id": "#/properties/data/properties/transactions/items/properties/gas_used",
-                "type": ["string","null"],
+                "type": ["integer","null"],
                 "title": "The Gas_used Schema",
                 "default": 0,
                 "examples": [
@@ -176,7 +176,7 @@
               },
               "updated_timestamp": {
                 "$id": "#/properties/data/properties/transactions/items/properties/updated_timestamp",
-                "type": ["string","null"],
+                "type": ["integer","null"],
                 "title": "The Updated_timestamp Schema",
                 "default": 0,
                 "examples": [
@@ -185,7 +185,7 @@
               },
               "block_timestamp": {
                 "$id": "#/properties/data/properties/transactions/items/properties/block_timestamp",
-                "type": ["string","null"],
+                "type": ["integer","null"],
                 "title": "The Block_timestamp Schema",
                 "default": 0,
                 "examples": [
@@ -194,7 +194,7 @@
               },
               "block_number": {
                 "$id": "#/properties/data/properties/transactions/items/properties/block_number",
-                "type": ["string","null"],
+                "type": ["integer","null"],
                 "title": "The Block_number Schema",
                 "default": 0,
                 "examples": [

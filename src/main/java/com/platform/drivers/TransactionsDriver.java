@@ -41,7 +41,7 @@ public class TransactionsDriver {
     }
 
     public static String get_ubt_from_usd(String usdInWei, String pricePoint, String conversion_factor) {
-        BigDecimal expectedValue = new BigDecimal(usdInWei).divide(new BigDecimal(pricePoint),5, RoundingMode.HALF_EVEN).multiply(new BigDecimal(conversion_factor));
+        BigInteger expectedValue = new BigDecimal(usdInWei).divide(new BigDecimal(pricePoint),5, RoundingMode.HALF_EVEN).multiply(new BigDecimal(conversion_factor)).toBigInteger();
         return expectedValue.toString();
     }
 
