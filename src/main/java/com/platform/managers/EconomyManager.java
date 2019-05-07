@@ -5,6 +5,7 @@ public class EconomyManager {
 
     public String symbol;
     public String conversion_factor;
+    public String tokenId;
     public String email_Id;
     public String password;
     public String apiKey;
@@ -20,6 +21,6 @@ public class EconomyManager {
     public String transaction_Id;
     public int aux_chain_id;
     public int origin_chain_id;
-    public String recivery_owner_address;
+    public String recovery_owner_address;
 
 }

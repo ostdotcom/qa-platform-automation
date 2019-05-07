@@ -74,6 +74,12 @@ public class Constant {
         public static final int CONFIRMATION_TIME = (WAITING_BLOCK_CONFIRMATION*BLOCKHIGHT);
     }
 
+    public static class ETH
+    {
+        public static final String ADDRESS="address";
+        public static final String PRIVATEKEY = "privatekey";
+    }
+
     private static String getEnvironment()  {
         String env = null;
         try {

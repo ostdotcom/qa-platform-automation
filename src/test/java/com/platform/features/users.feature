@@ -12,7 +12,21 @@ Feature: Verify all the functionality related to Users.
     And Device manager address should be null
     And Recovery address should be null
     And Recovery Owner address should be null
+    #Get the newly created user
     And Response should be expected as the defined JSON schema
+
+
+
+  @clientAPI @users
+  Scenario: Create new user and Activate token holder
+    Given The Economy is up for actions
+    And User is in registered state
+    When I make POST request to activate user with newly created user
+    Then I should get success status as true
+    And Token holder should be created
+    And Response should be expected as the defined JSON schema
+
+
 
   @sanity @users
   Scenario: Get all users list
@@ -47,7 +61,7 @@ Feature: Verify all the functionality related to Users.
 
     Examples:
     | user ID                                 | success status  | error code  |
-    | 2d971b59-1cda-4fb4-a022-8b2fa65c7622    | false           | NOT_FOUND   |
+    | 1bf2f4a7-3a5d-4cef-bbf6-ffef12b56fa1    | false           | NOT_FOUND   |
 #    | test abdsd                              | false           | NOT_FOUND   |
 #    | 12345.12345_12345                       | false           | NOT_FOUND   |
 #    |    2d971b59-1cda-4fb4-a022-8b2fa65c7622 | false           | NOT_FOUND   |     //not working properly as gherkin do not consider spaces
@@ -92,10 +106,10 @@ Feature: Verify all the functionality related to Users.
 
     # This scenario will fetch all the members with bunch of 10-10 users. This will consume lot of time, so try to exclude from regular run
 
-#  Scenario: Verify valid pagination identifier functionality
-#    Given The Economy is up for actions
-#    When I make GET request to get users list
-#    Then I should get all the users list till last page with pagination identifier
+  Scenario: Verify valid pagination identifier functionality
+    Given The Economy is up for actions
+    When I make GET request to get users list
+    Then I should get all the users list till last page with pagination identifier
 
   @users
   Scenario Outline: Verify invalid pagination identifier
