@@ -25,4 +25,6 @@ public class RunnerClass {
         public static void writeExtentReport() {
           //  Configuration configuration = new Configuration();
     }
+
+
 }
