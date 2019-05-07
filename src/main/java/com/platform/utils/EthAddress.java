@@ -1,5 +1,7 @@
 package com.platform.utils;
 
+import com.google.gson.JsonObject;
+import com.platform.constants.Constant;
 import org.json.JSONObject;
 
 import java.math.BigInteger;
@@ -17,7 +19,7 @@ public class EthAddress {
      */
     public String getNewEthAddress()
     {
-        return process().get("address").toString();
+        return process().get("address").getAsString();
     }
 
 
@@ -25,16 +27,16 @@ public class EthAddress {
      * Provide Public & Private key in form of JSONObject
      * @return
      */
-    public JSONObject getNewEthKeys()
+    public JsonObject getNewEthKeys()
     {
         return process();
     }
 
 
-    private static JSONObject process(){
+    private static JsonObject process(){
 
         String seed = UUID.randomUUID().toString();
-        JSONObject processJson = new JSONObject();
+        JsonObject processJson = new JsonObject();
 
         try {
             ECKeyPair ecKeyPair = Keys.createEcKeyPair();
@@ -43,8 +45,9 @@ public class EthAddress {
             WalletFile aWallet = Wallet.createLight(seed, ecKeyPair);
             String sAddress = aWallet.getAddress();
 
-            processJson.put("address", "0x" + sAddress);
-            processJson.put("privatekey", sPrivatekeyInHex);
+            processJson.addProperty(Constant.ETH.ADDRESS, "0x" + sAddress);
+            processJson.addProperty(Constant.ETH.PRIVATEKEY, "0x"+sPrivatekeyInHex);
+            System.out.println(processJson);
 
         } catch (CipherException e) {
             e.printStackTrace();

@@ -3,6 +3,7 @@ package com.platform.steps;
 import com.google.gson.JsonObject;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
+import com.platform.constants.Constant;
 import com.platform.drivers.DevicesDriver;
 import com.platform.drivers.ResultDriver;
 import com.platform.managers.TestDataManager;
@@ -77,9 +78,11 @@ public class DevicesSteps {
         base.devicesService = base.services.devices;
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("user_id",userId);
-        params.put("address",ethAddress.getNewEthAddress() );
-        params.put("api_signer_address", ethAddress.getNewEthAddress());
-        System.out.println(params);
+        base.deviceAddress = ethAddress.getNewEthAddress();
+        params.put("address", base.deviceAddress);
+        base.api_signer_object = ethAddress.getNewEthKeys();
+        params.put("api_signer_address",base.api_signer_object.get(Constant.ETH.ADDRESS).getAsString());
+       // System.out.println(params);
         try {
             base.response = base.devicesService.create( params );
         } catch (IOException e) {

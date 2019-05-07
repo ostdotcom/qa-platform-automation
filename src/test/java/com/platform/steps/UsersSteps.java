@@ -3,21 +3,31 @@ package com.platform.steps;
 import com.google.gson.JsonObject;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
+import com.platform.constants.Constant;
+import com.platform.drivers.ChainDriver;
 import com.platform.drivers.ResultDriver;
 import com.platform.drivers.UsersDriver;
 import com.platform.managers.TestDataManager;
+import com.platform.utils.EthAddress;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class UsersSteps {
 
 
     String pagination_identifier;
+    EthAddress ethAddress = new EthAddress();
+    String userId;
+    String spendingLimit = "10000000000000000000";
+    Long expiryBlock = Long.valueOf(1000);
+
+
 
     private Base_API base;
 
@@ -30,7 +40,7 @@ public class UsersSteps {
     UsersDriver usersDriver = new UsersDriver();
 
     @When("^I make POST request to create user$")
-    public void post_user() {
+    public void create_user() {
 
         base.usersService = base.services.users;
         HashMap<String,Object> params = new HashMap<>();
@@ -184,5 +194,44 @@ public class UsersSteps {
     @And("^Recovery Owner address should be null$")
     public void verify_recovery_owner_is_null() {
         Assert.assertTrue("Device Manager should be",usersDriver.is_recovery_owner_address_null(base.response));
+    }
+
+    @And("^User is in registered state$")
+    public void user_in_registered_state() {
+        create_user();
+        userId = usersDriver.get_user_id(base.response);
+
+        DevicesSteps devicesSteps = new DevicesSteps(base);
+        devicesSteps.create_device_with_userId(userId);
+
+        String privateKey = base.api_signer_object.get(Constant.ETH.PRIVATEKEY).getAsString();
+        String deviceAdd = base.deviceAddress;
+    }
+
+    @When("^I make POST request to activate user with newly created user$")
+    public void post_activate_user() throws IOException {
+
+        ChainSteps chainSteps = new ChainSteps(base);
+        chainSteps.get_chain_details_aux();
+
+        ChainDriver chainDriver = new ChainDriver();
+        String current_blcok = chainDriver.get_current_block(base.response);
+
+      base.response = usersDriver.postActivateUser(
+              Arrays.asList(ethAddress.getNewEthAddress()),
+              (Long.valueOf(current_blcok)+expiryBlock),
+              spendingLimit,
+              ethAddress.getNewEthAddress(),
+              base.deviceAddress,
+              userId,
+              base.api_signer_object.get(Constant.ETH.ADDRESS).getAsString(),
+              base.api_signer_object.get(Constant.ETH.PRIVATEKEY).getAsString()
+              );
+      System.out.println(base.response);
+    }
+
+    @And("^Token holder should be created$")
+    public void get_token_holder() {
+
     }
 }

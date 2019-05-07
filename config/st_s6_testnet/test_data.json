@@ -1,9 +1,10 @@
 {
-  "apiEndpoint":"https://s6-api.stagingost.com/testnet/v2/",
+  "apiEndpoint":"https://s6-api.stagingost.com/testnet/v2",
   "economy": [
     {
       "symbol": "",
       "conversion_factor": "",
+      "tokenId": "",
       "email_Id": "",
       "password": "",
       "apiKey":"5c3876e64b2286154b47310d90ac7931",
@@ -19,11 +20,12 @@
       "transaction_Id" : "65c79088-7804-4a96-bc1c-70baefd1f6b3",
       "aux_chain_id":"199",
       "origin_chain_id":"3",
-      "recivery_owner_address":"0xb06a267c9c13295ca81b94394f3328cae46d60dd"
+      "recovery_owner_address":"0xb06a267c9c13295ca81b94394f3328cae46d60dd"
     },
     {
       "symbol": "",
       "conversion_factor": "500",
+      "tokenId": "1287",
       "email_Id": "",
       "password": "",
       "apiKey":"534bd4f314eaa014bc97ba6fd146d7ca",
@@ -39,7 +41,7 @@
       "transaction_Id" : "65c79088-7804-4a96-bc1c-70baefd1f6b3",
       "aux_chain_id":"199",
       "origin_chain_id":"3",
-      "recivery_owner_address":"0x6d4c1b11baf867ee2da53f7df7cc2cdd16282ad9"
+      "recovery_owner_address":"0x6d4c1b11baf867ee2da53f7df7cc2cdd16282ad9"
     }
   ]
 }

@@ -41,7 +41,7 @@ public class CommonSteps  {
 
     @Then("^I should get success status as (.+)$")
     public void verify_success_status(boolean successStatus) {
-        Assert.assertEquals("API success status",successStatus,resultDriver.get_success_status(base.response));
+        Assert.assertEquals("API success status: ",successStatus,resultDriver.get_success_status(base.response));
     }
 
     @And("^Response should be expected as the defined JSON schema$")
