@@ -90,4 +90,8 @@ public class UsersDriver {
         String resource = String.format("/users/%s/activate-user/", userId);
         return ostHttpRequestDriver.post(resource, requestMap, secretKey);
     }
+
+    public boolean is_token_holder_present(JsonObject response) {
+        return get_user_object(response).get("token_holder_address").isJsonNull();
+    }
 }

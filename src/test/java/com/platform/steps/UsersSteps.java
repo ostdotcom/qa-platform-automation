@@ -26,6 +26,8 @@ public class UsersSteps {
     String userId;
     String spendingLimit = "10000000000000000000";
     Long expiryBlock = Long.valueOf(1000);
+    UsersDriver usersDriver = new UsersDriver();
+    ResultDriver resultDriver = new ResultDriver();
 
 
 
@@ -35,9 +37,6 @@ public class UsersSteps {
         this.base = base;
     }
 
-
-    ResultDriver resultDriver = new ResultDriver();
-    UsersDriver usersDriver = new UsersDriver();
 
     @When("^I make POST request to create user$")
     public void create_user() {
@@ -193,7 +192,7 @@ public class UsersSteps {
 
     @And("^Recovery Owner address should be null$")
     public void verify_recovery_owner_is_null() {
-        Assert.assertTrue("Device Manager should be",usersDriver.is_recovery_owner_address_null(base.response));
+        Assert.assertTrue("Device Manager should be :",usersDriver.is_recovery_owner_address_null(base.response));
     }
 
     @And("^User is in registered state$")
@@ -211,15 +210,17 @@ public class UsersSteps {
     @When("^I make POST request to activate user with newly created user$")
     public void post_activate_user() throws IOException {
 
+        // Get Chain details to get Current block
         ChainSteps chainSteps = new ChainSteps(base);
         chainSteps.get_chain_details_aux();
 
+        // Get Current block from the above response
         ChainDriver chainDriver = new ChainDriver();
-        String current_blcok = chainDriver.get_current_block(base.response);
+        String current_block = chainDriver.get_current_block(base.response);
 
       base.response = usersDriver.postActivateUser(
               Arrays.asList(ethAddress.getNewEthAddress()),
-              (Long.valueOf(current_blcok)+expiryBlock),
+              (Long.valueOf(current_block)+expiryBlock),
               spendingLimit,
               ethAddress.getNewEthAddress(),
               base.deviceAddress,
@@ -232,6 +233,30 @@ public class UsersSteps {
 
     @And("^Token holder should be created$")
     public void get_token_holder() {
+        Assert.assertTrue("Token Holder should be not null :", usersDriver.is_token_holder_present(base.response) );
+    }
 
+    @When("^I make POST request to activate user with user id as (.+)$")
+    public void post_activate_user_userId(String userId) throws IOException {
+
+        // Get Chain details to get Current block
+        ChainSteps chainSteps = new ChainSteps(base);
+        chainSteps.get_chain_details_aux();
+
+        // Get Current block from the above response
+        ChainDriver chainDriver = new ChainDriver();
+        String current_block = chainDriver.get_current_block(base.response);
+
+        base.response = usersDriver.postActivateUser(
+                Arrays.asList(ethAddress.getNewEthAddress()),
+                (Long.valueOf(current_block)+expiryBlock),
+                spendingLimit,
+                ethAddress.getNewEthAddress(),
+                base.deviceAddress,
+                userId,
+                base.api_signer_object.get(Constant.ETH.ADDRESS).getAsString(),
+                base.api_signer_object.get(Constant.ETH.PRIVATEKEY).getAsString()
+        );
+        System.out.println(base.response);
     }
 }

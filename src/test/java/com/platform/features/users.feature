@@ -18,15 +18,24 @@ Feature: Verify all the functionality related to Users.
 
 
   @clientAPI @users
-  Scenario: Create new user and Activate token holder
+  Scenario Outline: Create new user and Activate token holder
+    Given The Economy is up for actions
+    When I make POST request to activate user with user id as <user id>
+    Then I should get success status as true
+    And Token holder should be created
+    And Response should be expected as the defined JSON schema
+
+    Examples:
+    | user id   |
+    | vmrprv    |
+
+  Scenario: Verify Activate user API with UserId
     Given The Economy is up for actions
     And User is in registered state
     When I make POST request to activate user with newly created user
     Then I should get success status as true
     And Token holder should be created
     And Response should be expected as the defined JSON schema
-
-
 
   @sanity @users
   Scenario: Get all users list
