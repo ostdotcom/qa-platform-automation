@@ -63,7 +63,7 @@ Feature: Verify execute Transactions and Get transaction functionality
 
 
 
-  @transactions @transactions
+  @transactions
   Scenario Outline: Verify Execute Transaction PAY with multiple transfers with invalid time: company to user transaction
     Given The Economy is up for actions
     When I make POST request of Company transfers 10 USD in wei to same user <No. of Transfers> times via pay method
@@ -77,7 +77,7 @@ Feature: Verify execute Transactions and Get transaction functionality
 
 
   #Session is not allowed to get this big transaction
-  @transactions @transactions
+  @transactions
   Scenario: Verify Execute Transaction PAY for insufficient balance: company to user transaction
     Given The Economy is up for actions
     When I make POST request of Company transfer more than its balance to user via direct transfer method
@@ -203,8 +203,7 @@ Feature: Verify execute Transactions and Get transaction functionality
      | OST        |
      | BTC        |
 
-    
-    
+
     # remaining meta property test cases
 
   @transactions
