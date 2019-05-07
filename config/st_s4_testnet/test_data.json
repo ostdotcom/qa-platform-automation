@@ -1,0 +1,45 @@
+{
+  "apiEndpoint":"https://api.stagingost.com/testnet/v2/",
+  "economy": [
+    {
+      "symbol": "",
+      "conversion_factor": "",
+      "email_Id": "",
+      "password": "",
+      "apiKey":"5c3876e64b2286154b47310d90ac7931",
+      "secretKey":"6434306c15725b3285858f4c536ef60a58389bc14a1fbe4fe4c4603741a7bbba",
+      "company_Id":"d47af60e-c29e-484f-b7c1-32c637028f33",
+      "company_TH":"0x557e631a3d556f7ad62382fe079ed76397f02133",
+      "user_Id":"9faebb94-0d9f-4ef5-adb1-64e204b2b5fb",
+      "user_TH":"0x176015a6E8cf3Bd9f7CA6A5e925cD071A3f542E8",
+      "pricer_TR":"0x964be9373a140622dbb07698badc76c3ca0c0648",
+      "directTransfer_TR":"0x4e40f2873d213d9ec4024ccfa0f19bf0b7df0a8c",
+      "device_address":"0x33dBD073dD9b01d5722f4345767a0681a402a487",
+      "session_address":"0xd2887e0d1c9610f604d588d598c7c38da9f1267d",
+      "transaction_Id" : "65c79088-7804-4a96-bc1c-70baefd1f6b3",
+      "aux_chain_id":"199",
+      "origin_chain_id":"3",
+      "recivery_owner_address":"0xb06a267c9c13295ca81b94394f3328cae46d60dd"
+    },
+    {
+      "symbol": "",
+      "conversion_factor": "500",
+      "email_Id": "",
+      "password": "",
+      "apiKey":"abeefb22e41f72180667eb244810fbac",
+      "secretKey":"4afef93d5790bec5eb64f0277e61191c085c3b9872e7f3030f2854e13690902c",
+      "company_Id":"800c5985-02e3-4b47-9312-9fc27f387e09",
+      "company_TH":"0xf309d48e093a1c587322095ef4dc7c16a8dc5964",
+      "user_Id":"122ebb0f-e0e4-4089-984a-cb87a3662d68",
+      "user_TH":"0x989276b42754425cef5a04dbc5753e347374b49a",
+      "pricer_TR":"0x1d1b61772acc2ec364ee3117c09c4d6942d3a359",
+      "directTransfer_TR":"0xdcbafe6f93811cb48cfde3a9e7c52d4e8059617f",
+      "device_address":"0xd8e1e8f91b0a1311410f28f0532cbb6516083f73",
+      "session_address":"0xf8c11ac15a68ea0f594004f21ef3a516be285160",
+      "transaction_Id" : "65c79088-7804-4a96-bc1c-70baefd1f6b3",
+      "aux_chain_id":"197",
+      "origin_chain_id":"3",
+      "recivery_owner_address":"0x6d3d186c9f3b5a9f1f93a1ee8ee052cd572b930f"
+    }
+  ]
+}

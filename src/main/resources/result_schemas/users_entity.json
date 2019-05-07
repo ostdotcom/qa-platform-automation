@@ -158,7 +158,6 @@
               "type": "object",
               "title": "The Next_page_payload Schema",
               "required": [
-                "pagination_identifier"
               ],
               "properties": {
                 "pagination_identifier": {
