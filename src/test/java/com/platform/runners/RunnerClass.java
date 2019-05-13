@@ -11,20 +11,25 @@ import org.junit.runner.RunWith;
 import java.io.File;
 
 
-@RunWith(Cucumber.class)
+//@RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty", "json:target/cucumber/","html:target/cucumber/cucumber-pretty"},
+        plugin = {"pretty", "json:target/cucumber/*.json","html:target/cucumber/cucumber-pretty"},
         glue = "com.platform.steps/",
-        //tags = "@sanity",
-        features = "src/test/java/com/platform/features/",
-        monochrome = true
+        tags = "@token",
+        features = "src/test/java/com/platform/features/"
+        //monochrome = true
 )
 
+@RunWith(ExtendedCucumberRunner.class)
 public class RunnerClass {
-        @AfterClass
-        public static void writeExtentReport() {
-          //  Configuration configuration = new Configuration();
+
+
+    @BeforeSuite
+    public static void setUp() {
+        System.out.println("In before Suite");
     }
-
-
+    @AfterSuite
+    public static void tearDown() {
+        System.out.println("In After Suite");
+    }
 }

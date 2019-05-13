@@ -36,7 +36,7 @@ public class TestDataManager {
     public List<EconomyManager> economy;
 
 
-    public static EconomyManager economy1 = TestDataManager.data.economy.get(1);
+    public static EconomyManager economy1 = TestDataManager.data.economy.get(3);
 //    public static EconomyManager economy1 = TestDataManager.data.economy.get(1);
 
 }

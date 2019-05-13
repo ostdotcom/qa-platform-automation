@@ -19,6 +19,7 @@ public class Constant {
     public static class TestDataFilePath{
 
         public static final String TESTDATAFILE = PROJECTPATH + java.io.File.separatorChar + "config"+ java.io.File.separatorChar+ ENVIRONMENT + java.io.File.separatorChar +"test_data.json";
+        public static final String TEMPDATAFILE = PROJECTPATH + java.io.File.separatorChar + "config"+ java.io.File.separatorChar+ ENVIRONMENT + java.io.File.separatorChar +"test_data.json";
 
     }
 

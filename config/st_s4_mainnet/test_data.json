@@ -1,0 +1,26 @@
+{
+  "apiEndpoint":"https://api.stagingost.com/mainnet/v2",
+  "economy": [
+    {
+      "symbol": "M091",
+      "conversion_factor": "155",
+      "tokenId": "1003",
+      "email_Id": "",
+      "password": "",
+      "apiKey":"bdccebb3770aa738d108ad0d06b0f4e1",
+      "secretKey":"133829b0d3d6a8c38947f67138bff6d3590b2e10e4b1eb5139a752a3c289dd4b",
+      "company_Id":"90199641-fb0f-484a-9d46-8969a141f70d",
+      "company_TH":"0x24d4f057dd2cf8bb3080d02839096a99baebb1f1",
+      "user_Id":"ba8829e8-3366-4a9b-b32d-103e1d5a4eff",
+      "user_TH":"0x5e4336ac378469637d43430d01face553a77c7fc",
+      "pricer_TR":"0x82b5966c00e4e57bcbb8dda791b636999be0af14",
+      "directTransfer_TR":"0x554e09977fd60120da601b88391819c85c1ce221",
+      "device_address":"0x33dBD073dD9b01d5722f4345767a0681a402a487",
+      "session_address":"0xd2887e0d1c9610f604d588d598c7c38da9f1267d",
+      "transaction_Id" : "65c79088-7804-4a96-bc1c-70baefd1f6b3",
+      "aux_chain_id":"205",
+      "origin_chain_id":"3",
+      "recivery_owner_address":"0xb06a267c9c13295ca81b94394f3328cae46d60dd"
+    }
+  ]
+}
