@@ -88,7 +88,7 @@
               },
               "from": {
                 "$id": "#/properties/data/properties/transactions/items/properties/from",
-                "type": "string",
+                "type": ["string","null"],
                 "title": "The From Schema",
                 "default": "",
                 "examples": [

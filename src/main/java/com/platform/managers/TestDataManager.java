@@ -36,7 +36,22 @@ public class TestDataManager {
     public List<EconomyManager> economy;
 
 
-    public static EconomyManager economy1 = TestDataManager.data.economy.get(3);
-//    public static EconomyManager economy1 = TestDataManager.data.economy.get(1);
+    public static EconomyManager economy1 = getEconomy(Constant.ECONOMY);
 
+    private static EconomyManager getEconomy(String tokenSymbol) {
+        EconomyManager economyManager=null;
+        int arraySize = TestDataManager.data.economy.size();
+
+        // Assigning token economy of matching with given Symbol
+
+        for(int i = 0; i < arraySize; i++)
+        {
+            if(TestDataManager.data.economy.get(i).symbol.equals(tokenSymbol))
+            {
+                economyManager = TestDataManager.data.economy.get(i);
+                break;
+            }
+        }
+        return economyManager;
+    }
 }

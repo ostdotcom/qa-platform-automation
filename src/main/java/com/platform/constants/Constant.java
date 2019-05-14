@@ -12,6 +12,7 @@ public class Constant {
 
     public static final String PROJECTPATH = System.getProperty("user.dir");
     public static final String ENVIRONMENT = System.getProperty("env",getEnvironment());
+    public static final String ECONOMY = System.getProperty("token",getToken());
     public static final String PROJECTOS = System.getProperty("os.name");
 
 
@@ -86,6 +87,18 @@ public class Constant {
         try {
             JsonObject jsonObject= new Gson().fromJson(new FileReader("config/config.json"),JsonObject.class);
              env = jsonObject.get("environment").getAsString();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return env;
+    }
+
+    private static String getToken() {
+        String env = null;
+        try {
+            JsonObject jsonObject= new Gson().fromJson(new FileReader("config/config.json"),JsonObject.class);
+            env = jsonObject.get("token").getAsString();
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
