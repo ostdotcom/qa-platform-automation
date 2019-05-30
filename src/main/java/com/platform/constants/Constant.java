@@ -20,8 +20,21 @@ public class Constant {
     public static class TestDataFilePath{
 
         public static final String TESTDATAFILE = PROJECTPATH + java.io.File.separatorChar + "config"+ java.io.File.separatorChar+ ENVIRONMENT + java.io.File.separatorChar +"test_data.json";
-        public static final String TEMPDATAFILE = PROJECTPATH + java.io.File.separatorChar + "config"+ java.io.File.separatorChar+ ENVIRONMENT + java.io.File.separatorChar +"test_data.json";
+        public static final String USERTEMPDATAFILE = PROJECTPATH + java.io.File.separatorChar + "config"+ java.io.File.separatorChar+ "user_temp.json";
 
+    }
+
+    public static class STATUS
+    {
+        public static final String CREATED = "CREATED";
+        public static final String ACTIVATING = "ACTIVATING";
+        public static final String ACTIVATED = "ACTIVATED";
+        public static final String REGISTERED = "REGISTERED";
+        public static final String AUTHORIZING = "AUTHORIZING";
+        public static final String AUTHORIZED = "AUTHORIZED";
+        public static final String REVOKING = "REVOKING";
+        public static final String RECOVERING = "RECOVERING";
+        public static final String REVOKED = "REVOKED";
     }
 
     public static class RESULT_TYPE

@@ -19,9 +19,9 @@ Feature: Verify Session related functionality.
 
     Examples:
     | session address                             | error code    |
-    | d47af60e-c29e-484f-b7c1-32c637028f33        | BAD_REQUEST   |
-    | 0x557e631a3d556f7ad62382fe079ed76397f02133  | NOT_FOUND     |
-    | fvenrjfner                                  | BAD_REQUEST   |
+    | aaa23ec1-e016-48ce-861a-4a483df43d23        | BAD_REQUEST   |
+#    | 0x557e631a3d556f7ad62382fe079ed76397f02133  | NOT_FOUND     |
+#    | fvenrjfner                                  | BAD_REQUEST   |
 
   @sanity @session
     Scenario: Verify GET session list for company and verify session details also
@@ -87,3 +87,11 @@ Feature: Verify Session related functionality.
   #above pagination identifier is from different economy or from different request
 
 
+
+
+  @session @clientApi
+  Scenario: Authorize session
+    Given The Economy is up for actions
+    And User is in activated state
+    When I make POST request to Add session
+    Then I should get success status as true

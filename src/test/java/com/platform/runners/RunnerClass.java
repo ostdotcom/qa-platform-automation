@@ -44,5 +44,4 @@ public class RunnerClass {
     public static void tearDown() {
         System.out.println("In After Suite");
     }
-
 }

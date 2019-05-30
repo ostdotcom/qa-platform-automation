@@ -4,17 +4,24 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.platform.constants.Constant;
 import com.platform.managers.TestDataManager;
+import com.platform.managers.UserData;
 import cucumber.api.java.hu.Ha;
+import org.json.JSONObject;
 import org.web3j.utils.Convert;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class TransactionsDriver {
+
+    OstHttpRequestDriver ostHttpRequestDriver = new OstHttpRequestDriver(TestDataManager.data.apiEndpoint);
+
 
     public JsonObject get_transaction_object(JsonObject response)
     {
@@ -69,6 +76,15 @@ public class TransactionsDriver {
         BigDecimal expectedValue = new BigDecimal(oldBalance).add(new BigDecimal(transferredUBT).multiply(new BigDecimal(numOfTransfers)));
         return expectedValue.toString();
     }
+
+    public JsonObject postExecuteTransaction(Map<String, Object> requestMap,String userId, String secretKey) throws IOException {
+        requestMap.putAll(ostHttpRequestDriver.getPrequisite(UserData.getInstance().user_id,UserData.getInstance().device_address_public,UserData.getInstance().api_signer_public));
+        String resource = String.format("/users/%s/transactions", userId);
+        return ostHttpRequestDriver.post(resource,requestMap,secretKey);
+       // return ostHttpRequestDriver.post(String.format("/users/%s/transactions", mUserId), requestMap);
+    }
+
+
     public static abstract class ExecuteTransactionParamBuilder {
         String userId;
         String toAddress;
@@ -238,4 +254,75 @@ public class TransactionsDriver {
             return params;
         }
     }
+
+    public static class ExecuteRuleRequestBuilder {
+
+        private static final String TO = "to";
+        private static final String RAW_CALL_DATA = "raw_calldata";
+        private static final String NONCE = "nonce";
+        private static final String CALL_DATA = "calldata";
+        private static final String SIGNATURE = "signature";
+        private static final String SIGNER = "signer";
+        private static final String MATA_PROPERTY = "meta_property";
+        private String toAddress = "0x0";
+
+        public ExecuteRuleRequestBuilder setToAddress(String toAddress) {
+            this.toAddress = toAddress;
+            return this;
+        }
+
+        public ExecuteRuleRequestBuilder setRawCallData(String rawCallData) {
+            this.rawCallData = rawCallData;
+            return this;
+        }
+
+        public ExecuteRuleRequestBuilder setNonce(String nonce) {
+            this.nonce = nonce;
+            return this;
+        }
+
+        public ExecuteRuleRequestBuilder setCallData(String callData) {
+            this.callData = callData;
+            return this;
+        }
+
+        public ExecuteRuleRequestBuilder setSignature(String signature) {
+            this.signature = signature;
+            return this;
+        }
+
+        public ExecuteRuleRequestBuilder setSigner(String signer) {
+            this.signer = signer;
+            return this;
+        }
+
+        public ExecuteRuleRequestBuilder setMetaProperty(Map<String, Object> metaProperty) {
+            this.metaProperty = metaProperty;
+            return this;
+        }
+
+        private String rawCallData = new String();
+        private String nonce = "0";
+        private String callData = "0x0";
+        private String signature = "0x0";
+        private String signer = "0x0";
+        private Map<String, Object> metaProperty = new HashMap<>();
+
+
+        public ExecuteRuleRequestBuilder() {
+        }
+
+        public Map<String, Object> build() {
+            Map<String, Object> map = new HashMap<>();
+            map.put(TO, toAddress);
+            map.put(RAW_CALL_DATA, rawCallData);
+            map.put(NONCE, nonce);
+            map.put(CALL_DATA, callData);
+            map.put(SIGNATURE, signature);
+            map.put(SIGNER, signer);
+            map.put(MATA_PROPERTY, metaProperty);
+            return map;
+        }
+    }
+
 }

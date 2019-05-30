@@ -9,22 +9,26 @@ import com.platform.constants.Constant;
 import com.platform.drivers.*;
 
 import com.platform.managers.TestDataManager;
+import com.platform.managers.UserData;
 import com.platform.utils.AssertionUtils;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.json.JSONObject;
 import org.junit.Assert;
+import org.web3j.crypto.ECKeyPair;
+import org.web3j.crypto.Sign;
 import org.web3j.utils.Convert;
+import org.web3j.utils.Numeric;
 
 import java.io.IOException;
 
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.UnknownServiceException;
+import java.util.*;
 
 public class TransactionsSteps {
 
@@ -775,4 +779,130 @@ public class TransactionsSteps {
             Assert.assertEquals("Pagination identifier should not present: ",false,resultDriver.pagination_identifier_present(base.response));
         }
     }
+
+    @When("^I make POST request of user transfers (\\d+) UBT in wei to another user vie direct transfer method$")
+    public void execute_transaction_u2u_direct(String amountInWei) throws IOException {
+
+        //Update token holder in UserData.getInstance()
+        UsersSteps usersSteps = new UsersSteps(base);
+        usersSteps.get_user_with_userID(UserData.getInstance().user_id);
+
+        UserData.getInstance().user_token_holder = new UsersDriver().get_token_holder(base.response);
+
+        //List<String> token holder addresses list to where amounts need to be sent
+        List<String> tokenHolderAddresses = Arrays.asList(TestDataManager.economy1.user_TH);    //This user from test_data.json
+
+        // List amount size should be same as list of addresses
+        List<String> amounts = Arrays.asList(amountInWei);
+
+
+        String ruleName = Constant.TRANSACTIONS.DIRECTTRANSFERS;
+        String ruleAddress = TestDataManager.economy1.directTransfer_TR;
+
+        String userId = UserData.getInstance().user_id;
+
+
+        String callData = new DirectTransferHelper().getTransactionExecutableData(tokenHolderAddresses, amounts);
+        String rawCallData = new DirectTransferHelper().getTransactionRawCallData(tokenHolderAddresses, amounts);
+        String spendingBtAmountInWei = new DirectTransferHelper().calDirectTransferSpendingLimit(amounts);
+
+
+        // Get nonce from sessions
+        SessionSteps sessionSteps = new SessionSteps(base);
+        sessionSteps.get_session_with_user_and_sessionAddress(UserData.getInstance().user_id, UserData.getInstance().session_address_public);
+
+        SessionDriver sessionDriver = new SessionDriver();
+        String nonce = sessionDriver.get_nonce(base.response);
+
+        //Generating message hash
+        String messageHash = createEIP1077TxnHash(callData, ruleAddress, Integer.parseInt(nonce));
+
+
+        //Generating signature
+        String signature = signWithSession(UserData.getInstance().session_address_private,messageHash);
+
+
+
+        Map<String, Object> map = new TransactionsDriver.ExecuteRuleRequestBuilder()
+                .setToAddress(ruleAddress)
+                .setCallData(callData)
+                .setNonce(nonce)
+                .setRawCallData(rawCallData)
+                .setSignature(signature)
+                .setSigner(UserData.getInstance().session_address_public)
+                //.setMetaProperty(mMeta)
+                .build();
+
+
+        base.response = transactionsDriver.postExecuteTransaction(map, UserData.getInstance().user_id,UserData.getInstance().api_signer_private);
+        System.out.println(base.response);
+    }
+
+    private String createEIP1077TxnHash( String callData, String contractAddress, int keyNonce) {
+        JSONObject jsonObject;
+        String txnHash;
+        try {
+            jsonObject = new EIP1077.TransactionBuilder()
+                    .setTo(contractAddress)
+                    .setFrom(UserData.getInstance().user_token_holder)
+                    .setCallPrefix(get_EXECUTABLE_CALL_PREFIX())
+                    .setData(callData)
+                    .setNonce(String.valueOf(keyNonce))
+                    .build();
+            System.out.println(jsonObject.toString());
+            txnHash = new EIP1077(jsonObject).toEIP1077TransactionHash();
+        } catch (Exception e) {
+            return null;
+        }
+        return txnHash;
+    }
+
+    public String get_EXECUTABLE_CALL_PREFIX() {
+        final String EXECUTABLE_CALL_STRING = "executeRule(address,bytes,uint256,bytes32,bytes32,uint8)";
+        byte[] feed = EXECUTABLE_CALL_STRING.getBytes();
+        String hash = null;
+        try {
+            hash = new SoliditySha3().soliditySha3(Numeric.toHexString(feed));
+        } catch (Exception e) {
+        }
+        hash = hash.substring(0,10);
+        return hash;
+    }
+
+
+
+    String signWithSession(String session_address_private, String hashToSign) {
+
+        byte[] sessionKey = Numeric.hexStringToByteArray(session_address_private);
+        ECKeyPair ecKeyPair = null;
+
+        try{
+            ecKeyPair = ECKeyPair.create(sessionKey);
+            Sign.SignatureData signatureData = Sign.signMessage(Numeric.hexStringToByteArray(hashToSign), ecKeyPair, false);
+            return signatureDataToString(signatureData);
+        }
+        catch (Throwable th) {
+        //Silence it.
+        th.printStackTrace();
+        return null;
+     } finally {
+        ecKeyPair = null;
+        clearBytes(sessionKey);
+        }
+
+    }
+
+    private static String signatureDataToString(Sign.SignatureData signatureData) {
+        return Numeric.toHexString(signatureData.getR()) + Numeric.cleanHexPrefix(Numeric.toHexString(signatureData.getS())) + String.format("%02x",(signatureData.getV()));
+    }
+
+
+    private static final byte[] nonSecret = ("BYTES_CLEARED_" + String.valueOf((int) (System.currentTimeMillis()))  ).getBytes();
+    private static void clearBytes(byte[] secret) {
+        if ( null == secret ) { return; }
+        for (int i = 0; i < secret.length; i++) {
+            secret[i] = nonSecret[i % nonSecret.length];
+        }
+    }
+
 }

@@ -58,4 +58,21 @@ public class DeviceManagerSteps {
         }
         System.out.println("base.response: " + base.response.toString() );
     }
+
+    public void get_device_manager_with_userId(String user_id) {
+
+        base.deviceManagersService = base.services.deviceManagers;
+        HashMap <String,Object> params = new HashMap<String,Object>();
+        params.put("user_id", user_id);
+        try {
+            base.response = base.deviceManagersService.get( params );
+        } catch (OSTAPIService.MissingParameter missingParameter) {
+            missingParameter.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (OSTAPIService.InvalidParameter invalidParameter) {
+            invalidParameter.printStackTrace();
+        }
+        System.out.println("base.response: " + base.response.toString() );
+    }
 }

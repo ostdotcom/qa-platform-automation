@@ -5,9 +5,13 @@ import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.constants.Constant;
 import com.platform.drivers.ChainDriver;
+import com.platform.drivers.DevicesDriver;
 import com.platform.drivers.ResultDriver;
 import com.platform.drivers.UsersDriver;
 import com.platform.managers.TestDataManager;
+import com.platform.managers.UserData;
+import com.platform.managers.UserTempManager;
+import com.platform.utils.AssertionUtils;
 import com.platform.utils.EthAddress;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -28,6 +32,7 @@ public class UsersSteps {
     Long expiryBlock = Long.valueOf(1000);
     UsersDriver usersDriver = new UsersDriver();
     ResultDriver resultDriver = new ResultDriver();
+    DevicesDriver devicesDriver = new DevicesDriver();
 
 
 
@@ -93,7 +98,7 @@ public class UsersSteps {
     }
 
     @When("^I make GET request to get user details with (.+)$")
-    public void get_user_with_invalid_userID(String userID) {
+    public void get_user_with_userID(String userID) {
 
         base.usersService = base.services.users;
         HashMap <String,Object> params = new HashMap<String,Object>();
@@ -187,7 +192,7 @@ public class UsersSteps {
 
     @And("^Recovery address should be null$")
     public void verify_recovery_is_null() {
-        Assert.assertTrue("Device Manager should be",usersDriver.is_recovery_address_null(base.response));
+        Assert.assertTrue("Device Manager should be :",usersDriver.is_recovery_address_null(base.response));
     }
 
     @And("^Recovery Owner address should be null$")
@@ -197,18 +202,64 @@ public class UsersSteps {
 
     @And("^User is in registered state$")
     public void user_in_registered_state() {
-        create_user();
-        userId = usersDriver.get_user_id(base.response);
 
-        DevicesSteps devicesSteps = new DevicesSteps(base);
-        devicesSteps.create_device_with_userId(userId);
+        //If user is not created then create a new user
+        if(UserData.getInstance().user_id == null)
+        {
+            create_user();
+            UserData.getInstance().user_id = usersDriver.get_user_id(base.response);
+        }
+        else
+        {
+            get_user_with_userID(UserData.getInstance().user_id);
+            get_user_id();
+            if(usersDriver.is_status(Constant.STATUS.CREATED,base.response))
+            {
 
-        String privateKey = base.api_signer_object.get(Constant.ETH.PRIVATEKEY).getAsString();
-        String deviceAdd = base.deviceAddress;
+            }
+            else
+            {
+                create_user();
+                UserData.getInstance().user_id = usersDriver.get_user_id(base.response);
+            }
+        }
+
+
     }
 
     @When("^I make POST request to activate user with newly created user$")
     public void post_activate_user() throws IOException {
+
+
+        System.out.println(UserData.getInstance().user_id);
+
+        //If device is not created then create a new one and assign api signer and private to the UserData object
+        if(UserData.getInstance().device_address_public == null)
+        {
+            DevicesSteps devicesSteps = new DevicesSteps(base);
+            devicesSteps.create_device_with_userId(UserData.getInstance().user_id);
+
+            UserData.getInstance().device_address_private = base.deviceAddress.get(Constant.ETH.PRIVATEKEY).getAsString();
+            UserData.getInstance().device_address_public = base.deviceAddress.get(Constant.ETH.ADDRESS).getAsString();
+            UserData.getInstance().api_signer_private = base.api_signer_object.get(Constant.ETH.PRIVATEKEY).getAsString();
+            UserData.getInstance().api_signer_public = base.api_signer_object.get(Constant.ETH.ADDRESS).getAsString();
+        }
+
+        if(UserData.getInstance().recovery_owner_add_public==null)
+        {
+            JsonObject recovery_owner_object =ethAddress.getNewEthKeys();
+            UserData.getInstance().recovery_owner_add_public = recovery_owner_object.get(Constant.ETH.ADDRESS).getAsString();
+            UserData.getInstance().recovery_owner_add_private = recovery_owner_object.get(Constant.ETH.PRIVATEKEY).getAsString();
+        }
+
+        if(UserData.getInstance().session_address_public==null)
+        {
+            JsonObject recovery_owner_object =ethAddress.getNewEthKeys();
+            UserData.getInstance().session_address_public = recovery_owner_object.get(Constant.ETH.ADDRESS).getAsString();
+            UserData.getInstance().session_address_private = recovery_owner_object.get(Constant.ETH.PRIVATEKEY).getAsString();
+        }
+
+
 
         // Get Chain details to get Current block
         ChainSteps chainSteps = new ChainSteps(base);
@@ -216,17 +267,17 @@ public class UsersSteps {
 
         // Get Current block from the above response
         ChainDriver chainDriver = new ChainDriver();
-        String current_block = chainDriver.get_current_block(base.response);
+        base.current_block = chainDriver.get_current_block(base.response);
 
       base.response = usersDriver.postActivateUser(
-              Arrays.asList(ethAddress.getNewEthAddress()),
-              (Long.valueOf(current_block)+expiryBlock),
+              Arrays.asList(UserData.getInstance().session_address_public),
+              (Long.valueOf(base.current_block)+expiryBlock),
               spendingLimit,
-              ethAddress.getNewEthAddress(),
-              base.deviceAddress,
-              userId,
-              base.api_signer_object.get(Constant.ETH.ADDRESS).getAsString(),
-              base.api_signer_object.get(Constant.ETH.PRIVATEKEY).getAsString()
+              UserData.getInstance().recovery_owner_add_public,
+              UserData.getInstance().device_address_public,
+              UserData.getInstance().user_id,
+              UserData.getInstance().api_signer_public,
+              UserData.getInstance().api_signer_private
               );
       System.out.println(base.response);
     }
@@ -237,7 +288,7 @@ public class UsersSteps {
     }
 
     @When("^I make POST request to activate user with user id as (.+)$")
-    public void post_activate_user_userId(String userId) throws IOException {
+    public void post_activate_user_with_userId(String userId) throws IOException {
 
         // Get Chain details to get Current block
         ChainSteps chainSteps = new ChainSteps(base);
@@ -252,11 +303,49 @@ public class UsersSteps {
                 (Long.valueOf(current_block)+expiryBlock),
                 spendingLimit,
                 ethAddress.getNewEthAddress(),
-                base.deviceAddress,
+                base.deviceAddress.get(Constant.ETH.ADDRESS).getAsString(),
                 userId,
                 base.api_signer_object.get(Constant.ETH.ADDRESS).getAsString(),
                 base.api_signer_object.get(Constant.ETH.PRIVATEKEY).getAsString()
         );
         System.out.println(base.response);
+    }
+
+    @And("^User is in activated state$")
+    public void user_in_activated_state() throws IOException {
+
+        if(UserData.getInstance().user_id == null)
+        {
+            create_user();
+            UserData.getInstance().user_id = usersDriver.get_user_id(base.response);
+            post_activate_user();
+        }
+        else
+        {
+            get_user_with_userID(UserData.getInstance().user_id);
+            if(usersDriver.is_status(Constant.STATUS.ACTIVATED,base.response))
+            {
+
+            }
+            else
+            {
+                create_user();
+                UserData.getInstance().user_id = usersDriver.get_user_id(base.response);
+                post_activate_user();
+            }
+        }
+
+        wait_till_user_status("ACTIVATED");
+    }
+
+
+    @And("^User status changed to (.+)$")
+    public void wait_till_user_status(String status) {
+
+        AssertionUtils.repeatWhenFailedForSeconds(100, ()->
+        {
+            get_user_with_userID(UserData.getInstance().user_id);
+            Assert.assertEquals(true,usersDriver.is_status(Constant.STATUS.ACTIVATED,base.response));
+        });
     }
 }

@@ -22,9 +22,10 @@ public  class Base_API {
     public  com.ost.services.RecoveryOwners recoveryOwnersService;
     public  com.ost.services.Tokens tokensService;
     public  com.ost.services.Chains chainsService;
+    public String current_block;
     public JsonObject response;
     public JsonObject api_signer_object;
-    public String deviceAddress;
+    public JsonObject deviceAddress;
 
 
 }

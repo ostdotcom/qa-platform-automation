@@ -8,19 +8,14 @@ import org.junit.runner.notification.RunNotifier;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-public class ExtendedCucumberRunner extends Runner {
+public class ExtendedCucumberRunner extends Cucumber {
     private Class clazz;
-    private Cucumber cucumber;
 
     public ExtendedCucumberRunner(Class clazzValue) throws Exception {
+        super(clazzValue);
         clazz = clazzValue;
-        cucumber = new Cucumber(clazzValue);
     }
 
-    @Override
-    public Description getDescription() {
-        return cucumber.getDescription();
-    }
 
     private void runPredefinedMethods(Class annotation) throws Exception {
         if (!annotation.isAnnotation()) {
@@ -45,7 +40,7 @@ public class ExtendedCucumberRunner extends Runner {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        cucumber.run(notifier);
+        this.run(notifier);
         try {
             runPredefinedMethods(AfterSuite.class);
         } catch (Exception e) {

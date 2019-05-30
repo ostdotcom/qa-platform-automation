@@ -24,21 +24,9 @@ Feature: Verify all the functionality related to Users.
     When I make POST request to activate user with newly created user
     Then I should get success status as true
     And Token holder should be created
+    And User status changed to ACTIVATED
     And Response should be expected as the defined JSON schema
 
-
-  @clientAPI @users
-  Scenario Outline: Verify Activate user API with UserId
-    Given The Economy is up for actions
-    And User is in registered state
-    When I make POST request to activate user with user id as <user id>
-    Then I should get success status as false
-    And I should get error code as UNAUTHORIZED
-    And Response should be expected as the defined JSON schema
-
-    Examples:
-      | user id   |
-      | vmrprv    |
 
   @sanity @users
   Scenario: Get all users list
@@ -73,7 +61,7 @@ Feature: Verify all the functionality related to Users.
 
     Examples:
     | user ID                                 | success status  | error code  |
-    | 36644720-884a-4b0d-a165-88d5ff741f26    | false           | NOT_FOUND   |
+    | 95aa7701-8ba9-4638-afea-1bc8bbd09973    | false           | NOT_FOUND   |
 #    | test abdsd                              | false           | NOT_FOUND   |
 #    | 12345.12345_12345                       | false           | NOT_FOUND   |
 #    |    2d971b59-1cda-4fb4-a022-8b2fa65c7622 | false           | NOT_FOUND   |     //not working properly as gherkin do not consider spaces
