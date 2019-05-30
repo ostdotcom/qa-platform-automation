@@ -1,10 +1,10 @@
 Feature: Verify execute Transactions and Get transaction functionality
 
-#  Background: Get company and user's balance
+
   @sanity   @transactions
   Scenario: Verify Execute Transaction DIRECT-TRANSFERS: company to user transaction
     Given The Economy is up for actions
-    When I make POST request of Company transfers 8 UBT in wei to user via direct transfer method
+    When I make POST request of Company transfers 10000000 UBT in wei to user via direct transfer method
     Then I should get success status as true
     And I should get Transaction status as SUCCESS
     And Company's balance should be debited
@@ -338,4 +338,11 @@ Feature: Verify execute Transactions and Get transaction functionality
 #    Then I should get full list of transaction with pagination identifier
 
 
+  
+  @usertouser
+  Scenario: Verify user to user transaction
+    Given The Economy is up for actions
+    And User is in activated state
+    When I make POST request of user transfers 10 UBT in wei to another user vie direct transfer method
+    Then I should get success status as true
 

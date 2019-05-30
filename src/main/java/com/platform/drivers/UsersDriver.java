@@ -63,6 +63,10 @@ public class UsersDriver {
         return get_user_object(response).get("recovery_owner_address").getAsString();
     }
 
+    public String get_recovery_address(JsonObject response) {
+        return get_user_object(response).get("recovery_address").getAsString();
+    }
+
     public JsonObject postActivateUser(Object sessionAddress,
                                        Object expirationHeight,
                                        String spendingLimit,
@@ -93,5 +97,17 @@ public class UsersDriver {
 
     public boolean is_token_holder_present(JsonObject response) {
         return get_user_object(response).get("token_holder_address").isJsonNull();
+    }
+
+    public boolean is_status(String status, JsonObject response) {
+        return get_user_object(response).get("status").getAsString().equals(status);
+    }
+
+    public String get_device_manager_address(JsonObject response) {
+        return get_user_object(response).get("device_manager_address").getAsString();
+    }
+
+    public String get_token_holder(JsonObject response) {
+        return get_user_object(response).get("token_holder_address").getAsString();
     }
 }

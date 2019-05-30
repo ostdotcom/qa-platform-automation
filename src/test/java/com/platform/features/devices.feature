@@ -182,3 +182,30 @@ Feature: Verify all the functionality related to Devices
     And I should get success status as true
     And Response should be expected as the defined JSON schema
 
+
+  @devices
+  Scenario: Authorize a new device for a user
+    Given The Economy is up for actions
+    And User is in activated state
+    When I make POST request to authorize new device
+    Then I should get success status as true
+
+
+  @devices
+  Scenario: Revoke device for a user
+    Given The Economy is up for actions
+    And User is in activated state
+    When I make POST request to revoke existing device
+    Then I should get success status as true
+
+
+  @devices
+  Scenario: Verify Initiate recovery and Abort recovery
+    Given The Economy is up for actions
+    And User is in activated state
+    When I make post request to initiate recovery
+    Then I should get success status as true
+    And Device should be in recovering state and another device in revoking state
+    When I make post request to abort recovery
+    Then I should get success status as true
+    And both the devices should be revert to their initial states

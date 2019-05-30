@@ -29,7 +29,7 @@ public class RecoveryOwnerSteps {
         params.put("user_id", TestDataManager.economy1.user_Id);
 
         UsersSteps usersSteps = new UsersSteps(base);
-        usersSteps.get_user_with_invalid_userID(TestDataManager.economy1.user_Id);
+        usersSteps.get_user_with_userID(TestDataManager.economy1.user_Id);
         String recovery_owner_address = usersDriver.get_recovery_owner_address(base.response);
 
         params.put("recovery_owner_address",recovery_owner_address);

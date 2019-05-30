@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.UUID;
 import org.web3j.crypto.*;
+import org.web3j.utils.Numeric;
 
 public class EthAddress {
 
