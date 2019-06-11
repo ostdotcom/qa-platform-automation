@@ -373,8 +373,6 @@ public class DevicesSteps {
         nonce = deviceManagerDriver.get_nonce(base.response);
 
 
-
-
         String transactionHash=null;
         // Get transaction HASH
         try {
