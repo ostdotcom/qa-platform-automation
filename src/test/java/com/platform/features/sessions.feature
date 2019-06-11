@@ -89,9 +89,9 @@ Feature: Verify Session related functionality.
 
 
 
-  @session @clientApi
-  Scenario: Authorize session
-    Given The Economy is up for actions
-    And User is in activated state
-    When I make POST request to Add session
-    Then I should get success status as true
+#  @session @clientApi
+#  Scenario: Authorize session
+#    Given The Economy is up for actions
+#    And User is in activated state
+#    When I make POST request to Add session
+#    Then I should get success status as true

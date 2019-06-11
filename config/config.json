@@ -1,4 +1,4 @@
 {
-  "environment": "st_s4_testnet",
-  "token": "BEST"
+  "environment": "prod_testnet",
+  "token": "S031"
 }
