@@ -342,7 +342,7 @@ public class UsersSteps {
     @And("^User status changed to (.+)$")
     public void wait_till_user_status(String status) {
 
-        AssertionUtils.repeatWhenFailedForSeconds(100, ()->
+        AssertionUtils.repeatWhenFailedForSeconds(250, ()->
         {
             get_user_with_userID(UserData.getInstance().user_id);
             Assert.assertEquals(true,usersDriver.is_status(Constant.STATUS.ACTIVATED,base.response));

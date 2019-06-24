@@ -1,0 +1,26 @@
+{
+  "apiEndpoint":"https://api.ost.com/mainnet/v2",
+  "economy": [
+    {
+      "symbol": "ONLY",
+      "conversion_factor": "100",
+      "tokenId": "1006",
+      "email_Id": "",
+      "password": "",
+      "apiKey":"884ace268c5a4fb0e295dda7ef3fc7e8",
+      "secretKey":"fa60967f9db2e26a02fd4a0d21c8366baa0b2608018e53bcc46e853f114dc915",
+      "company_Id":"ca3514c9-798e-4ca4-b76a-db46373dd8dc",
+      "company_TH":"0xce7d9f5e83e18250f491627d58b23db3c803fb76",
+      "user_Id":"ad43bfff-1a82-4308-b23f-e8cc4cfdb63d",
+      "user_TH":"0xff2ea99aca0d7a881453dfc57103fa50060c521d",
+      "pricer_TR":"0x7792796d85a98193f9b0e7a004582b0849356636",
+      "directTransfer_TR":"0xf9e66f234e5f2d8171b082a1f6aea64e9dfdcd88",
+      "device_address":"0x27f6f86d5f6f90930cf939b1f6387783a1520917",
+      "session_address":"0xd2887e0d1c9610f604d588d598c7c38da9f1267d",
+      "transaction_Id" : "09cc6d9a-22c6-4999-8e0d-f3eb8403b250",
+      "aux_chain_id":"1414",
+      "origin_chain_id":"1",
+      "recivery_owner_address":"0x1dc9afe3b2be6a81d7fc195e29251a0cfc6673dd"
+    }
+  ]
+}
