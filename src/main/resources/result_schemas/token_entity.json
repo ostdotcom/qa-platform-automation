@@ -45,6 +45,7 @@
             "id",
             "name",
             "symbol",
+            "base_token",
             "conversion_factor",
             "total_supply",
             "decimals",
@@ -79,6 +80,17 @@
               "default": "",
               "examples": [
                 "CARE"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "base_token": {
+              "$id": "#/properties/data/properties/token/properties/base_token",
+              "type": "string",
+              "title": "The base_token Schema",
+              "default": "",
+              "enum": ["OST","USDC"],
+              "examples": [
+
               ],
               "pattern": "^(.*)$"
             },

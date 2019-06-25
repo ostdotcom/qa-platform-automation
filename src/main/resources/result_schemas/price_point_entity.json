@@ -41,8 +41,8 @@
           "$id": "#/properties/data/properties/price_point",
           "type": "object",
           "title": "The Price_point Schema",
+          "enum": ["OST","USDC"],
           "required": [
-            "OST"
           ],
           "properties": {
             "OST": {
@@ -51,6 +51,8 @@
               "title": "The Ost Schema",
               "required": [
                 "USD",
+                "GBP",
+                "EUR",
                 "decimals",
                 "updated_timestamp"
               ],
@@ -59,6 +61,24 @@
                   "$id": "#/properties/data/properties/price_point/properties/OST/properties/USD",
                   "type": "number",
                   "title": "The Usd Schema",
+                  "default": 0.0,
+                  "examples": [
+                    0.026812
+                  ]
+                },
+                "EUR": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/EUR",
+                  "type": "number",
+                  "title": "The EUR Schema",
+                  "default": 0.0,
+                  "examples": [
+                    0.026812
+                  ]
+                },
+                "GBP": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/GBP",
+                  "type": "number",
+                  "title": "The GBP Schema",
                   "default": 0.0,
                   "examples": [
                     0.026812
