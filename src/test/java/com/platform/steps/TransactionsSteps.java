@@ -112,8 +112,8 @@ public class TransactionsSteps {
 
     }
 
-    @When("^I make POST request of Company transfers (\\d+) USD in wei to user via pay method$")
-    public void execute_transaction_c2u_pay(String usdInWei) {
+    @When("^I make POST request of Company transfers (\\d+) (.+) in wei to user via pay method$")
+    public void  execute_transaction_c2u_pay(String usdInWei, String fiatCurrency) {
 
         company_old_Balance = getBalance(TestDataManager.economy1.company_Id);
         user_old_Balance = getBalance(TestDataManager.economy1.user_Id);
@@ -121,15 +121,22 @@ public class TransactionsSteps {
         System.out.println("company old balance: "+company_old_Balance);
         System.out.println("user old balance: "+user_old_Balance);
 
-        //Get latest pricer for calculation of USD to UBT
+        //Get Conversion factor & Stake currency (Base token) for calculation of USD to UBT
         TokensSteps tokensSteps = new TokensSteps(base);
         tokensSteps.get_tokens();
         String conversion_factor = tokenDriver.get_conversion_factor(base.response);
+        String base_token = tokenDriver.get_base_token(base.response);
+        int base_token_decimals = tokenDriver.get_token_decimal(base.response);
+
+
+        // Get current price
         PricePointSteps pricePointSteps = new PricePointSteps(base);
         pricePointSteps.get_price_point_with_aux_chain_id();
-        String pricePoint = pricePointDriver.get_ost_price(base.response);
-        BigDecimal test = Convert.toWei(pricePoint, Convert.Unit.ETHER);
-        String transferredUbt = transactionsDriver.get_ubt_from_usd(usdInWei,pricePoint,conversion_factor);
+        String pricePoint = pricePointDriver.get_price(base.response,base_token,fiatCurrency);
+        int fiat_decimals = pricePointDriver.get_fiat_decimals(base.response,base_token);
+
+
+        String transferredUbt = transactionsDriver.get_ubt_from_usd(usdInWei,base_token_decimals,pricePoint,fiat_decimals,conversion_factor);
 
         System.out.println("About to transfer UBT: "+transferredUbt);
 
@@ -137,6 +144,7 @@ public class TransactionsSteps {
         amount.add(usdInWei);
         base.transactionsService = base.services.transactions;
         HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
+                .setPayCurrencyCode(fiatCurrency)
                 .setAmount(amount)
                 .build();
         try {
@@ -160,9 +168,7 @@ public class TransactionsSteps {
         String balance = getBalance(TestDataManager.economy1.company_Id);
         System.out.println("new Company Balance :"+balance);
         Assert.assertEquals(company_new_Balance, balance);
-
-        //"Updated company balance should be ",
-    }
+        }
 
     @And("^User's balance should be credited$")
     public void verify_user_balance() {

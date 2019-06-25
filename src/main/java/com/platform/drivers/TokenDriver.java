@@ -24,4 +24,14 @@ public class TokenDriver {
         return get_token_object(response)
                 .getAsJsonObject( "origin_chain").get("chain_id").getAsInt();
     }
+
+    public String get_base_token(JsonObject response) {
+        return get_token_object(response)
+                .get("base_token").getAsString();
+    }
+
+    public int get_token_decimal(JsonObject response) {
+        return get_token_object(response)
+                .get("decimals").getAsInt();
+    }
 }

@@ -11,13 +11,34 @@ Feature: Verify execute Transactions and Get transaction functionality
     And User's balance should be credited
 
   @sanity @transactions
-  Scenario: Verify Execute Transaction PAY: company to user transaction
+  Scenario: Verify Execute Transaction PAY: company to user transaction USD
     Given The Economy is up for actions
     When I make POST request of Company transfers 1 USD in wei to user via pay method
     Then I should get success status as true
     And I should get Transaction status as SUCCESS
-#    And Company's balance should be debited
-#    And User's balance should be credited
+    And Company's balance should be debited
+    And User's balance should be credited
+
+
+  @sanity @transactions
+  Scenario: Verify Execute Transaction PAY: company to user transaction GBP
+    Given The Economy is up for actions
+    When I make POST request of Company transfers 1 GBP in wei to user via pay method
+    Then I should get success status as true
+    And I should get Transaction status as SUCCESS
+    And Company's balance should be debited
+    And User's balance should be credited
+
+
+
+  @sanity @transactions
+  Scenario: Verify Execute Transaction PAY: company to user transaction EUR
+    Given The Economy is up for actions
+    When I make POST request of Company transfers 1 EUR in wei to user via pay method
+    Then I should get success status as true
+    And I should get Transaction status as SUCCESS
+    And Company's balance should be debited
+    And User's balance should be credited
 
   @transactions @transactions
   Scenario: Verify Get Transaction details functionality

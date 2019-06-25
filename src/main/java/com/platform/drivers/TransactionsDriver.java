@@ -52,9 +52,51 @@ public class TransactionsDriver {
         return expectedValue.toString();
     }
 
-    public  String get_ubt_from_usd(String usdInWei, String pricePoint, String conversion_factor) {
-        BigDecimal expectedValue = new BigDecimal(usdInWei).divide(new BigDecimal(pricePoint),5, RoundingMode.HALF_EVEN).multiply(new BigDecimal(conversion_factor));
-        return expectedValue.toString();
+    public  String get_ubt_from_usd(String usdInWei,
+                                    int base_token_decimals,
+                                    String pricePoint,
+                                    int fiat_decimals,
+                                    String conversion_factor) {
+
+        MathContext f_mc = new MathContext(fiat_decimals);
+        MathContext b_mc = new MathContext(base_token_decimals);
+
+        /**
+         *  Formula to get BT from any fiat currency
+         *
+         *  BT => usd wei
+         *
+         *  BT => ost wei => usd wei
+         *
+         *  BT => ost wei = (1/(pricepoint* 10^decimal) * usd wei
+         *
+         *  BT => (CF * 10^bt_decimal) * ost wei => usd wei;
+         *
+         *  BT => (CF * 10^bt_decimal) * (1/(pricepoint* 10^decimal) * usd wei
+         *
+         *
+         *  (Conversion factor) * (fiat amount in ETH) / (current pricer) = BT
+         *
+         *  (Conversion factor)* (fiat amount in BT) / (current pricer) * Base token's Decimal = BT in wei
+         *
+         *  Now if amount is in wei then, convert it into BT
+         *
+         *  (Conversion factor)* (fiat amount in Wei * 10^-18 (in place of 18 use, fiat currency's decimal)) / (current pricer)
+         *
+         */
+
+        BigDecimal amount = new BigDecimal(usdInWei).multiply((new BigDecimal(10)).pow(-fiat_decimals,f_mc));
+        BigDecimal pricePointPrecision = new BigDecimal(pricePoint);
+        BigDecimal cf = new BigDecimal(conversion_factor);
+        BigDecimal decimals = new BigDecimal(10).pow(base_token_decimals);
+
+        BigDecimal expectedValue = amount
+                .divide(pricePointPrecision, 30, RoundingMode.UP)
+                .multiply(cf)
+                .multiply(decimals);
+
+
+        return expectedValue.toBigInteger().toString();
     }
 
     public  int get_transaction_count(JsonObject response) {
