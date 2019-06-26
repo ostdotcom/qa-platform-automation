@@ -9,24 +9,15 @@ import com.platform.managers.TestDataManager;
 import com.platform.managers.UserData;
 import com.platform.utils.AssertionUtils;
 import com.platform.utils.EthAddress;
-import com.sun.jdi.LongValue;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Assert;
-import org.web3j.abi.FunctionEncoder;
-import org.web3j.abi.datatypes.Address;
-import org.web3j.abi.datatypes.Function;
-import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Sign;
 import org.web3j.utils.Numeric;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.*;
 
 public class DevicesSteps {

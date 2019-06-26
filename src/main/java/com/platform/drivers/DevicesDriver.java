@@ -34,7 +34,7 @@ public class DevicesDriver {
     public JsonObject postAuthorizeDevice(Map<String, Object> requestMap, String userId, String secretKey) throws IOException {
 
         requestMap.putAll(ostHttpRequestDriver.getPrequisite(UserData.getInstance().user_id,UserData.getInstance().device_address_public,UserData.getInstance().api_signer_public));
-        String resource = String.format("/users/%s/devices/authorize", "88b703a3-4cd0-4935-88e3-d3e5eec916e8");
+        String resource = String.format("/users/%s/devices/authorize", userId);
         return ostHttpRequestDriver.post(resource, requestMap, secretKey);
     }
 

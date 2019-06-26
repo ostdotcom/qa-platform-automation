@@ -85,7 +85,7 @@ public class Constant {
 
         private static final int WAITING_BLOCK_CONFIRMATION = 6;
         private static final int BLOCKHIGHT = 3;        //Time in sec
-        public static final int TOTALWAIT = 30;       //Time in sec
+        public static final int TOTALWAIT = 60;       //Time in sec
         public static final int CONFIRMATION_TIME = (WAITING_BLOCK_CONFIRMATION*BLOCKHIGHT);
     }
 
