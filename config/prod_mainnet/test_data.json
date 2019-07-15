@@ -1,5 +1,6 @@
 {
   "apiEndpoint":"https://api.ost.com/mainnet/v2",
+  "url": "https://platform.ost.com/",
   "economy": [
     {
       "symbol": "ONLY",

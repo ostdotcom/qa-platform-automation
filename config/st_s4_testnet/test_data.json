@@ -1,5 +1,6 @@
 {
   "apiEndpoint":"https://api.stagingost.com/testnet/v2",
+  "url": "https://platform.ost.com/",
   "economy": [
     {
       "symbol": "T201",

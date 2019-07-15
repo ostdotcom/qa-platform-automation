@@ -33,6 +33,7 @@ public class TestDataManager {
      * For nested json object, create a new class and define all the key in that class. Ex. EconomyManager
      */
     public String apiEndpoint;
+    public String url;
     public List<EconomyManager> economy;
 
 

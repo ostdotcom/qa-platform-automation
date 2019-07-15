@@ -14,7 +14,7 @@ public class Constant {
     public static final String ENVIRONMENT = System.getProperty("env",getEnvironment());
     public static final String ECONOMY = System.getProperty("token",getToken());
     public static final String PROJECTOS = System.getProperty("os.name");
-
+    public static final String BROWSER = System.getProperty(BROWSER_SPECIFICATION.BROWSERKEY,BROWSER_SPECIFICATION.BROWSERDEFAULTVALUE);
 
 
     public static class TestDataFilePath{
@@ -93,6 +93,25 @@ public class Constant {
     {
         public static final String ADDRESS="address";
         public static final String PRIVATEKEY = "privatekey";
+    }
+
+    public static class BROWSER_SPECIFICATION{
+
+        public static final String CHROME = "chrome";
+        public static final String FIREFOX = "firefox";
+        public static final String IE = "ie";
+        public static final String SAFARI = "safari";
+        public static final String BROWSERKEY = "browser";
+        public static final String BROWSERDEFAULTVALUE = "safari";
+        public static final String PROPERTYKEYCHROME = "webdriver.chrome.driver";
+        public static final String PROPERTYKRYFIREFOX = "webdriver.gecko.driver";
+        public static final String CHROMEDRIVERLINUX = "src/test/resources/browser_drivers/linux/chromedriver";
+        public static final String CHROMEDRIVERWINDOWS = "src/test/resources/browser_drivers/windows/chromedriver.exe";
+        public static final String GECKODRIVERLINUX = "src/test/resources/browser_drivers/linux/geckdriver";
+        public static final String GECKODRIVERWINDOWS = "src/test/resources/browser_drivers/windows/geckdriver.exe";
+        public static final String CHROMEDRIVERMAC = "src/test/resources/browser_drivers/mac/chromedriver_75";
+        public static final String GECKODRIVERMAC = "src/test/resources/browser_drivers/mac/geckodriver";
+
     }
 
     private static String getEnvironment()  {
