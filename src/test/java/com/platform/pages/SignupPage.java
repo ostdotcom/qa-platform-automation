@@ -1,8 +1,11 @@
 package com.platform.pages;
 
 import com.platform.base.Base_UI;
+import com.platform.utils.GmailInteractions;
+import com.platform.utils.WebInteractionsUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -42,6 +45,12 @@ public class SignupPage extends Base_UI {
     private WebElement selectedRecaptchaCB;
 
 
+    @FindBy(xpath = "//*[@class='btn-reject-cookies my-auto']")
+    private WebElement privacyCancelBtn;
+
+
+
+
     public SignupPage() {
         PageFactory.initElements(driver, this);
     }
@@ -49,6 +58,8 @@ public class SignupPage extends Base_UI {
 
     public void registerUser(String firstName, String lastName, String email, String password)
     {
+
+        privacyCancelBtn.click();
         firstNameTB.sendKeys(firstName);
         lastNameTB.sendKeys(lastName);
         userEmailTB.sendKeys(email);
@@ -57,18 +68,32 @@ public class SignupPage extends Base_UI {
         termsConditionCB.click();
         agreeOstCB.click();
 
-        //driver.switchTo().frame("a-1escgy40j6yj");
+        // Switching frame to Google captcha
         driver.switchTo().frame(0);
         driver.findElement(By.id("recaptcha-anchor")).click();
-        //recaptchaCB.click();
 
 
-
-
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        //Verifying check box is marked as true
+        WebDriverWait wait = new WebDriverWait(driver, 180);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='recaptcha-anchor' and @aria-checked='true']")));
 
         driver.switchTo().defaultContent();
+
+
+        WebInteractionsUtils webInteractionsUtils = new WebInteractionsUtils();
+        webInteractionsUtils.movetoElement(driver, registerPB);
         registerPB.click();
+
+    }
+
+    public String getActivateAccountLink(String recipientMail, String subject) {
+
+        GmailInteractions gmailInteractions = new GmailInteractions();
+        String emailBody = gmailInteractions.readEmail(recipientMail,subject);
+
+        System.out.println("email body: "+emailBody);
+        String confirmationLink = gmailInteractions.getActivateLink(emailBody);
+        System.out.println("Confirmation Link: "+confirmationLink);
+        return confirmationLink;
     }
 }

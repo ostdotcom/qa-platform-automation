@@ -1,4 +1,4 @@
-package com.platform.steps;
+package com.platform.steps.api;
 
 import com.google.gson.JsonObject;
 import com.ost.services.OSTAPIService;

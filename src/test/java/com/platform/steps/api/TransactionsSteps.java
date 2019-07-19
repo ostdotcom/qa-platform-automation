@@ -1,9 +1,8 @@
-package com.platform.steps;
+package com.platform.steps.api;
 
 
 import com.google.gson.Gson;
 import com.ost.services.OSTAPIService;
-import com.ost.services.Transactions;
 import com.platform.base.Base_API;
 import com.platform.constants.Constant;
 import com.platform.drivers.*;
@@ -19,15 +18,11 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Sign;
-import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 
 import java.io.IOException;
 
 
-import java.lang.reflect.Array;
-import java.math.BigDecimal;
-import java.net.UnknownServiceException;
 import java.util.*;
 
 public class TransactionsSteps {

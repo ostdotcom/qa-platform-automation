@@ -1,8 +1,7 @@
-package com.platform.steps;
+package com.platform.steps.api;
 
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
-import com.platform.drivers.ResultDriver;
 import com.platform.drivers.UsersDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.When;

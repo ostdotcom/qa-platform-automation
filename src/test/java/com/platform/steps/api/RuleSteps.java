@@ -1,4 +1,4 @@
-package com.platform.steps;
+package com.platform.steps.api;
 
 import com.platform.base.Base_API;
 import cucumber.api.java.en.When;

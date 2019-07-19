@@ -1,6 +1,6 @@
 {
   "apiEndpoint":"https://api.stagingost.com/testnet/v2",
-  "url": "https://platform.ost.com/",
+  "url": "https://ost:A$F^&n!@$ghf%7@platform.stagingost.com/",
   "economy": [
     {
       "symbol": "T201",
@@ -85,6 +85,27 @@
       "aux_chain_id":"197",
       "origin_chain_id":"3",
       "recivery_owner_address":"0xfb46d4ae82a4ece718ae045d9c81a94fcf6085eb"
+    },
+    {
+      "symbol": "T801",
+      "conversion_factor": "1",
+      "tokenId": "1232",
+      "email_Id": "qa.automation+801@ost.com",
+      "password": "ostkit@1234",
+      "apiKey":"96b2d5b5d40b13294059554b46b8d528",
+      "secretKey":"a33360e60704f4665e5a68cb13f929e8705e3ab524b64cfe83dda9ca875d3eca",
+      "company_Id":"4b908967-a40d-4ab1-b8d2-02e0c57c302a",
+      "company_TH":"0x37bb76068bab2e8d0fbc1d5cb481a5c3e755de5b",
+      "user_Id":"",
+      "user_TH":"",
+      "pricer_TR":"",
+      "directTransfer_TR":"",
+      "device_address":"",
+      "session_address":"",
+      "transaction_Id" : "",
+      "aux_chain_id":"197",
+      "origin_chain_id":"3",
+      "recivery_owner_address":""
     }
   ]
 }

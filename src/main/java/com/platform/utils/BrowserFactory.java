@@ -4,17 +4,24 @@ import com.platform.constants.Constant;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class BrowserFactory{
 
+    static DesiredCapabilities capabilities;
 
     public static WebDriver initChromeBrowser()
     {
         if(Constant.PROJECTOS.toLowerCase().contains("mac"))
         {
             System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERMAC);
+            ChromeOptions options = new ChromeOptions();
+            //options.addArguments("--incognito");
+            capabilities = DesiredCapabilities.chrome();
+            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("linux"))
         {
@@ -28,7 +35,7 @@ public class BrowserFactory{
             throw new IllegalArgumentException("This OS is not supported as of now");
         }
 
-        return new ChromeDriver();
+        return new ChromeDriver(capabilities);
     }
 
 

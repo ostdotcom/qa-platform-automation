@@ -13,6 +13,9 @@ public class PlatformWeb extends Base_UI {
     @FindBy(xpath = "//a[@class='btn btn-primary my-3']")
     private WebElement registerNowPB;
 
+    @FindBy(xpath = "//a[@class='btn btn-secondary my-2 ml-md-3']")
+    private WebElement loginPB;
+
     public PlatformWeb() {
         PageFactory.initElements(driver, this);
     }
@@ -21,6 +24,11 @@ public class PlatformWeb extends Base_UI {
     public void clickOnRegisterNow()
     {
         registerNowPB.click();
+    }
+
+    public void clickOnLogIn()
+    {
+        loginPB.click();
     }
 
 

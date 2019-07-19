@@ -9,11 +9,12 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class CommonSteps {
@@ -59,9 +60,7 @@ public class CommonSteps {
 
     @And("^navigate to platform ost site$")
     public void navigateToPlatformOstSite() {
-
         base.driver.get(TestDataManager.data.url);
-
     }
 
     @Given("^Test steps$")

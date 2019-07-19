@@ -102,7 +102,7 @@ public class Constant {
         public static final String IE = "ie";
         public static final String SAFARI = "safari";
         public static final String BROWSERKEY = "browser";
-        public static final String BROWSERDEFAULTVALUE = "safari";
+        public static final String BROWSERDEFAULTVALUE = "chrome";
         public static final String PROPERTYKEYCHROME = "webdriver.chrome.driver";
         public static final String PROPERTYKRYFIREFOX = "webdriver.gecko.driver";
         public static final String CHROMEDRIVERLINUX = "src/test/resources/browser_drivers/linux/chromedriver";

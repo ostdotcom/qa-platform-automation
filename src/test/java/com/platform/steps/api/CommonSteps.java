@@ -1,11 +1,9 @@
-package com.platform.steps;
+package com.platform.steps.api;
 
 import com.ost.OSTSDK;
 import com.platform.base.Base_API;
 import com.platform.constants.Constant;
-import com.platform.drivers.BalanceDriver;
 import com.platform.drivers.ResultDriver;
-import com.platform.drivers.SessionDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;

@@ -1,4 +1,4 @@
-package com.platform.steps;
+package com.platform.steps.api;
 
 import com.google.gson.JsonObject;
 import com.ost.services.OSTAPIService;
@@ -10,11 +10,9 @@ import com.platform.drivers.ResultDriver;
 import com.platform.drivers.UsersDriver;
 import com.platform.managers.TestDataManager;
 import com.platform.managers.UserData;
-import com.platform.managers.UserTempManager;
 import com.platform.utils.AssertionUtils;
 import com.platform.utils.EthAddress;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 
