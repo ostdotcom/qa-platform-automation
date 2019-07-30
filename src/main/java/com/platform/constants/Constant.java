@@ -105,7 +105,7 @@ public class Constant {
         public static final String BROWSERDEFAULTVALUE = "chrome";
         public static final String PROPERTYKEYCHROME = "webdriver.chrome.driver";
         public static final String PROPERTYKRYFIREFOX = "webdriver.gecko.driver";
-        public static final String CHROMEDRIVERLINUX = "src/test/resources/browser_drivers/linux/chromedriver";
+        public static final String CHROMEDRIVERLINUX = "src/test/resources/browser_drivers/linux/chromedriver_75";
         public static final String CHROMEDRIVERWINDOWS = "src/test/resources/browser_drivers/windows/chromedriver.exe";
         public static final String GECKODRIVERLINUX = "src/test/resources/browser_drivers/linux/geckdriver";
         public static final String GECKODRIVERWINDOWS = "src/test/resources/browser_drivers/windows/geckdriver.exe";

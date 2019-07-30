@@ -46,7 +46,8 @@ public class TokenSetupPage extends Base_UI {
     public void numberOfBTs(double bts)
     {
         webInteractionsUtils.movetoElement(driver,btTokensTB);
-        btTokensTB.sendKeys(bts+"");
+        btTokensTB.clear();
+        btTokensTB.sendKeys(String.valueOf(bts));
     }
 
 
@@ -69,6 +70,7 @@ public class TokenSetupPage extends Base_UI {
 
     public void clickOnUseUSDC()
     {
+        webInteractionsUtils.movetoElement(driver,useUSDCPB);
         useUSDCPB.click();
     }
 
@@ -90,6 +92,7 @@ public class TokenSetupPage extends Base_UI {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        webInteractionsUtils.movetoElement(driver,ostManagedBtn);
         ostManagedBtn.click();
     }
 }

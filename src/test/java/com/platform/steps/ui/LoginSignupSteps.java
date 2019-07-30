@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginSignupSteps {
 
 
-    public static final String signupEmailSubject = "Verify Your Email to Activate Your";     //did not complete the subject because it has minor difference between staging and prod environment
+    public static final String signupEmailSubject = "Confirm Your Email Address";
     public static final String resetPwsEmailSubject = "Reset your OST Platform Account Password";     //did not complete the subject because it has minor difference between staging and prod environment
     Date date= new Date();
     long time = date. getTime();

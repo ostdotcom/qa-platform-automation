@@ -14,7 +14,7 @@ Feature: Verify Login and Sign up scenarios
       And User confirm the email
       Then User should signed up successfully
 
-
+    @sanity @ui @test
     Scenario: Verify login functionality
       Given User is on login page
       When User login with correct email and password

@@ -14,6 +14,8 @@ public class End2EndSteps  {
     private static final String companyName = "Test Company";
     private static final String initialtokenSetuptext = "Initialization";
     private static final String initialStakeAndMintText = "Accepting stake request";
+    private final String ost = "OST";
+    private final String usdc = "USDC";
     public double conversionFactor;
     public String tokenSymbol;
     public double toMintBts;
@@ -27,8 +29,8 @@ public class End2EndSteps  {
     }
 
 
-    @And("^User enter details for token economy with conversion factor as (.+)$")
-    public void token_details(double cf) {
+    @And("^User enter details for token economy with conversion factor as (.+) BT for 1 (.+)$")
+    public void token_details(double cf, String stakeCurrency) {
 
         conversionFactor = cf;
         CommonUtils commonUtils = new CommonUtils();
@@ -39,6 +41,10 @@ public class End2EndSteps  {
         TokenSetupPage tokenSetupPage = new TokenSetupPage();
         tokenSetupPage.writeTokenName(tokenSymbol);
         tokenSetupPage.writeTokenSymbol(tokenSymbol);
+        if(stakeCurrency.equals(usdc))
+        {
+            tokenSetupPage.clickOnUseUSDC();
+        }
         tokenSetupPage.clickOnEditBtn();
         tokenSetupPage.numberOfBTs(conversionFactor);
         tokenSetupPage.clickOnProceed();

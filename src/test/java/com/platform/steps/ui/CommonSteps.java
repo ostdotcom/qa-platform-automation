@@ -63,17 +63,20 @@ public class CommonSteps {
         base.driver.get(TestDataManager.data.url);
     }
 
-    @Given("^Test steps$")
-    public void testSteps() {
-        System.out.println("test");
-    }
 
 
-    @After
+    @After ()
     public void tearDown()
     {
+        if(base.driver==null)
+        {
 
-        base.driver.close();
-        base.driver.quit();
+        }
+        else {
+            base.driver.close();
+            base.driver.quit();
+        }
+
+
     }
 }

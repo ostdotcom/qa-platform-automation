@@ -19,16 +19,29 @@ public class BrowserFactory{
         {
             System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERMAC);
             ChromeOptions options = new ChromeOptions();
-            //options.addArguments("--incognito");
+            //
+            // options.addArguments("--incognito");
             capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("linux"))
         {
+            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERLINUX);
+            ChromeOptions options = new ChromeOptions();
+            //
+            // options.addArguments("--incognito");
+            capabilities = DesiredCapabilities.chrome();
+            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("windows"))
         {
+            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERWINDOWS);
+            ChromeOptions options = new ChromeOptions();
+            //
+            // options.addArguments("--incognito");
+            capabilities = DesiredCapabilities.chrome();
+            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
         }
         else{
@@ -48,11 +61,11 @@ public class BrowserFactory{
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("linux"))
         {
-
+            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKRYFIREFOX,Constant.BROWSER_SPECIFICATION.GECKODRIVERLINUX);
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("windows"))
         {
-
+            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKRYFIREFOX,Constant.BROWSER_SPECIFICATION.GECKODRIVERWINDOWS);
         }
         else{
             throw new IllegalArgumentException("This OS is not supported as of now");
