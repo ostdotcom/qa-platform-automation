@@ -782,13 +782,20 @@ public class TransactionsSteps {
     }
 
     @When("^I make POST request of user transfers (\\d+) UBT in wei to another user vie direct transfer method$")
-    public void execute_transaction_u2u_direct(String amountInWei) throws IOException {
+    public void execute_transaction_u2u_direct(String amountInWei) throws IOException, InterruptedException {
 
         //Update token holder in UserData.getInstance()
         UsersSteps usersSteps = new UsersSteps(base);
         usersSteps.get_user_with_userID(UserData.getInstance().user_id);
 
         UserData.getInstance().user_token_holder = new UsersDriver().get_token_holder(base.response);
+
+        // We need to fund newly created user so, that user can make transfer to another one. Running company to user transaction
+        ArrayList<String> fromAddress= new ArrayList<String>();
+        fromAddress.add(UserData.getInstance().user_token_holder);
+        execute_transaction_c2u_direct(amountInWei, fromAddress);
+        verify_transaction_status("SUCCESS");
+//
 
         //List<String> token holder addresses list to where amounts need to be sent
         List<String> tokenHolderAddresses = Arrays.asList(TestDataManager.economy1.user_TH);    //This user from test_data.json
@@ -808,7 +815,7 @@ public class TransactionsSteps {
         String spendingBtAmountInWei = new DirectTransferHelper().calDirectTransferSpendingLimit(amounts);
 
 
-        // Get nonce from sessions
+        // Get nonce from sessions (Change the nonce value to fail this transaction on block chain)
         SessionSteps sessionSteps = new SessionSteps(base);
         sessionSteps.get_session_with_user_and_sessionAddress(UserData.getInstance().user_id, UserData.getInstance().session_address_public);
 
@@ -904,6 +911,39 @@ public class TransactionsSteps {
         for (int i = 0; i < secret.length; i++) {
             secret[i] = nonSecret[i % nonSecret.length];
         }
+    }
+
+
+    public void execute_transaction_c2u_direct(String ubtInWei, ArrayList<String> user_th) {
+
+        // No need to assert and verify this balance. so commenting out
+//        company_old_Balance = getBalance(TestDataManager.economy1.company_Id);
+//        user_old_Balance = getBalance(user_th.get(0));
+
+        System.out.println("company old balance: "+company_old_Balance);
+        System.out.println("user old balance: "+user_old_Balance);
+
+        ArrayList<String> amount= new ArrayList<String>();
+        amount.add(ubtInWei);
+        base.transactionsService = base.services.transactions;
+        HashMap<String, Object> params = new TransactionsDriver.DTParamsBuilder()
+                .setAmount(amount)
+                .setUser2TokenHolderAddress(user_th)
+                .build();
+        try {
+            base.response = base.transactionsService.execute( params );
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (OSTAPIService.InvalidParameter invalidParameter) {
+            invalidParameter.printStackTrace();
+        } catch (OSTAPIService.MissingParameter missingParameter) {
+            missingParameter.printStackTrace();
+        }
+        System.out.println("base.response: " + base.response.toString() );
+
+//        company_new_Balance = transactionsDriver.subtract(company_old_Balance,ubtInWei);
+//        user_new_Balance = transactionsDriver.add(user_old_Balance,ubtInWei);
+
     }
 
 }
