@@ -30,6 +30,7 @@ public class BrowserFactory{
             ChromeOptions options = new ChromeOptions();
             //
             // options.addArguments("--incognito");
+            options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 

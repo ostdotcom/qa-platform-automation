@@ -69,6 +69,11 @@ public class SignupPage extends Base_UI {
         agreeOstCB.click();
 
         // Switching frame to Google captcha
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.switchTo().frame(0);
         driver.findElement(By.id("recaptcha-anchor")).click();
 
