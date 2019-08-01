@@ -19,8 +19,9 @@ public class BrowserFactory{
         {
             System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERMAC);
             ChromeOptions options = new ChromeOptions();
-            //
+
             // options.addArguments("--incognito");
+             options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         }
@@ -41,6 +42,7 @@ public class BrowserFactory{
             ChromeOptions options = new ChromeOptions();
             //
             // options.addArguments("--incognito");
+            options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 

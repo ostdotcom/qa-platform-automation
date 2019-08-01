@@ -53,7 +53,7 @@ public class CommonSteps {
                 throw new WebDriverException("Given browser type is wrong. Please use one of these browser name. "+Constant.BROWSER_SPECIFICATION.CHROME+ " or "+Constant.BROWSER_SPECIFICATION.FIREFOX+" or "+Constant.BROWSER_SPECIFICATION.IE);
         }
 
-        base.driver.manage().window().fullscreen();
+        base.driver.manage().window().setSize(new Dimension(1280, 1024));
         base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS) ;
     }
 

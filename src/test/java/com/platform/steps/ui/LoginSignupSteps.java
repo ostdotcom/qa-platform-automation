@@ -4,6 +4,7 @@ import com.platform.base.Base_API;
 import com.platform.base.Base_UI;
 import com.platform.managers.TestDataManager;
 import com.platform.pages.*;
+import com.platform.utils.AssertionUtils;
 import com.platform.utils.WebInteractionsUtils;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -82,7 +83,11 @@ public class LoginSignupSteps {
 
     @Then("^User should be successfully logged in$")
     public void verify_successful_login() {
-        Assert.assertEquals(base.driver.getTitle(),dashboardPageTitle);
+        AssertionUtils.repeatWhenFailedForSeconds(50, ()->
+        {
+            Assert.assertEquals(base.driver.getTitle(),dashboardPageTitle);
+        });
+
     }
 
     @When("^User click on Forgot password$")

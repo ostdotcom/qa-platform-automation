@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends Base_UI {
 
+    String authorizeDeviceMail = "OST Platform: Authorize Your New Device or Browser";
+
     @FindBy(id = "email")
     private WebElement emailTB;
 
@@ -31,8 +33,7 @@ public class LoginPage extends Base_UI {
     }
 
 
-    public void login(String email, String password)
-    {
+    public void login(String email, String password)  {
         try
         {
             privacyCancelBtn.click();
@@ -57,12 +58,33 @@ public class LoginPage extends Base_UI {
         driver.switchTo().defaultContent();
 
         loginPB.click();
+
+        // Verify if user's device is authorised or not.
+        try
+        {
+            wait = new WebDriverWait(driver, 15);
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.id("send-verify-device-link")));
+
+            System.out.println("Your Browser is not authorised.");
+
+            Thread.sleep(10000);
+            SignupPage signupPage = new SignupPage();
+            String confirmationLink  = signupPage.getActivateAccountLink(email,authorizeDeviceMail);
+            driver.get(confirmationLink);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Your Browser is already authorised.");
+
+        }
     }
 
     public void clickOnForgotPassword()
     {
         forgotPasswordLink.click();
     }
-
 }
 
