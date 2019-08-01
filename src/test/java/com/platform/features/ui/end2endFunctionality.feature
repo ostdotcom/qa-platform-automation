@@ -21,7 +21,7 @@ Feature: Verify Token setup & Stake and Mint functionality
     And Stake and mint should complete successfully
 
 
-
+  @ui
   Scenario: Perform Token setup and Stake & mint with USDC staked currency
     Given User is on sign up page for platform website
     When User registered with all details

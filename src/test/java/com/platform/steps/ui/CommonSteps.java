@@ -65,7 +65,7 @@ public class CommonSteps {
 
 
 
-    @After ()
+    @After ("@ui")
     public void tearDown()
     {
         if(base.driver==null)

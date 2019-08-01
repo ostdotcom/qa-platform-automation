@@ -40,7 +40,7 @@ Feature: Verify execute Transactions and Get transaction functionality
     And Company's balance should be debited
     And User's balance should be credited
 
-  @transactions @transactions
+  @transactions
   Scenario: Verify Get Transaction details functionality
     Given The Economy is up for actions
     When I make GET request to get transaction details with defined user id and transaction id

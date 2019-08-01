@@ -128,7 +128,9 @@ public class ResultDriver {
         }
         catch (ValidationException v)
         {
-            Assert.fail(v.getCausingExceptions().toString());
+            System.out.println(v.getMessage());
+            Assert.fail("Error: "+v.getCausingExceptions().toString() + "Message: "+ v.getMessage());
+
         }
     }
 

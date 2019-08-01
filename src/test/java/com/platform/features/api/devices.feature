@@ -56,7 +56,7 @@ Feature: Verify all the functionality related to Devices
       | avfbdf  ^!@$$@$#%&*                         | false           | BAD_REQUEST |
 
 
-  @sanity @devices
+  @devices
   Scenario: Get user device details for a defined user and device id
     Given The Economy is up for actions
     When I make GET request to get user device details for defined user and device address

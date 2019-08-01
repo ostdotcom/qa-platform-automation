@@ -32,6 +32,7 @@
           "type": "string",
           "title": "The Result_type Schema",
           "default": "",
+          "enum": ["price_point"],
           "examples": [
             "price_point"
           ],
@@ -41,7 +42,6 @@
           "$id": "#/properties/data/properties/price_point",
           "type": "object",
           "title": "The Price_point Schema",
-          "enum": ["OST","USDC"],
           "required": [
           ],
           "properties": {
@@ -63,7 +63,7 @@
                   "title": "The Usd Schema",
                   "default": 0.0,
                   "examples": [
-                    0.026812
+                    0.0142786501
                   ]
                 },
                 "EUR": {
@@ -72,7 +72,7 @@
                   "title": "The EUR Schema",
                   "default": 0.0,
                   "examples": [
-                    0.026812
+                    0.0142786501
                   ]
                 },
                 "GBP": {
@@ -81,7 +81,67 @@
                   "title": "The GBP Schema",
                   "default": 0.0,
                   "examples": [
-                    0.026812
+                    0.0142786501
+                  ]
+                },
+                "decimals": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/decimals",
+                  "type": "integer",
+                  "title": "The Decimals Schema",
+                  "default": 0,
+                  "enum": [18],
+                  "examples": [
+                    18
+                  ]
+                },
+                "updated_timestamp": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/updated_timestamp",
+                  "type": "integer",
+                  "title": "The Updated_timestamp Schema",
+                  "default": 0,
+                  "examples": [
+                    1555905613
+                  ]
+                }
+              }
+            },
+            "USDC": {
+              "$id": "#/properties/data/properties/price_point/properties/OST",
+              "type": "object",
+              "title": "The Ost Schema",
+              "required": [
+                "USD",
+                "GBP",
+                "EUR",
+                "decimals",
+                "updated_timestamp"
+              ],
+              "properties": {
+                "USD": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/USD",
+                  "type": "number",
+                  "title": "The Usd Schema",
+                  "default": 0.0,
+                  "examples": [
+                    0.0142786501
+                  ]
+                },
+                "EUR": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/EUR",
+                  "type": "number",
+                  "title": "The EUR Schema",
+                  "default": 0.0,
+                  "examples": [
+                    0.0142786501
+                  ]
+                },
+                "GBP": {
+                  "$id": "#/properties/data/properties/price_point/properties/OST/properties/GBP",
+                  "type": "number",
+                  "title": "The GBP Schema",
+                  "default": 0.0,
+                  "examples": [
+                    0.0142786501
                   ]
                 },
                 "decimals": {
