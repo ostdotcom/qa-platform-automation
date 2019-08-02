@@ -28,7 +28,7 @@ public class BrowserFactory{
         // put our custom header to each request
         proxy.addRequestFilter((request, contents, messageInfo)->{
             //request.headers().add("Host", "stagingost.com");
-            //request.headers().add("Authorization", " Basic b3N0OkEkRl4mbiFAJGdoZiU3");
+            request.headers().add("Authorization", " Basic b3N0OkEkRl4mbiFAJGdoZiU3");
             System.out.println(request.headers().entries().toString());
             return null;
         });
@@ -50,7 +50,9 @@ public class BrowserFactory{
             System.out.println("In init chrome with Linux OS");
             System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERLINUX);
             ChromeOptions options = new ChromeOptions();
-            //
+
+            String proxyOption = "--proxy-server=" + seleniumProxy.getHttpProxy();
+            options.addArguments(proxyOption);
             // options.addArguments("--incognito");
             options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
