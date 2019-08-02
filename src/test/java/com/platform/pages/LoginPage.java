@@ -58,6 +58,8 @@ public class LoginPage extends Base_UI {
         driver.switchTo().defaultContent();
 
         loginPB.click();
+        System.out.println("Clicked on Login Button");
+        System.out.println("Page title: "+driver.getTitle());
 
         // Verify if user's device is authorised or not.
         try
