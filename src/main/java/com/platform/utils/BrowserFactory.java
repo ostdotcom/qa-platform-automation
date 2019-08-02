@@ -52,7 +52,7 @@ public class BrowserFactory{
             ChromeOptions options = new ChromeOptions();
 
             String proxyOption = "--proxy-server=" + seleniumProxy.getHttpProxy();
-            options.addArguments(proxyOption);
+            //options.addArguments(proxyOption);
             // options.addArguments("--incognito");
             options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
