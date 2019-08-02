@@ -12,10 +12,10 @@ public class PlatformWeb extends Base_UI {
 
 
 
-    @FindBy(xpath = "//a[@class='btn btn-primary my-3']")
+    @FindBy(xpath = "//a[contains(text(),'Register Now')]")
     private WebElement registerNowPB;
 
-    @FindBy(xpath = "//a[@class='btn btn-secondary my-2 ml-md-3']")
+    @FindBy(xpath = "//a[contains(text(),'Log In')]")
     private WebElement loginPB;
 
     public PlatformWeb() {
