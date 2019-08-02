@@ -28,6 +28,7 @@ public class CommonSteps {
     @Given("^Browser is up$")
     public void setupBrowser() {
 
+        System.out.println("In Browser up function");
         // Get browser name from command line or user default as per Constant.java
         String browserName = Constant.BROWSER;
 
@@ -53,6 +54,7 @@ public class CommonSteps {
                 throw new WebDriverException("Given browser type is wrong. Please use one of these browser name. "+Constant.BROWSER_SPECIFICATION.CHROME+ " or "+Constant.BROWSER_SPECIFICATION.FIREFOX+" or "+Constant.BROWSER_SPECIFICATION.IE);
         }
 
+        System.out.println("Browser is up");
         base.driver.manage().window().setSize(new Dimension(1280, 1024));
         base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS) ;
     }
@@ -61,6 +63,8 @@ public class CommonSteps {
     @And("^navigate to platform ost site$")
     public void navigateToPlatformOstSite() {
         base.driver.get(TestDataManager.data.url);
+        System.out.println("-----------------  HTML SOURCE --------------");
+        System.out.println(base.driver.getPageSource());
     }
 
 
