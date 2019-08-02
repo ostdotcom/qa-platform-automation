@@ -62,6 +62,9 @@ public class CommonSteps {
 
     @And("^navigate to platform ost site$")
     public void navigateToPlatformOstSite() {
+        base.driver.get("https://stagingost.com");
+        System.out.println("-----------------  HTML SOURCE HOME PAGE--------------");
+        System.out.println(base.driver.getPageSource());
         System.out.println("URL to open: " +TestDataManager.data.url);
         base.driver.get(TestDataManager.data.url);
         System.out.println("-----------------  HTML SOURCE --------------");
