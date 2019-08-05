@@ -5,6 +5,7 @@ import com.platform.base.Base_UI;
 import com.platform.constants.Constant;
 import com.platform.managers.TestDataManager;
 import com.platform.utils.BrowserFactory;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -74,17 +75,17 @@ public class CommonSteps {
 
 
     @After ("@ui")
-    public void tearDown()
+    public void tearDown(Scenario scenario)
     {
-        if(base.driver==null)
-        {
 
+        if(scenario.isFailed())
+        {
+            scenario.embed(((TakesScreenshot)base.driver).getScreenshotAs(OutputType.BYTES),"image/png");
         }
         else {
+
+        }
             base.driver.close();
             base.driver.quit();
-        }
-
-
     }
 }

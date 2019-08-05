@@ -10,9 +10,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 
-import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.BrowserMobProxyServer;
-import net.lightbody.bmp.client.ClientUtil;
 
 public class BrowserFactory{
 
@@ -21,26 +18,10 @@ public class BrowserFactory{
 
     public static WebDriver initChromeBrowser()
     {
-        BrowserMobProxy proxy = new BrowserMobProxyServer();
-        proxy.start(0);
-        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-
-        // put our custom header to each request
-        proxy.addRequestFilter((request, contents, messageInfo)->{
-            //request.headers().add("Host", "stagingost.com");
-            request.headers().add("Authorization", " Basic b3N0OkEkRl4mbiFAJGdoZiU3");
-            System.out.println(request.headers().entries().toString());
-            return null;
-        });
-
         if(Constant.PROJECTOS.toLowerCase().contains("mac"))
         {
             System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERMAC);
             ChromeOptions options = new ChromeOptions();
-
-            // options.addArguments("--incognito");
-            String proxyOption = "--proxy-server=" + seleniumProxy.getHttpProxy();
-            //options.addArguments(proxyOption);
              //options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
@@ -50,10 +31,6 @@ public class BrowserFactory{
             System.out.println("In init chrome with Linux OS");
             System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERLINUX);
             ChromeOptions options = new ChromeOptions();
-
-            String proxyOption = "--proxy-server=" + seleniumProxy.getHttpProxy();
-            //options.addArguments(proxyOption);
-            // options.addArguments("--incognito");
             options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);

@@ -7,14 +7,14 @@ Feature: Verify Login and Sign up scenarios
 
 
 
-    @ui
+    @ui @signup
     Scenario: Verify Sign up
       Given User is on sign up page for platform website
       When User registered with all details
       And User confirm the email
       Then User should signed up successfully
 
-    @sanity @ui @test
+    @sanity @ui @login
     Scenario: Verify login functionality
       Given User is on login page
       When User login with correct email and password

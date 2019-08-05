@@ -85,7 +85,7 @@ public class LoginSignupSteps {
     public void verify_successful_login() {
         AssertionUtils.repeatWhenFailedForSeconds(50, ()->
         {
-            Assert.assertEquals(base.driver.getTitle(),dashboardPageTitle);
+            Assert.assertEquals(dashboardPageTitle,base.driver.getTitle());
         });
 
     }
