@@ -7,7 +7,7 @@ Feature: Verify all the functionality related to Users.
     When I make POST request to create user
     Then I should get success status as true
     And I should get the unique id of the user
-    And User's status is CREATED
+    And User status is CREATED
     And Token holder address should be null
     And Device manager address should be null
     And Recovery address should be null
@@ -17,7 +17,7 @@ Feature: Verify all the functionality related to Users.
 
 
 
-  @clientAPI @users
+  @clientAPI @users @activateUser
   Scenario: Create new user and Activate token holder
     Given The Economy is up for actions
     And User is in registered state

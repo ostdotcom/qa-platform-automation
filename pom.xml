@@ -12,38 +12,38 @@
     <build>
 
         <plugins>
-            <plugin>
-                <groupId>com.github.temyers</groupId>
-                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                <version>5.0.0</version>
-                <executions>
-                    <execution>
-                        <id>generateRunners</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>generateRunners</goal>
-                        </goals>
-                        <configuration>
-                            <glue>
-                                <package>com.platform.steps</package>
-                            </glue>
-                            <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
-                            <featuresDirectory>src/test/java/com/platform/features</featuresDirectory>
-                            <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
-                            <strict>true</strict>
-                            <useTestNG>false</useTestNG>
-                            <monochrome>true</monochrome>
-                            <namingScheme>simple</namingScheme>
-                            <parallelScheme>FEATURE</parallelScheme>
-                            <plugins>
-                                <plugin>
-                                    <name>json</name>
-                                </plugin>
-                            </plugins>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.github.temyers</groupId>-->
+                <!--<artifactId>cucumber-jvm-parallel-plugin</artifactId>-->
+                <!--<version>5.0.0</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>generateRunners</id>-->
+                        <!--<phase>validate</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generateRunners</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<glue>-->
+                                <!--<package>com.platform.steps</package>-->
+                            <!--</glue>-->
+                            <!--<outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>-->
+                            <!--<featuresDirectory>src/test/java/com/platform/features</featuresDirectory>-->
+                            <!--<cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>-->
+                            <!--<strict>true</strict>-->
+                            <!--<useTestNG>false</useTestNG>-->
+                            <!--<monochrome>true</monochrome>-->
+                            <!--<namingScheme>simple</namingScheme>-->
+                            <!--<parallelScheme>FEATURE</parallelScheme>-->
+                            <!--<plugins>-->
+                                <!--<plugin>-->
+                                    <!--<name>json</name>-->
+                                <!--</plugin>-->
+                            <!--</plugins>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -122,16 +122,17 @@
     <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java8 -->
         <dependency>
             <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>2.4.0</version>
+            <artifactId>cucumber-java8</artifactId>
+            <version>4.3.1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-picocontainer -->
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
-            <version>1.2.5</version>
+            <version>4.3.1</version>
         </dependency>
+
 
 
         <!--  TestNG / Junit dependency -->
@@ -154,7 +155,7 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>2.4.0</version>
+            <version>4.3.1</version>
             <scope>test</scope>
         </dependency>
 

@@ -4,15 +4,8 @@ import com.platform.base.Base_API;
 import com.platform.constants.Constant;
 import com.platform.managers.TestDataManager;
 import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-import net.masterthought.cucumber.Configuration;
-import net.masterthought.cucumber.ReportBuilder;
-import net.masterthought.cucumber.generators.OverviewReport;
-import org.junit.AfterClass;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.File;
 
 
 //@RunWith(Cucumber.class)

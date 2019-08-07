@@ -10,7 +10,7 @@ import com.platform.drivers.*;
 import com.platform.managers.TestDataManager;
 import com.platform.managers.UserData;
 import com.platform.utils.AssertionUtils;
-import cucumber.api.DataTable;
+import io.cucumber.datatable.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -107,7 +107,7 @@ public class TransactionsSteps {
 
     }
 
-    @When("^I make POST request of Company transfers (\\d+) (.+) in wei to user via pay method$")
+    @When("^I make POST request of Company transfers (.+) (.+) in wei to user via pay method$")
     public void  execute_transaction_c2u_pay(String usdInWei, String fiatCurrency) {
 
         company_old_Balance = getBalance(TestDataManager.economy1.company_Id);
@@ -235,7 +235,7 @@ public class TransactionsSteps {
         System.out.println("base.response: " + base.response.toString() );
     }
 
-    @When("^I make POST request of Company transfers (\\d+) UBT in wei to same user (.+) times via direct transfer method$")
+    @When("^I make POST request of Company transfers (.+) UBT in wei to same user (.+) times via direct transfer method$")
     public void execute_transaction_multiple_transfers_DT(String ubtInWei, int numberOfTransfers ) {
         base.transactionsService = base.services.transactions;
 
@@ -273,7 +273,7 @@ public class TransactionsSteps {
     }
 
 
-    @When("^I make POST request of Company transfers (\\d+) USD in wei to same user (.+) times via pay method$")
+    @When("^I make POST request of Company transfers (.+) USD in wei to same user (.+) times via pay method$")
     public void execute_transactions_multiple_transfers_pay(String usdInWei, int numberOfTransfers) {
 
         base.transactionsService = base.services.transactions;
@@ -781,7 +781,7 @@ public class TransactionsSteps {
         }
     }
 
-    @When("^I make POST request of user transfers (\\d+) UBT in wei to another user vie direct transfer method$")
+    @When("^I make POST request of user transfers (.+) UBT in wei to another user vie direct transfer method$")
     public void execute_transaction_u2u_direct(String amountInWei) throws IOException, InterruptedException {
 
         //Update token holder in UserData.getInstance()

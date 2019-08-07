@@ -13,8 +13,11 @@ import com.platform.managers.UserData;
 import com.platform.utils.AssertionUtils;
 import com.platform.utils.EthAddress;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+
+
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -173,7 +176,7 @@ public class UsersSteps {
         Assert.assertNotNull("User ID: ", usersDriver.get_user_id(base.response));
     }
 
-    @And("^User's status is (.+)$")
+    @And("^User status is (.+)$")
     public void verify_user_status(String status) {
         Assert.assertEquals("Status of New user created: ",status, usersDriver.get_user_status(base.response));
     }

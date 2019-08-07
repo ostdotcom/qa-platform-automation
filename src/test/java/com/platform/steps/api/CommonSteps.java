@@ -10,9 +10,11 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
 
+
+
 import java.util.HashMap;
 
-public class CommonSteps  {
+public class CommonSteps {
 
     private Base_API base;
 
@@ -25,7 +27,7 @@ public class CommonSteps  {
     DevicesSteps devicesSteps = new DevicesSteps(base);
     SessionSteps sessionSteps = new SessionSteps(base);
 
-    @Given("^The Economy is up for actions$")
+    @Given("The Economy is up for actions")
     public void initialize_economy() {
 
         HashMap<String,Object> sdkConfig = new HashMap<String,Object>();
@@ -37,9 +39,9 @@ public class CommonSteps  {
         base.services = (com.ost.services.Manifest) base.ostObj.services;
     }
 
-    @Then("^I should get success status as (.+)$")
-    public void verify_success_status(boolean successStatus) {
-        Assert.assertEquals("API success status: ",successStatus,resultDriver.get_success_status(base.response));
+    @Then("I should get success status as (.+)")
+    public void verify_success_status(String successStatus) {
+        Assert.assertEquals("API success status: ",successStatus,resultDriver.get_success_status(base.response)+"");
     }
 
     @And("^Response should be expected as the defined JSON schema$")
@@ -53,7 +55,7 @@ public class CommonSteps  {
     }
 
     @Then("^I should get all the (.+) list till last page with pagination identifier$")
-    public void get_list_till_last_with_pagination_identifier(String list_type) {
+    public void  get_list_till_last_with_pagination_identifier(String list_type) {
 
         String pagination_identifier;
 
@@ -63,7 +65,7 @@ public class CommonSteps  {
                 while (resultDriver.pagination_identifier_present(base.response))
                 {
                     pagination_identifier = resultDriver.get_pagination_identifier(base.response);
-                    usersSteps.get_user_list_with_pagination_identifier(pagination_identifier);
+                    new UsersSteps(base).get_user_list_with_pagination_identifier(pagination_identifier);
                 }
                 break;
 
@@ -71,7 +73,7 @@ public class CommonSteps  {
                 while (resultDriver.pagination_identifier_present(base.response))
                 {
                     pagination_identifier = resultDriver.get_pagination_identifier(base.response);
-                    devicesSteps.get_device_list_with_pagination_identifier(pagination_identifier);
+                    new DevicesSteps(base).get_device_list_with_pagination_identifier(pagination_identifier);
                 }
                 break;
 
@@ -79,7 +81,7 @@ public class CommonSteps  {
                 while (resultDriver.pagination_identifier_present(base.response))
                 {
                     pagination_identifier = resultDriver.get_pagination_identifier(base.response);
-                    sessionSteps.get_sessions_list_with_pagination_identifier(pagination_identifier);
+                    new SessionSteps(base).get_sessions_list_with_pagination_identifier(pagination_identifier);
                 }
                 break;
 
