@@ -1,4 +1,4 @@
 {
-  "environment": "st_s4_testnet",
-  "token": "T801"
+  "environment": "prod_testnet",
+  "token": "EM10"
 }
