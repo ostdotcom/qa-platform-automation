@@ -83,13 +83,15 @@ public class TokenDeployPage extends Base_UI {
     public void waitTillTokenSetupCompleted()
     {
         WebDriverWait wait = new WebDriverWait(driver,1500);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'Setup is Complete')]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'Token Setup Complete')]")));
     }
 
     public void clickOnMintTokenPB()
     {
         mintTokenPB.click();
     }
+
+
 
 
 
