@@ -8,9 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PlatformWeb extends Base_UI {
-
-
+public class PlatformWeb extends Base_UI  {
 
     @FindBy(xpath = "//a[contains(text(),'Register Now')]")
     private WebElement registerNowPB;
@@ -18,8 +16,9 @@ public class PlatformWeb extends Base_UI {
     @FindBy(xpath = "//a[contains(text(),'Log In')]")
     private WebElement loginPB;
 
-    public PlatformWeb() {
+    public PlatformWeb(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
 

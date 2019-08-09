@@ -39,14 +39,16 @@ public class LoginSignupSteps {
 
     @Given("^User is on sign up page for platform website$")
     public void navigate_to_signup_page() {
-        platformWeb = new PlatformWeb();
+        System.out.format("Thread ID - %2d - %s from %s feature file.\n",
+                Thread.currentThread().getId(), "signup case","null");
+        platformWeb = new PlatformWeb(base.driver);
         platformWeb.clickOnRegisterNow();
     }
 
     @When("^User registered with all details$")
     public void user_registration() {
 
-        SignupPage signupPage = new SignupPage();
+        SignupPage signupPage = new SignupPage(base.driver);
         signupPage.registerUser("bhavik", "shah", newEmailId,"ostkit@1234");
     }
 
@@ -55,7 +57,7 @@ public class LoginSignupSteps {
 
         //Waiting for email to receive
         Thread.sleep(10000);
-        SignupPage signupPage = new SignupPage();
+        SignupPage signupPage = new SignupPage(base.driver);
         String confirmationLink  = signupPage.getActivateAccountLink(newEmailId,signupEmailSubject);
 
         base.driver.get(confirmationLink);
@@ -64,20 +66,20 @@ public class LoginSignupSteps {
 
     @Then("^User should signed up successfully$")
     public void verify_user_signup() {
-        CompanyInformationPage companyInformationPage = new CompanyInformationPage();
+        CompanyInformationPage companyInformationPage = new CompanyInformationPage(base.driver);
         companyInformationPage.verifyCompanyNameTB();
     }
 
     @Given("^User is on login page$")
     public void navigate_to_login_page() {
-        platformWeb = new PlatformWeb();
+        platformWeb = new PlatformWeb(base.driver);
         platformWeb.clickOnLogIn();
     }
 
     @When("^User login with correct email and password$")
     public void user_login() {
 
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = new LoginPage(base.driver);
         loginPage.login(TestDataManager.economy1.email_Id,TestDataManager.economy1.password);
     }
 
@@ -93,14 +95,14 @@ public class LoginSignupSteps {
     @When("^User click on Forgot password$")
     public void click_on_forgot_password() {
 
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = new LoginPage(base.driver);
         loginPage.clickOnForgotPassword();
 
     }
 
     @And("^User recovers the password$")
     public void recover_password_from_mail() {
-        ResetPasswordPage resetPasswordPage = new ResetPasswordPage();
+        ResetPasswordPage resetPasswordPage = new ResetPasswordPage(base.driver);
         resetPasswordPage.writeEmail(newEmailId);
         resetPasswordPage.clickOnRecaptcha();
         resetPasswordPage.clickOnRecoverEmailBtn();
@@ -110,7 +112,7 @@ public class LoginSignupSteps {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        SignupPage signupPage = new SignupPage();
+        SignupPage signupPage = new SignupPage(base.driver);
         String confirmationLink  = signupPage.getActivateAccountLink(newEmailId,resetPwsEmailSubject);
 
         base.driver.get(confirmationLink);
@@ -120,7 +122,7 @@ public class LoginSignupSteps {
     @Then("^Verify that user is able to login with new password$")
     public void login_with_new_password() {
 
-        UpdatePasswordPage updatePasswordPage = new UpdatePasswordPage();
+        UpdatePasswordPage updatePasswordPage = new UpdatePasswordPage(base.driver);
         updatePasswordPage.writePassword(newPassword);
         updatePasswordPage.writeConfirmPassword(newPassword);
         updatePasswordPage.clickOnUpdatePasswordBtn();
@@ -128,7 +130,7 @@ public class LoginSignupSteps {
         updatePasswordPage.verifyUpdatePwdSuccessTxt();
         updatePasswordPage.clickOnLoginBtn();
 
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage = new LoginPage(base.driver);
         loginPage.login(newEmailId,newPassword);
 
 
@@ -138,7 +140,7 @@ public class LoginSignupSteps {
     @And("^User logout from current session$")
     public void user_logout() {
 
-        LHSMenu lhsMenu = new LHSMenu();
+        LHSMenu lhsMenu = new LHSMenu(base.driver);
         lhsMenu.clickOnUserSetting();
         lhsMenu.clickOnLogout();
     }

@@ -4,25 +4,27 @@ import com.platform.base.Base_API;
 import com.platform.constants.Constant;
 import com.platform.managers.TestDataManager;
 import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 
 
-//@RunWith(Cucumber.class)
+
 @CucumberOptions(
         plugin = {"pretty", "json:target/cucumber/*.json","html:target/cucumber/cucumber-pretty"},
-        glue = "com.platform.steps/",
-        //tags = "@token",
+        glue = "com.platform.steps",
+        //tags = "@ui and @sanity",
         features = "src/test/java/com/platform/features/",
         monochrome = true
 )
 
-@RunWith(ExtendedCucumberRunner.class)
-public class RunnerClass {
+
+@RunWith(Cucumber.class)
+public class RunnerClassIT {
 
     private Base_API base;
 
-    public RunnerClass(Base_API base) {
+    public RunnerClassIT(Base_API base) {
         this.base = base;
     }
 

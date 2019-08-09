@@ -38,7 +38,7 @@ public class End2EndSteps  {
 
         tokenSymbol = "A"+commonUtils.getAlphaNumericString(3);
 
-        TokenSetupPage tokenSetupPage = new TokenSetupPage();
+        TokenSetupPage tokenSetupPage = new TokenSetupPage(base.driver);
         tokenSetupPage.writeTokenName(tokenSymbol);
         tokenSetupPage.writeTokenSymbol(tokenSymbol);
         if(stakeCurrency.equals(usdc))
@@ -53,7 +53,7 @@ public class End2EndSteps  {
     @Then("^Token setup should be started$")
     public void verify_token_setup_started() {
 
-        TokenDeployPage tokenDeployPage = new TokenDeployPage();
+        TokenDeployPage tokenDeployPage = new TokenDeployPage(base.driver);
         tokenDeployPage.verifyCurrentText(initialtokenSetuptext);
 
         System.out.println("Current Percentage: "+tokenDeployPage.getCurrentPercentage());
@@ -62,7 +62,7 @@ public class End2EndSteps  {
     @And("^Token setup should complete successfully$")
     public void tokenSetupShouldCompleteSuccessfully() {
 
-        TokenDeployPage tokenDeployPage = new TokenDeployPage();
+        TokenDeployPage tokenDeployPage = new TokenDeployPage(base.driver);
         tokenDeployPage.waitTillTokenSetupCompleted();
         tokenDeployPage.clickOnMintTokenPB();
     }
@@ -71,7 +71,7 @@ public class End2EndSteps  {
     public void enter_stake_and_mint(double mintedBts) {
 
         toMintBts = mintedBts;
-        MintTokensPage mintTokensPage = new MintTokensPage();
+        MintTokensPage mintTokensPage = new MintTokensPage(base.driver);
         mintTokensPage.clickOnSetupMinting();
         mintTokensPage.writeMintedBts(mintedBts);
         mintTokensPage.clickOnMintTokenBtn();
@@ -80,7 +80,7 @@ public class End2EndSteps  {
     @Then("^Stake and mint started successfully$")
     public void stakeAndMintStartedSuccessfully() {
 
-        MintProgressPage mintProgressPage = new MintProgressPage();
+        MintProgressPage mintProgressPage = new MintProgressPage(base.driver);
         mintProgressPage.verifyCurrentText(initialStakeAndMintText);
 
         System.out.println("Current Percentage: "+mintProgressPage.getCurrentPercentage());
@@ -90,7 +90,7 @@ public class End2EndSteps  {
     @And("^Stake and mint should complete successfully$")
     public void verify_successful_stake_mint() {
 
-        MintProgressPage mintProgressPage = new MintProgressPage();
+        MintProgressPage mintProgressPage = new MintProgressPage(base.driver);
         mintProgressPage.waitTillStakeAndMintCompleted();
 
         //Assert.assertEquals(mintProgressPage.getTotalTokenMinted(),toMintBts);
@@ -100,7 +100,7 @@ public class End2EndSteps  {
     @And("^user enters the company details$")
     public void userEntersTheCompanyDetails() {
 
-        CompanyInformationPage companyInformationPage = new CompanyInformationPage();
+        CompanyInformationPage companyInformationPage = new CompanyInformationPage(base.driver);
         companyInformationPage.writeCompanyName(companyName);
 
         companyInformationPage.clickOnConfirmBtn();
@@ -109,7 +109,7 @@ public class End2EndSteps  {
     @And("^User selects the OST managed address option$")
     public void select_ost_managed_address() {
 
-        TokenSetupPage tokenSetupPage = new TokenSetupPage();
+        TokenSetupPage tokenSetupPage = new TokenSetupPage(base.driver);
         tokenSetupPage.clickOnProceedWithOst();
     }
 }

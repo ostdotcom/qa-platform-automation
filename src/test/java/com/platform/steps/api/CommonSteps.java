@@ -5,6 +5,7 @@ import com.platform.base.Base_API;
 import com.platform.constants.Constant;
 import com.platform.drivers.ResultDriver;
 import com.platform.managers.TestDataManager;
+import cucumber.api.Scenario;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 
 public class CommonSteps {
 
+    public static Scenario scenario;
     private Base_API base;
 
     public CommonSteps(Base_API base) {
@@ -23,9 +25,6 @@ public class CommonSteps {
     }
 
     ResultDriver resultDriver = new ResultDriver();
-    UsersSteps usersSteps = new UsersSteps(base);
-    DevicesSteps devicesSteps = new DevicesSteps(base);
-    SessionSteps sessionSteps = new SessionSteps(base);
 
     @Given("The Economy is up for actions")
     public void initialize_economy() {

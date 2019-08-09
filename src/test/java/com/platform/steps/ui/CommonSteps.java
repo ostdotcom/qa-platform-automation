@@ -63,13 +63,7 @@ public class CommonSteps {
 
     @And("^navigate to platform ost site$")
     public void navigateToPlatformOstSite() {
-        base.driver.get("https://stagingost.com");
-        System.out.println("-----------------  HTML SOURCE HOME PAGE--------------");
-        System.out.println(base.driver.getPageSource());
-        System.out.println("URL to open: " +TestDataManager.data.url);
         base.driver.get(TestDataManager.data.url);
-        System.out.println("-----------------  HTML SOURCE --------------");
-        System.out.println(base.driver.getPageSource());
     }
 
 
@@ -82,10 +76,7 @@ public class CommonSteps {
         {
             scenario.embed(((TakesScreenshot)base.driver).getScreenshotAs(OutputType.BYTES),"image/png");
         }
-        else {
-
-        }
-            base.driver.close();
-            base.driver.quit();
+        base.driver.close();
+        base.driver.quit();
     }
 }

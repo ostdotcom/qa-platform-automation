@@ -1,6 +1,7 @@
 package com.platform.pages;
 
 import com.platform.base.Base_UI;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -39,8 +40,9 @@ public class TokenSetupPage extends Base_UI {
 
 
 
-    public TokenSetupPage() {
+    public TokenSetupPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     public void numberOfBTs(double bts)

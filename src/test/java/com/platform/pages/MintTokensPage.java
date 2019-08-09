@@ -1,6 +1,7 @@
 package com.platform.pages;
 
 import com.platform.base.Base_UI;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -29,8 +30,9 @@ public class MintTokensPage extends Base_UI {
     private WebElement setupMintingPB;
 
 
-    public MintTokensPage() {
+    public MintTokensPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     public void clickOnMintTokenBtn()

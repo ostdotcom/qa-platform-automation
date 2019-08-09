@@ -4,6 +4,7 @@ import com.platform.base.Base_UI;
 import com.platform.utils.GmailInteractions;
 import com.platform.utils.WebInteractionsUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -51,8 +52,9 @@ public class SignupPage extends Base_UI {
 
 
 
-    public SignupPage() {
+    public SignupPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
 

@@ -2,6 +2,7 @@ package com.platform.pages;
 
 import com.platform.base.Base_UI;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -28,8 +29,9 @@ public class LoginPage extends Base_UI {
     private WebElement forgotPasswordLink;
 
 
-    public LoginPage() {
+    public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
 
@@ -70,7 +72,7 @@ public class LoginPage extends Base_UI {
             System.out.println("Your Browser is not authorised.");
 
             Thread.sleep(10000);
-            SignupPage signupPage = new SignupPage();
+            SignupPage signupPage = new SignupPage(driver);
             String confirmationLink  = signupPage.getActivateAccountLink(email,authorizeDeviceMail);
             driver.get(confirmationLink);
         }
