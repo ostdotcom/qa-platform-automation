@@ -7,6 +7,25 @@ Feature: Verify Login and Sign up scenarios
 
 
 
+  @ui @sanity
+  Scenario: Perform Token setup and Stake & mint with USDC staked currency
+    Given User is on sign up page for platform website
+    When User registered with all details
+    And User confirm the email
+    And user enters the company details
+    And User enter details for token economy with conversion factor as 100 BT for 1 USDC
+    And User selects the OST managed address option
+    Then Token setup should be started
+    And Token setup should complete successfully
+    When User navigates to Developers page
+    And Get the API & Secret key through mail confirmation
+    Then Navigate to stake and mint page
+    And Verify default USD value and OST value
+    When User enters stake and mint details to min 100 BT
+    Then Stake and mint started successfully
+    And Stake and mint should complete successfully
+
+
     @ui @signup
     Scenario: Verify Sign up
       Given User is on sign up page for platform website

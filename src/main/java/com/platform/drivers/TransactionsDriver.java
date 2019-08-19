@@ -260,6 +260,7 @@ public class TransactionsDriver {
             String jsonStr = gsonObj.toJson(nestedparams);
             params.put("raw_calldata", jsonStr);
             params.put("meta_property", metaProperty);
+            System.out.println(params);
             return  params;
         }
     }

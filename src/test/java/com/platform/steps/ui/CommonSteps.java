@@ -4,11 +4,13 @@ import com.ost.services.OSTAPIService;
 import com.platform.base.Base_UI;
 import com.platform.constants.Constant;
 import com.platform.managers.TestDataManager;
+import com.platform.pages.LHSMenu;
 import com.platform.utils.BrowserFactory;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.*;
 
@@ -67,6 +69,13 @@ public class CommonSteps {
     }
 
 
+    @When("User navigates to Developers page")
+    public void navigate_to_developers_page() {
+        LHSMenu lhsMenu = new LHSMenu(base.driver);
+        lhsMenu.clickOnDevelopersLink();
+    }
+
+
 
     @After ("@ui")
     public void tearDown(Scenario scenario)
@@ -78,5 +87,11 @@ public class CommonSteps {
         }
         base.driver.close();
         base.driver.quit();
+    }
+
+    @Then("Navigate to stake and mint page")
+    public void navigate_to_stake_and_mint() {
+        LHSMenu lhsMenu = new LHSMenu(base.driver);
+        lhsMenu.clickOnMintTokensLink();
     }
 }

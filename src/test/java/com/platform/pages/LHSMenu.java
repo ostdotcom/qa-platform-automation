@@ -8,19 +8,19 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LHSMenu extends Base_UI {
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//aside[@id='sidebar']//span[contains(text(),'Dashboard')]")
     private WebElement dashboardBtn;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//aside[@id='sidebar']//span[contains(text(),'Mint Tokens')]")
     private WebElement mintTokenBtn;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//aside[@id='sidebar']//span[contains(text(),'Wallet')]")
     private WebElement walletBtn;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//aside[@id='sidebar']//span[contains(text(),'Developers')]")
     private WebElement developersBtn;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//aside[@id='sidebar']//span[contains(text(),'Block Explorer')]")
     private WebElement blockExplorerBtn;
 
     @FindBy(id = "user-settings")
@@ -66,6 +66,11 @@ public class LHSMenu extends Base_UI {
     public void clickOnLogout()
     {
         logoutLink.click();
+    }
+
+    public void clickOnDevelopersLink()
+    {
+        developersBtn.click();
     }
 
 

@@ -9,6 +9,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 
@@ -33,6 +34,17 @@ public class CommonSteps {
         sdkConfig.put("apiEndpoint",TestDataManager.data.apiEndpoint);
         sdkConfig.put("apiKey",TestDataManager.economy1.apiKey);
         sdkConfig.put("apiSecret",TestDataManager.economy1.secretKey);
+
+        base.ostObj = new OSTSDK(sdkConfig);
+        base.services = (com.ost.services.Manifest) base.ostObj.services;
+    }
+
+    public void initialize_economy(String apiEndpoint, String apiKey, String apiSecret) {
+
+        HashMap<String,Object> sdkConfig = new HashMap<String,Object>();
+        sdkConfig.put("apiEndpoint",apiEndpoint);
+        sdkConfig.put("apiKey",apiKey);
+        sdkConfig.put("apiSecret",apiSecret);
 
         base.ostObj = new OSTSDK(sdkConfig);
         base.services = (com.ost.services.Manifest) base.ostObj.services;
@@ -87,11 +99,5 @@ public class CommonSteps {
             default:
                 throw new AssertionError("Result type is not valid for pagination identifier");
         }
-
-    }
-
-    public void continueTillLast(String pagination_identifier)
-    {
-
     }
 }

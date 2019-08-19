@@ -61,10 +61,9 @@
                                 <!-- supports wildcard or name pattern -->
                                 <param>**/*.json</param>
                             </jsonFiles>
-                            <parallelTesting>true</parallelTesting>
+                            <!--<parallelTesting>true</parallelTesting>-->
                             <buildNumber>822</buildNumber>
                             <checkBuildResult>true</checkBuildResult>
-                            <parallelTesting>true</parallelTesting>
                         </configuration>
                     </execution>
                 </executions>

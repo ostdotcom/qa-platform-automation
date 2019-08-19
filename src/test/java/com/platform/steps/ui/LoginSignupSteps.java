@@ -1,6 +1,6 @@
 package com.platform.steps.ui;
 
-import com.platform.base.Base_API;
+
 import com.platform.base.Base_UI;
 import com.platform.managers.TestDataManager;
 import com.platform.pages.*;
@@ -21,13 +21,14 @@ import java.util.concurrent.TimeUnit;
 public class LoginSignupSteps {
 
 
+
     public static final String signupEmailSubject = "Confirm Your Email Address";
     public static final String resetPwsEmailSubject = "Reset your OST Platform Account Password";     //did not complete the subject because it has minor difference between staging and prod environment
-    Date date= new Date();
-    long time = date. getTime();
-    String newEmailId = "qa.automation+"+ time+"@ost.com";
+
     private static final String dashboardPageTitle = "OST Platform | Dashboard";
-    String newPassword = "ostkit@"+time;
+    String newPassword = "ostkit@1234";
+
+    private static final String automationTokens = "?automation_test_token=lkashfiouqheinsdioqinsoidfhiondoi09239hnw903n903";
 
     private Base_UI base;
     PlatformWeb platformWeb;
@@ -43,13 +44,15 @@ public class LoginSignupSteps {
                 Thread.currentThread().getId(), "signup case","null");
         platformWeb = new PlatformWeb(base.driver);
         platformWeb.clickOnRegisterNow();
+        String currentUrl = base.driver.getCurrentUrl();
+        base.driver.get(currentUrl + automationTokens);
     }
 
     @When("^User registered with all details$")
     public void user_registration() {
 
         SignupPage signupPage = new SignupPage(base.driver);
-        signupPage.registerUser("bhavik", "shah", newEmailId,"ostkit@1234");
+        signupPage.registerUser("bhavik", "shah", base.newEmailId,"ostkit@1234");
     }
 
     @And("^User confirm the email$")
@@ -58,7 +61,7 @@ public class LoginSignupSteps {
         //Waiting for email to receive
         Thread.sleep(10000);
         SignupPage signupPage = new SignupPage(base.driver);
-        String confirmationLink  = signupPage.getActivateAccountLink(newEmailId,signupEmailSubject);
+        String confirmationLink  = signupPage.getActivateAccountLink(base.newEmailId,signupEmailSubject);
 
         base.driver.get(confirmationLink);
 
@@ -74,6 +77,9 @@ public class LoginSignupSteps {
     public void navigate_to_login_page() {
         platformWeb = new PlatformWeb(base.driver);
         platformWeb.clickOnLogIn();
+
+        String currentUrl = base.driver.getCurrentUrl();
+        base.driver.get(currentUrl + automationTokens);
     }
 
     @When("^User login with correct email and password$")
@@ -98,12 +104,15 @@ public class LoginSignupSteps {
         LoginPage loginPage = new LoginPage(base.driver);
         loginPage.clickOnForgotPassword();
 
+        String currentUrl = base.driver.getCurrentUrl();
+        base.driver.get(currentUrl + automationTokens);
+
     }
 
     @And("^User recovers the password$")
     public void recover_password_from_mail() {
         ResetPasswordPage resetPasswordPage = new ResetPasswordPage(base.driver);
-        resetPasswordPage.writeEmail(newEmailId);
+        resetPasswordPage.writeEmail(base.newEmailId);
         resetPasswordPage.clickOnRecaptcha();
         resetPasswordPage.clickOnRecoverEmailBtn();
 
@@ -113,7 +122,7 @@ public class LoginSignupSteps {
             e.printStackTrace();
         }
         SignupPage signupPage = new SignupPage(base.driver);
-        String confirmationLink  = signupPage.getActivateAccountLink(newEmailId,resetPwsEmailSubject);
+        String confirmationLink  = signupPage.getActivateAccountLink(base.newEmailId,resetPwsEmailSubject);
 
         base.driver.get(confirmationLink);
 
@@ -131,10 +140,7 @@ public class LoginSignupSteps {
         updatePasswordPage.clickOnLoginBtn();
 
         LoginPage loginPage = new LoginPage(base.driver);
-        loginPage.login(newEmailId,newPassword);
-
-
-
+        loginPage.login(base.newEmailId,newPassword);
     }
 
     @And("^User logout from current session$")

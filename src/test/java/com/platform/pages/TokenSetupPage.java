@@ -35,7 +35,7 @@ public class TokenSetupPage extends Base_UI {
     private WebElement ostManagedBtn;
 
     @FindBy(xpath = "//span[@class='ost-mocker-value conversion-rate j-bt-to-fiat-val text-truncate']")
-    private WebElement udsAtCurrentConversionTB;
+    private WebElement usdAtCurrentConversionTB;
 
 
 

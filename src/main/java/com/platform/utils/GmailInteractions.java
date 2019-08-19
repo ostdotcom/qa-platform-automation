@@ -23,6 +23,11 @@ public class GmailInteractions {
 
     public String readEmail(String recipientMail, String subject)
     {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String emailBody = null;
         Session session = Session.getDefaultInstance(new Properties( ));
         Store store = null;
