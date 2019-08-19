@@ -78,11 +78,18 @@ public class SignupPage extends Base_UI {
         }
         driver.switchTo().frame(0);
         driver.findElement(By.id("recaptcha-anchor")).click();
-
-
-        //Verifying check box is marked as true
         WebDriverWait wait = new WebDriverWait(driver, 180);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='recaptcha-anchor' and @aria-checked='true']")));
+
+        try{
+            //Verifying check box is marked as true
+
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='recaptcha-anchor' and @aria-checked='true']")));
+        }
+        catch (Exception e)
+        {
+            driver.findElement(By.id("recaptcha-anchor")).click();
+            new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='recaptcha-anchor' and @aria-checked='true']")));
+        }
 
         driver.switchTo().defaultContent();
 

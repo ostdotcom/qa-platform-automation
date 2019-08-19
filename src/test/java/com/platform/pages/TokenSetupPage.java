@@ -23,11 +23,11 @@ public class TokenSetupPage extends Base_UI {
     @FindBy(id = "sc_to_bt_id")
     private WebElement btTokensTB;
 
-    @FindBy(xpath = "//span[contains(text(),'USE USDC')]")
+    @FindBy(xpath = "//span[contains(text(),'STAKE USDC')]")
     private WebElement useUSDCPB;
 
 
-    @FindBy(xpath = "//span[contains(text(),'USE OST')]")
+    @FindBy(xpath = "//span[contains(text(),'STAKE OST')]")
     private WebElement useOSTPB;
 
 
