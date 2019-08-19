@@ -7,7 +7,7 @@ Feature: Verify Stake And Mint functionality
     And User is on login page
     When User login with correct email and password
 
-  @ui
+
   Scenario: Verify calculations of BTs to mint, OST and USD values
     Given User is on Stake and Mint tokens page
     And verify default values tokens to mint and USD value of it

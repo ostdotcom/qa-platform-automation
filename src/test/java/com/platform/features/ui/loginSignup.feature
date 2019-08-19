@@ -7,7 +7,7 @@ Feature: Verify Login and Sign up scenarios
 
 
 
-  @ui @sanity
+  @ui @sanity @usdcE2e
   Scenario: Perform Token setup and Stake & mint with USDC staked currency
     Given User is on sign up page for platform website
     When User registered with all details
