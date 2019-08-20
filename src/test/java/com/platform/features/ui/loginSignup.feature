@@ -20,7 +20,6 @@ Feature: Verify Login and Sign up scenarios
     When User navigates to Developers page
     And Get the API & Secret key through mail confirmation
     Then Navigate to stake and mint page
-    And Verify default USD value and OST value
     When User enters stake and mint details to min 100 BT
     Then Stake and mint started successfully
     And Stake and mint should complete successfully

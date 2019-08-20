@@ -221,7 +221,7 @@
                 "properties": {
                   "name": {
                     "$id": "#/properties/data/properties/transactions/items/properties/meta_property/properties/name",
-                    "type": "string",
+                    "type": ["string","null"],
                     "title": "The Name Schema",
                     "default": "",
                     "examples": [
@@ -231,7 +231,7 @@
                   },
                   "type": {
                     "$id": "#/properties/data/properties/transactions/items/properties/meta_property/properties/type",
-                    "type": "string",
+                    "type": ["string","null"],
                     "title": "The Type Schema",
                     "default": "",
                     "examples": [
@@ -241,7 +241,7 @@
                   },
                   "details": {
                     "$id": "#/properties/data/properties/transactions/items/properties/meta_property/properties/details",
-                    "type": "string",
+                    "type": ["string","null"],
                     "title": "The Details Schema",
                     "default": "",
                     "examples": [
