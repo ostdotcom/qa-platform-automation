@@ -13,7 +13,7 @@ Feature: Verify execute Transactions and Get transaction functionality
   @sanity @transactions
   Scenario: Verify Execute Transaction PAY: company to user transaction USD
     Given The Economy is up for actions
-    When I make POST request of Company transfers 1 USD in wei to user via pay method
+    When I make POST request of Company transfers 100000000000000000 USD in wei to user via pay method
     Then I should get success status as true
     And I should get Transaction status as SUCCESS
     And Company's balance should be debited
@@ -23,7 +23,7 @@ Feature: Verify execute Transactions and Get transaction functionality
   @sanity @transactions
   Scenario: Verify Execute Transaction PAY: company to user transaction GBP
     Given The Economy is up for actions
-    When I make POST request of Company transfers 1 GBP in wei to user via pay method
+    When I make POST request of Company transfers 100000000000000000 GBP in wei to user via pay method
     Then I should get success status as true
     And I should get Transaction status as SUCCESS
     And Company's balance should be debited
@@ -34,7 +34,7 @@ Feature: Verify execute Transactions and Get transaction functionality
   @sanity @transactions
   Scenario: Verify Execute Transaction PAY: company to user transaction EUR
     Given The Economy is up for actions
-    When I make POST request of Company transfers 1 EUR in wei to user via pay method
+    When I make POST request of Company transfers 100000000000000000 EUR in wei to user via pay method
     Then I should get success status as true
     And I should get Transaction status as SUCCESS
     And Company's balance should be debited

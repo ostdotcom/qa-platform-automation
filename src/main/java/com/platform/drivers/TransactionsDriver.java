@@ -77,7 +77,7 @@ public class TransactionsDriver {
          *
          *  (Conversion factor) * (fiat amount in ETH) / (current pricer) = BT
          *
-         *  (Conversion factor)* (fiat amount in BT) / (current pricer) * Base token's Decimal = BT in wei
+         *  (Conversion factor)* (fiat amount in ETH) / (current pricer) * Base token's Decimal = BT in wei
          *
          *  Now if amount is in wei then, convert it into BT
          *
