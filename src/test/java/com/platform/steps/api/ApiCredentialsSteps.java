@@ -10,7 +10,9 @@ import cucumber.api.java.en.When;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class ApiCredentialsSteps extends Base_API {
+//import static com.platform.steps.api.CommonSteps.scenario;
+
+public class ApiCredentialsSteps {
 
     private Base_API base;
 
@@ -21,11 +23,18 @@ public class ApiCredentialsSteps extends Base_API {
     @Given("^The economy with wrong API key is setup$")
     public void setup_economy_with_wrong_API_key() {
 
+
         HashMap<String,Object> sdkConfig = new HashMap<String,Object>();
         sdkConfig.put("apiEndpoint",TestDataManager.data.apiEndpoint);
         sdkConfig.put("apiKey","vge5y5v5y5yb5y5y5wbby");
         sdkConfig.put("apiSecret",TestDataManager.economy1.secretKey);
 
+        System.out.println(base.scenario.getName());
+        System.out.println(base.scenario.getSourceTagNames());
+        base.scenario.write("This goes into the report(s)\n");
+        base.scenario.write("This goes into the report(s) 1\n");
+        base.scenario.write("This goes into the report(s) 2 \n");
+        base.scenario.embed("test".getBytes(),"This goes into the report(s)\n");
         base.ostObj = new OSTSDK(sdkConfig);
         base.services = (com.ost.services.Manifest)base.ostObj.services;
     }

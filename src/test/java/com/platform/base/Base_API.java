@@ -4,8 +4,10 @@ import com.google.gson.JsonObject;
 import com.ost.OSTSDK;
 import com.platform.managers.EconomyManager;
 import com.platform.managers.TestDataManager;
+import cucumber.api.Scenario;
 
-public  class Base_API {
+public  class Base_API extends Base{
+
 
     public  OSTSDK ostObj;
     public  com.ost.services.Manifest services;

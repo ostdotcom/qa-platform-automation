@@ -8,6 +8,7 @@ import com.platform.pages.LHSMenu;
 import com.platform.utils.BrowserFactory;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -73,6 +74,12 @@ public class CommonSteps {
     public void navigate_to_developers_page() {
         LHSMenu lhsMenu = new LHSMenu(base.driver);
         lhsMenu.clickOnDevelopersLink();
+    }
+
+
+    @Before ("@ui")
+    public void before(Scenario scenario) {
+       base.scenario = scenario;
     }
 
 

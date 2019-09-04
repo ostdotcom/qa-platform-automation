@@ -1,11 +1,12 @@
 package com.platform.base;
 
 import com.platform.utils.WebInteractionsUtils;
+import cucumber.api.Scenario;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Date;
 
-public class Base_UI {
+public class Base_UI extends Base{
 
     Date date= new Date();
     public long time = date. getTime();

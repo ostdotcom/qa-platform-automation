@@ -40,8 +40,7 @@ public class LoginSignupSteps {
 
     @Given("^User is on sign up page for platform website$")
     public void navigate_to_signup_page() {
-        System.out.format("Thread ID - %2d - %s from %s feature file.\n",
-                Thread.currentThread().getId(), "signup case","null");
+
         platformWeb = new PlatformWeb(base.driver);
         platformWeb.clickOnRegisterNow();
         String currentUrl = base.driver.getCurrentUrl();

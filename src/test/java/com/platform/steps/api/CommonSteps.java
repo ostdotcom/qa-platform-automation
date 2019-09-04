@@ -6,6 +6,7 @@ import com.platform.constants.Constant;
 import com.platform.drivers.ResultDriver;
 import com.platform.managers.TestDataManager;
 import cucumber.api.Scenario;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -37,6 +38,7 @@ public class CommonSteps {
 
         base.ostObj = new OSTSDK(sdkConfig);
         base.services = (com.ost.services.Manifest) base.ostObj.services;
+
     }
 
     public void initialize_economy(String apiEndpoint, String apiKey, String apiSecret) {
@@ -48,6 +50,11 @@ public class CommonSteps {
 
         base.ostObj = new OSTSDK(sdkConfig);
         base.services = (com.ost.services.Manifest) base.ostObj.services;
+    }
+
+    @Before ("not @ui")
+    public void before(Scenario scenario) {
+        base.scenario = scenario;
     }
 
     @Then("I should get success status as (.+)")

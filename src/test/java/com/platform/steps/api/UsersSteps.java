@@ -1,5 +1,6 @@
 package com.platform.steps.api;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
@@ -45,16 +46,22 @@ public class UsersSteps {
 
 
     @When("^I make POST request to create user$")
-    public void create_user() {
+    public void create_user()  {
 
         base.usersService = base.services.users;
         HashMap<String,Object> params = new HashMap<>();
+
+        base.scenario.write(params.toString()+"\n");
         try {
             base.response = base.usersService.create(params);
+            base.scenario.write(params.toString()+"\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("base.response: " + base.response.toString() );
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
     }
 
     @When("^I make GET request to get users list$")
@@ -202,7 +209,7 @@ public class UsersSteps {
     }
 
     @And("^User is in registered state$")
-    public void user_in_registered_state() {
+    public void user_in_registered_state()  {
 
         //If user is not created then create a new user
         if(UserData.getInstance().user_id == null)
