@@ -113,6 +113,7 @@ public class End2EndSteps  {
         {
             // Get the current pricer and expected amount for USD and OST
             Base_API base_api = new Base_API();
+            base_api.scenario = base.scenario;
             CommonSteps commonSteps = new CommonSteps(base_api);
             commonSteps.initialize_economy(TestDataManager.data.apiEndpoint,apiKey,privateKey);
 
