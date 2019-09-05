@@ -21,7 +21,7 @@ public class End2EndSteps  {
     private static final String companyName = "Test Company";
     private static final String initialtokenSetuptext = "Initialization";
     private static final String initialStakeAndMintText = "Accepting stake request";
-    private static final String getApiKeyMail = "OST Platform: Get API / Webhook Keys";
+    private static final String getApiKeyMail = "Access Your API and WebHook Keys";
     private final String ost = "OST";
     private final String usdc = "USDC";
     public double conversionFactor;
