@@ -39,7 +39,7 @@ Feature: Verify Login and Sign up scenarios
       Then User should be successfully logged in
 
 
-    @ui
+    @ui @forgotPassword
     Scenario: Verify forgot password scenario
       Given User is on sign up page for platform website
       When User registered with all details

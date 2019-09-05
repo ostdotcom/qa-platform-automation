@@ -2,6 +2,7 @@ package com.platform.steps.api;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.constants.Constant;
@@ -73,6 +74,11 @@ public class TransactionsSteps {
         System.out.println("base.response: " + base.response.toString() );
         Assert.assertEquals(true,balanceDriver.is_unsettled_balance_zero(base.response));
         });
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
         return balanceDriver.get_available_balance(base.response);
     }
 
@@ -100,7 +106,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
 
         company_new_Balance = transactionsDriver.subtract(company_old_Balance,ubtInWei);
         user_new_Balance = transactionsDriver.add(user_old_Balance,ubtInWei);
@@ -151,7 +161,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
 
         company_new_Balance = transactionsDriver.subtract(company_old_Balance,transferredUbt);
         user_new_Balance = transactionsDriver.add(user_old_Balance,transferredUbt);
@@ -193,7 +207,11 @@ public class TransactionsSteps {
             } catch (OSTAPIService.InvalidParameter invalidParameter) {
                 invalidParameter.printStackTrace();
             }
-            System.out.println("base.response: " + base.response.toString() );
+            base.scenario.write("Params: \n"+params.toString()+"\n");
+            String formattedData=new GsonBuilder().setPrettyPrinting()
+                    .create().toJson(base.response);
+            base.scenario.write(formattedData+"\n");
+            System.out.println("base.response: \n"+formattedData+"\n");
             Assert.assertEquals(transaction_status,transactionsDriver.getTransactionStatus(base.response));
         });
     }
@@ -214,7 +232,11 @@ public class TransactionsSteps {
             } catch (OSTAPIService.InvalidParameter invalidParameter) {
                 invalidParameter.printStackTrace();
             }
-            System.out.println("response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get Transaction list for defined user$")
@@ -232,7 +254,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request of Company transfers (.+) UBT in wei to same user (.+) times via direct transfer method$")
@@ -266,7 +292,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
 
         company_new_Balance = transactionsDriver.subtract(company_old_Balance,ubtInWei,numberOfTransfers);
         user_new_Balance = transactionsDriver.add(user_old_Balance,ubtInWei,numberOfTransfers);
@@ -307,7 +337,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
 
         company_new_Balance = transactionsDriver.subtract(company_old_Balance,usdInWei);
         user_new_Balance = transactionsDriver.add(user_old_Balance,usdInWei);
@@ -340,7 +374,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
 
     }
 
@@ -363,7 +401,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to execute transaction with direct transfer's rule via pay method$")
@@ -388,7 +430,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to execute transaction with pay's rule via Direct transfer method$")
@@ -406,7 +452,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
 
     }
 
@@ -428,7 +478,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to execute transaction with rule address as (.+) via direct method$")
@@ -449,7 +503,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to execute transaction with token holder address as (.+) via direct method$")
@@ -472,7 +530,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to execute transaction with method name as (.+) via direct method$")
@@ -492,7 +554,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
 
@@ -513,7 +579,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to execute transaction with pricer as(.+) via pay method$")
@@ -538,7 +608,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to execute transaction with currency as (.+) via pay method$")
@@ -561,7 +635,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request of execute transaction with method name (.+) via pay method$")
@@ -584,7 +662,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get transaction details with defined user and transaction id as (.+).$")
@@ -603,7 +685,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
 
     }
 
@@ -635,7 +721,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^I should get the same transaction count as early$")
@@ -659,7 +749,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^I should get the Transaction list with number of transaction as (.+)$")
@@ -699,7 +793,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to execute transaction with multiple meta properties$")
@@ -736,7 +834,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get transactions list details with defined user id$")
@@ -755,7 +857,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @Then("^I should get full list of transaction with pagination identifier$")
@@ -843,7 +949,11 @@ public class TransactionsSteps {
 
 
         base.response = transactionsDriver.postExecuteTransaction(map, UserData.getInstance().user_id,UserData.getInstance().api_signer_private);
-        System.out.println(base.response);
+        base.scenario.write("Params: \n"+map.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     private String createEIP1077TxnHash( String callData, String contractAddress, int keyNonce) {
@@ -939,11 +1049,11 @@ public class TransactionsSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
-
-//        company_new_Balance = transactionsDriver.subtract(company_old_Balance,ubtInWei);
-//        user_new_Balance = transactionsDriver.add(user_old_Balance,ubtInWei);
-
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
 }

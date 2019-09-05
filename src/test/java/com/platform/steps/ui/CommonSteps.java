@@ -67,6 +67,7 @@ public class CommonSteps {
     @And("^navigate to platform ost site$")
     public void navigateToPlatformOstSite() {
         base.driver.get(TestDataManager.data.url);
+        base.takeScreenshot();
     }
 
 
@@ -74,6 +75,7 @@ public class CommonSteps {
     public void navigate_to_developers_page() {
         LHSMenu lhsMenu = new LHSMenu(base.driver);
         lhsMenu.clickOnDevelopersLink();
+        base.takeScreenshot();
     }
 
 
@@ -100,5 +102,6 @@ public class CommonSteps {
     public void navigate_to_stake_and_mint() {
         LHSMenu lhsMenu = new LHSMenu(base.driver);
         lhsMenu.clickOnMintTokensLink();
+        base.takeScreenshot();
     }
 }

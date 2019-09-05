@@ -1,5 +1,6 @@
 package com.platform.steps.api;
 
+import com.google.gson.GsonBuilder;
 import com.platform.base.Base_API;
 import cucumber.api.java.en.When;
 
@@ -25,7 +26,11 @@ public class RuleSteps  {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 }
 

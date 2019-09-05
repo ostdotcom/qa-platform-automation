@@ -1,5 +1,6 @@
 package com.platform.steps.api;
 
+import com.google.gson.GsonBuilder;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.drivers.UsersDriver;
@@ -41,7 +42,11 @@ public class RecoveryOwnerSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get recovery owner details for user with recovery owner address as (.+)$")
@@ -60,6 +65,10 @@ public class RecoveryOwnerSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 }

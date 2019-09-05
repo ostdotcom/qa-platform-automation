@@ -1,6 +1,7 @@
 package com.platform.steps.api;
 
 
+import com.google.gson.GsonBuilder;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.managers.TestDataManager;
@@ -34,7 +35,11 @@ public class PricePointSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
 
@@ -52,6 +57,10 @@ public class PricePointSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 }

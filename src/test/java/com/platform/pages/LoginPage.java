@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends Base_UI {
 
-    String authorizeDeviceMail = "OST Platform: Authorize Your New Device or Browser";
+    String authorizeDeviceMail = "Authorize New Device Or Browser";
 
     @FindBy(id = "email")
     private WebElement emailTB;
@@ -59,6 +59,7 @@ public class LoginPage extends Base_UI {
 
         driver.switchTo().defaultContent();
 
+
         loginPB.click();
         System.out.println("Clicked on Login Button");
         System.out.println("Page title: "+driver.getTitle());
@@ -71,7 +72,7 @@ public class LoginPage extends Base_UI {
 
             System.out.println("Your Browser is not authorised.");
 
-            Thread.sleep(10000);
+            Thread.sleep(5000);
             SignupPage signupPage = new SignupPage(driver);
             String confirmationLink  = signupPage.getActivateAccountLink(email,authorizeDeviceMail);
             driver.get(confirmationLink);

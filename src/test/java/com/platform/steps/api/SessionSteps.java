@@ -1,5 +1,6 @@
 package com.platform.steps.api;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
@@ -58,7 +59,11 @@ public class SessionSteps  {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get session details with session address as (.+)$")
@@ -77,7 +82,11 @@ public class SessionSteps  {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get transactions list for a company$")
@@ -94,7 +103,11 @@ public class SessionSteps  {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
 
         company_session_address = sessionDriver.get_session_address_from_list(base.response,1);
 
@@ -116,7 +129,11 @@ public class SessionSteps  {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get Session list with limit as (.+)$")
@@ -135,7 +152,11 @@ public class SessionSteps  {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^I should get session list with (.+) sessions$")
@@ -159,7 +180,11 @@ public class SessionSteps  {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to Add session$")
@@ -281,6 +306,10 @@ public class SessionSteps  {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 }

@@ -63,6 +63,7 @@ public class End2EndSteps  {
         }
         tokenSetupPage.clickOnEditBtn();
         tokenSetupPage.numberOfBTs(conversionFactor);
+        base.takeScreenshot();
         tokenSetupPage.clickOnProceed();
     }
 
@@ -73,6 +74,7 @@ public class End2EndSteps  {
         tokenDeployPage.verifyCurrentText(initialtokenSetuptext);
 
         System.out.println("Current Percentage: "+tokenDeployPage.getCurrentPercentage());
+        base.takeScreenshot();
     }
 
     @And("^Token setup should complete successfully$")
@@ -80,6 +82,7 @@ public class End2EndSteps  {
 
         TokenDeployPage tokenDeployPage = new TokenDeployPage(base.driver);
         tokenDeployPage.waitTillTokenSetupCompleted();
+        base.takeScreenshot();
         tokenDeployPage.clickOnMintTokenPB();
     }
 
@@ -143,6 +146,7 @@ public class End2EndSteps  {
 
         }
 
+        base.takeScreenshot();
         mintTokensPage.clickOnMintTokenBtn();
     }
 
@@ -153,6 +157,7 @@ public class End2EndSteps  {
         mintProgressPage.verifyCurrentText(initialStakeAndMintText);
 
         System.out.println("Current Percentage: "+mintProgressPage.getCurrentPercentage());
+        base.takeScreenshot();
         
     }
 
@@ -161,6 +166,7 @@ public class End2EndSteps  {
 
         MintProgressPage mintProgressPage = new MintProgressPage(base.driver);
         mintProgressPage.waitTillStakeAndMintCompleted();
+        base.takeScreenshot();
 
         //Assert.assertEquals(mintProgressPage.getTotalTokenMinted(),toMintBts);
 
@@ -172,13 +178,16 @@ public class End2EndSteps  {
         CompanyInformationPage companyInformationPage = new CompanyInformationPage(base.driver);
         companyInformationPage.writeCompanyName(companyName);
 
+        base.takeScreenshot();
         companyInformationPage.clickOnConfirmBtn();
+
     }
 
     @And("^User selects the OST managed address option$")
     public void select_ost_managed_address() {
 
         TokenSetupPage tokenSetupPage = new TokenSetupPage(base.driver);
+        base.takeScreenshot();
         tokenSetupPage.clickOnProceedWithOst();
     }
 
@@ -202,7 +211,7 @@ public class End2EndSteps  {
         String confirmationLink  = signupPage.getActivateAccountLink(base.newEmailId,getApiKeyMail);
 
         base.driver.get(confirmationLink);
-
+        base.takeScreenshot();
         apiKey = developersPage.getApiKey();
         privateKey = developersPage.getPrivateKey();
     }

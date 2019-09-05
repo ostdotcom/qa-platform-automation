@@ -23,7 +23,7 @@ public class LoginSignupSteps {
 
 
     public static final String signupEmailSubject = "Confirm Your Email Address";
-    public static final String resetPwsEmailSubject = "Reset your OST Platform Account Password";     //did not complete the subject because it has minor difference between staging and prod environment
+    public static final String resetPwsEmailSubject = "Reset your Password";     //did not complete the subject because it has minor difference between staging and prod environment
 
     private static final String dashboardPageTitle = "OST Platform | Dashboard";
     String newPassword = "ostkit@1234";
@@ -45,6 +45,7 @@ public class LoginSignupSteps {
         platformWeb.clickOnRegisterNow();
         String currentUrl = base.driver.getCurrentUrl();
         base.driver.get(currentUrl + automationTokens);
+        base.takeScreenshot();
     }
 
     @When("^User registered with all details$")
@@ -52,15 +53,17 @@ public class LoginSignupSteps {
 
         SignupPage signupPage = new SignupPage(base.driver);
         signupPage.registerUser("bhavik", "shah", base.newEmailId,"ostkit@1234");
+        base.takeScreenshot();
     }
 
     @And("^User confirm the email$")
     public void userConfirmTheEmail() throws InterruptedException {
 
         //Waiting for email to receive
-        Thread.sleep(10000);
+        Thread.sleep(5000);
         SignupPage signupPage = new SignupPage(base.driver);
         String confirmationLink  = signupPage.getActivateAccountLink(base.newEmailId,signupEmailSubject);
+        base.takeScreenshot();
 
         base.driver.get(confirmationLink);
 
@@ -70,6 +73,7 @@ public class LoginSignupSteps {
     public void verify_user_signup() {
         CompanyInformationPage companyInformationPage = new CompanyInformationPage(base.driver);
         companyInformationPage.verifyCompanyNameTB();
+        base.takeScreenshot();
     }
 
     @Given("^User is on login page$")
@@ -79,6 +83,7 @@ public class LoginSignupSteps {
 
         String currentUrl = base.driver.getCurrentUrl();
         base.driver.get(currentUrl + automationTokens);
+        base.takeScreenshot();
     }
 
     @When("^User login with correct email and password$")
@@ -86,6 +91,7 @@ public class LoginSignupSteps {
 
         LoginPage loginPage = new LoginPage(base.driver);
         loginPage.login(TestDataManager.economy1.email_Id,TestDataManager.economy1.password);
+        base.takeScreenshot();
     }
 
     @Then("^User should be successfully logged in$")
@@ -94,7 +100,8 @@ public class LoginSignupSteps {
         {
             Assert.assertEquals(dashboardPageTitle,base.driver.getTitle());
         });
-
+        //base.scenario.embed(((TakesScreenshot)base.driver).getScreenshotAs(OutputType.BYTES),"image/png");
+        base.takeScreenshot();
     }
 
     @When("^User click on Forgot password$")
@@ -105,6 +112,7 @@ public class LoginSignupSteps {
 
         String currentUrl = base.driver.getCurrentUrl();
         base.driver.get(currentUrl + automationTokens);
+        base.takeScreenshot();
 
     }
 
@@ -113,10 +121,11 @@ public class LoginSignupSteps {
         ResetPasswordPage resetPasswordPage = new ResetPasswordPage(base.driver);
         resetPasswordPage.writeEmail(base.newEmailId);
         resetPasswordPage.clickOnRecaptcha();
+        base.takeScreenshot();
         resetPasswordPage.clickOnRecoverEmailBtn();
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -124,6 +133,7 @@ public class LoginSignupSteps {
         String confirmationLink  = signupPage.getActivateAccountLink(base.newEmailId,resetPwsEmailSubject);
 
         base.driver.get(confirmationLink);
+        base.takeScreenshot();
 
     }
 
@@ -133,13 +143,16 @@ public class LoginSignupSteps {
         UpdatePasswordPage updatePasswordPage = new UpdatePasswordPage(base.driver);
         updatePasswordPage.writePassword(newPassword);
         updatePasswordPage.writeConfirmPassword(newPassword);
+        base.takeScreenshot();
         updatePasswordPage.clickOnUpdatePasswordBtn();
 
         updatePasswordPage.verifyUpdatePwdSuccessTxt();
         updatePasswordPage.clickOnLoginBtn();
 
+
         LoginPage loginPage = new LoginPage(base.driver);
         loginPage.login(base.newEmailId,newPassword);
+        base.takeScreenshot();
     }
 
     @And("^User logout from current session$")
@@ -148,5 +161,6 @@ public class LoginSignupSteps {
         LHSMenu lhsMenu = new LHSMenu(base.driver);
         lhsMenu.clickOnUserSetting();
         lhsMenu.clickOnLogout();
+        base.takeScreenshot();
     }
 }

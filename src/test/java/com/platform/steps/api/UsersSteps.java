@@ -50,18 +50,17 @@ public class UsersSteps {
 
         base.usersService = base.services.users;
         HashMap<String,Object> params = new HashMap<>();
-
-        base.scenario.write(params.toString()+"\n");
         try {
             base.response = base.usersService.create(params);
-            base.scenario.write(params.toString()+"\n");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
         String formattedData=new GsonBuilder().setPrettyPrinting()
                 .create().toJson(base.response);
         base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get users list$")
@@ -73,7 +72,11 @@ public class UsersSteps {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get (.+) details$")
@@ -102,7 +105,11 @@ public class UsersSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get user details with (.+)$")
@@ -122,7 +129,11 @@ public class UsersSteps {
             base.response = new JsonObject();
             System.out.println(invalidParameter.getMessage());
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^type should be (.+)$")
@@ -141,7 +152,11 @@ public class UsersSteps {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^I should get the user list with (.+) members$")
@@ -175,7 +190,11 @@ public class UsersSteps {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^I should get the unique id of the user$")
@@ -287,7 +306,10 @@ public class UsersSteps {
               UserData.getInstance().api_signer_public,
               UserData.getInstance().api_signer_private
               );
-      System.out.println(base.response);
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^Token holder should be created$")
@@ -316,7 +338,10 @@ public class UsersSteps {
                 base.api_signer_object.get(Constant.ETH.ADDRESS).getAsString(),
                 base.api_signer_object.get(Constant.ETH.PRIVATEKEY).getAsString()
         );
-        System.out.println(base.response);
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^User is in activated state$")

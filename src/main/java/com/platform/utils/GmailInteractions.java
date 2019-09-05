@@ -24,7 +24,7 @@ public class GmailInteractions {
     public String readEmail(String recipientMail, String subject)
     {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -110,12 +110,5 @@ public class GmailInteractions {
         }
         out.println(links);
         return links.get(1);
-    }
-
-    @Test
-    public void testMail()
-    {
-        System.out.println("output "+readEmail("qa.automation+1563277563597@ost.com","Verify Your Email to Activate Your OST Account"));
-
     }
 }

@@ -1,5 +1,6 @@
 package com.platform.steps.api;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
@@ -63,7 +64,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
 
@@ -84,7 +89,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to create device with user as (.+)$")
@@ -106,7 +115,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to create device with device address as (.+)$")
@@ -128,7 +141,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to create device with api signer address as (.+)$")
@@ -148,7 +165,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get user device details for defined user and device address$")
@@ -168,7 +189,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^Device status should be (.+)$")
@@ -194,7 +219,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get device with device address as (.+)$")
@@ -215,7 +244,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get device lists for a defined user$")
@@ -233,7 +266,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get device lists with user id as (.+)$")
@@ -251,7 +288,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
 
@@ -261,7 +302,6 @@ public class DevicesSteps {
         HashMap <String,Object> params = new HashMap<String,Object>();
         params.put("user_id", TestDataManager.economy1.user_Id);
         params.put("limit",limit);
-        System.out.println(params);
         try {
             base.response = base.devicesService.getList( params );
         } catch (OSTAPIService.MissingParameter missingParameter) {
@@ -271,7 +311,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^I should get the device list with (.+) members$")
@@ -305,7 +349,11 @@ public class DevicesSteps {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make GET request to get devices list with defined devices address array$")
@@ -323,7 +371,11 @@ public class DevicesSteps {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make POST request to authorize new device$")
@@ -386,7 +438,11 @@ public class DevicesSteps {
                 .build();
 
         base.response = devicesDriver.postAuthorizeDevice(map,UserData.getInstance().user_id,UserData.getInstance().api_signer_private);
-        System.out.println(base.response);
+
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
 
@@ -428,7 +484,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
 
@@ -447,7 +507,11 @@ public class DevicesSteps {
         } catch (OSTAPIService.MissingParameter missingParameter) {
             missingParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     public String DeviceAddTransactionHash(String deviceManagerAddress, String data, String nonce) throws Exception {
@@ -594,7 +658,11 @@ public class DevicesSteps {
                 .build();
 
         base.response = devicesDriver.postRevokeDevice(map,UserData.getInstance().user_id,UserData.getInstance().api_signer_private);
-        System.out.println(base.response);
+
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @When("^I make post request to initiate recovery$")
@@ -683,7 +751,11 @@ public class DevicesSteps {
 
 
         base.response = devicesDriver.postInitiateRecovery(map,UserData.getInstance().user_id,UserData.getInstance().api_signer_private);
-        System.out.println(base.response);
+
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
 
@@ -742,7 +814,11 @@ public class DevicesSteps {
 
 
         base.response = devicesDriver.postAbortRecovery(map,UserData.getInstance().user_id,UserData.getInstance().api_signer_private);
-        System.out.println(base.response);
+        base.scenario.write("Params: \n"+map.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^both the devices should be revert to their initial states$")

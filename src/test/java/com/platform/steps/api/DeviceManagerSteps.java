@@ -1,5 +1,6 @@
 package com.platform.steps.api;
 
+import com.google.gson.GsonBuilder;
 import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.drivers.ResultDriver;
@@ -36,7 +37,11 @@ public class DeviceManagerSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^I make GET request to get device manager for the newly created user$")
@@ -56,7 +61,11 @@ public class DeviceManagerSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     public void get_device_manager_with_userId(String user_id) {
@@ -73,6 +82,10 @@ public class DeviceManagerSteps {
         } catch (OSTAPIService.InvalidParameter invalidParameter) {
             invalidParameter.printStackTrace();
         }
-        System.out.println("base.response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 }

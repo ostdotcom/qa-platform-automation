@@ -5,12 +5,7 @@ import com.ost.services.OSTAPIService;
 import com.platform.base.Base_API;
 import com.platform.managers.TestDataManager;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
-
-import java.io.IOException;
 import java.util.HashMap;
-
-//import static com.platform.steps.api.CommonSteps.scenario;
 
 public class ApiCredentialsSteps {
 
@@ -29,12 +24,11 @@ public class ApiCredentialsSteps {
         sdkConfig.put("apiKey","vge5y5v5y5yb5y5y5wbby");
         sdkConfig.put("apiSecret",TestDataManager.economy1.secretKey);
 
+        base.scenario.write("API Params: "+sdkConfig+"\n");
+        System.out.println("API Params: "+sdkConfig+"\n");
+
         System.out.println(base.scenario.getName());
         System.out.println(base.scenario.getSourceTagNames());
-        base.scenario.write("This goes into the report(s)\n");
-        base.scenario.write("This goes into the report(s) 1\n");
-        base.scenario.write("This goes into the report(s) 2 \n");
-        base.scenario.embed("test".getBytes(),"This goes into the report(s)\n");
         base.ostObj = new OSTSDK(sdkConfig);
         base.services = (com.ost.services.Manifest)base.ostObj.services;
     }

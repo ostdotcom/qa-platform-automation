@@ -1,5 +1,6 @@
 package com.platform.steps.api;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.platform.base.Base_API;
 import com.platform.drivers.ResultDriver;
@@ -33,7 +34,11 @@ public class TokensSteps  {
         {
             e.printStackTrace();
         }
-        System.out.println("response: " + base.response.toString() );
+        base.scenario.write("Params: \n"+params.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
     }
 
     @And("^Verify the origin and auxiliary chain id$")
