@@ -193,8 +193,7 @@ public class End2EndSteps  {
     }
 
     @And("Get the API & Secret key through mail confirmation")
-    public void get_keys_through_confirmation_mail()
-    {
+    public void get_keys_through_confirmation_mail() throws InterruptedException {
         DevelopersPage developersPage = new DevelopersPage(base.driver);
         developersPage.clickOnGetKeysBtn();
 
@@ -207,6 +206,7 @@ public class End2EndSteps  {
             Assert.fail("Email sent text not visible");
         }
 
+        Thread.sleep(3000);
         //Confirm the mail and browse the URL in the same browser
         SignupPage signupPage = new SignupPage(base.driver);
         String confirmationLink  = signupPage.getActivateAccountLink(base.newEmailId,getApiKeyMail);

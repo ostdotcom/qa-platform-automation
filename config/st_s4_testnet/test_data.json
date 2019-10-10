@@ -106,6 +106,27 @@
       "aux_chain_id":"197",
       "origin_chain_id":"3",
       "recivery_owner_address":"0xda91eb09b9ac6afacac10817e13f5364ea06c5ff"
+    },
+    {
+      "symbol": "SC1",
+      "conversion_factor": "1",
+      "tokenId": "1129",
+      "email_Id": "",
+      "password": "",
+      "apiKey":"156d849cf89e9d505f3ce9027175a318",
+      "secretKey":"c3d7d8faa59fdc04fa1010fe29caea12a5a7b0558d397492e57e2c8907fa51a0",
+      "company_Id":"d6bf0061-a32d-48af-a29b-013260a947f3",
+      "company_TH":"0x93f08d0c5d7bc28cc117681b3b23f8501a09e786",
+      "user_Id":"ddf70ec0-a4d1-4667-9601-0f0c57d1af95",
+      "user_TH":"0xa174fd91a524f2eea1cf3a7646dc1323bde84719",
+      "pricer_TR":"0xeb7a84a777e6e899039eb35ea43c467493f0c93d",
+      "directTransfer_TR":"0x19784e6190436a50195cfd0c5d9334f254e3017d",
+      "device_address":"",
+      "session_address":"",
+      "transaction_Id" : "",
+      "aux_chain_id":"197",
+      "origin_chain_id":"3",
+      "recivery_owner_address":""
     }
   ]
 }

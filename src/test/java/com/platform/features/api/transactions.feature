@@ -345,7 +345,7 @@ Feature: Verify execute Transactions and Get transaction functionality
   @sanity @transactions
   Scenario: Verify Get User Transactions functionality with multiple meta properties
     Given The Economy is up for actions
-    When I make POST request to execute transaction with multiple meta properties
+    When I make GET request to get transaction list with multiple meta properties
       | meta_name   | meta_type         | meta_details      |
       | test        | user_to_user      | memo field to ad  |
       | _- a1       | user_to_company   | test details      |

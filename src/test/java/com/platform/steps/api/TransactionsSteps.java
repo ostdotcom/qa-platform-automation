@@ -800,7 +800,7 @@ public class TransactionsSteps {
         System.out.println("base.response: \n"+formattedData+"\n");
     }
 
-    @When("^I make POST request to execute transaction with multiple meta properties$")
+    @When("^I make GET request to get transaction list with multiple meta properties$")
     public void get_transaction_with_multiple_meta_properties(DataTable dataTable) {
 
         base.transactionsService = base.services.transactions;
