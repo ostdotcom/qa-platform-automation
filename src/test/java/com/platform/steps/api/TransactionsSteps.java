@@ -89,7 +89,9 @@ public class TransactionsSteps {
         user_old_Balance = getBalance(TestDataManager.economy1.user_Id);
 
         System.out.println("company old balance: "+company_old_Balance);
+        base.scenario.write("company old balance: "+company_old_Balance);
         System.out.println("user old balance: "+user_old_Balance);
+        base.scenario.write("user old balance: "+user_old_Balance);
 
         ArrayList<String> amount= new ArrayList<String>();
         amount.add(ubtInWei);
@@ -176,13 +178,16 @@ public class TransactionsSteps {
 
         String balance = getBalance(TestDataManager.economy1.company_Id);
         System.out.println("new Company Balance :"+balance);
-        Assert.assertEquals(company_new_Balance, balance);
+        base.scenario.write("company new balance: "+balance);
+        Assert.assertEquals("Updated User balance should be ",company_new_Balance, balance);
         }
 
     @And("^User's balance should be credited$")
     public void verify_user_balance() {
-        System.out.println("new User Balance :"+getBalance(TestDataManager.economy1.user_Id));
-        Assert.assertEquals("Updated User balance should be ",user_new_Balance, getBalance(TestDataManager.economy1.user_Id));
+        String balance = getBalance(TestDataManager.economy1.user_Id);
+        System.out.println("new User Balance :"+balance);
+        base.scenario.write("User new balance: "+balance);
+        Assert.assertEquals("Updated User balance should be ",user_new_Balance, balance);
     }
 
     @And("^I should get Transaction status as (.+)$")
@@ -674,7 +679,7 @@ public class TransactionsSteps {
 
         base.transactionsService = base.services.transactions;
         HashMap <String,Object> params = new HashMap<String,Object>();
-        params.put("user_id", TestDataManager.economy1.company_Id);
+        params.put("user_id", "2da08af3-685e-489d-ac57-d2cfa64c53b0");
         params.put("transaction_id",transactionId);
         try {
             base.response = base.transactionsService.get(params);

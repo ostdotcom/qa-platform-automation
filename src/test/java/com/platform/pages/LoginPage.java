@@ -67,23 +67,18 @@ public class LoginPage extends Base_UI {
         // Verify if user's device is authorised or not.
         try
         {
-            wait = new WebDriverWait(driver, 15);
+            wait = new WebDriverWait(driver, 10);
             wait.until(ExpectedConditions.presenceOfElementLocated(By.id("send-verify-device-link")));
 
             System.out.println("Your Browser is not authorised.");
 
-            Thread.sleep(5000);
             SignupPage signupPage = new SignupPage(driver);
             String confirmationLink  = signupPage.getActivateAccountLink(email,authorizeDeviceMail);
             driver.get(confirmationLink);
         }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         catch (Exception e)
         {
             System.out.println("Your Browser is already authorised.");
-
         }
     }
 

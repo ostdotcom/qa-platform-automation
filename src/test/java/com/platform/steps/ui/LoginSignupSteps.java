@@ -66,7 +66,6 @@ public class LoginSignupSteps {
         base.takeScreenshot();
 
         base.driver.get(confirmationLink);
-
     }
 
     @Then("^User should signed up successfully$")
@@ -96,11 +95,11 @@ public class LoginSignupSteps {
 
     @Then("^User should be successfully logged in$")
     public void verify_successful_login() {
-        AssertionUtils.repeatWhenFailedForSeconds(50, ()->
+        AssertionUtils.repeatWhenFailedForSeconds(20, ()->
         {
             Assert.assertEquals(dashboardPageTitle,base.driver.getTitle());
         });
-        //base.scenario.embed(((TakesScreenshot)base.driver).getScreenshotAs(OutputType.BYTES),"image/png");
+
         base.takeScreenshot();
     }
 

@@ -1,14 +1,15 @@
 package com.platform.utils;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 
 import javax.mail.*;
+import javax.mail.search.ComparisonTerm;
 import javax.mail.search.FlagTerm;
+import javax.mail.search.ReceivedDateTerm;
+import javax.mail.search.SearchTerm;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,27 +24,37 @@ public class GmailInteractions {
 
     public String readEmail(String recipientMail, String subject)
     {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         String emailBody = null;
         Session session = Session.getDefaultInstance(new Properties( ));
         Store store = null;
-        try {
-            store = session.getStore("imaps");
+      //  boolean emailFound = false;
 
-            store.connect("imap.googlemail.com", 993,emailId ,password );
-            Folder inbox = store.getFolder("INBOX");
-            inbox.open(Folder.READ_WRITE);
+        outerloop:
+        for(int j = 0; j<10; j++) {
 
-            for(int j = 0; j<5; j++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                store = session.getStore("imaps");
 
-                out.println("test "+j);
+                store.connect("imap.googlemail.com", 993, emailId, password);
+                Folder inbox = store.getFolder("INBOX");
+                inbox.open(Folder.READ_WRITE);
+                // inbox.search()
+
+
+                out.println("test " + j);
                 // Fetch unseen messages from inbox folder
                 Message[] messages = inbox.search(
                         new FlagTerm(new Flags(Flags.Flag.SEEN), false));
+                Date today = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
+                SearchTerm st = new ReceivedDateTerm(ComparisonTerm.EQ, today);
+
+                messages = inbox.search(st, messages);
 
                 // Sort messages from recent to oldest
                 Arrays.sort(messages, (m1, m2) -> {
@@ -55,14 +66,13 @@ public class GmailInteractions {
                 });
 
                 for (Message message : messages) {
-                    if (message.getAllRecipients()[0].toString().equals(recipientMail) && message.getSubject().contains(subject)) {
+                    if (message.getAllRecipients()[0].toString().equalsIgnoreCase(recipientMail) && message.getSubject().contains(subject)) {
                         out.println(
                                 "sendDate: " + message.getSentDate()
                                         + " subject:" + message.getSubject());
 
                         Address[] address = message.getAllRecipients();
                         out.println("To account: " + address[0].toString());
-
 
                         Object content = message.getContent();
                         // check for string
@@ -83,22 +93,20 @@ public class GmailInteractions {
                                 }
                             }
                         }
-
+                        //emailFound = true;
+                        break outerloop;
                     } else {
 
                     }
                 }
+            } catch (NoSuchProviderException e) {
+                e.printStackTrace();
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-     catch (NoSuchProviderException e) {
-        e.printStackTrace();
-    } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-       catch (IOException e) {
-            e.printStackTrace();
-        }
-
         return emailBody;
     }
 

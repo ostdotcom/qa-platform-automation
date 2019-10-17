@@ -10,6 +10,7 @@ import com.platform.steps.api.CommonSteps;
 import com.platform.steps.api.PricePointSteps;
 import com.platform.steps.api.TokensSteps;
 import com.platform.utils.CommonUtils;
+import com.platform.utils.GmailInteractions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -209,6 +210,7 @@ public class End2EndSteps  {
         Thread.sleep(3000);
         //Confirm the mail and browse the URL in the same browser
         SignupPage signupPage = new SignupPage(base.driver);
+        base.scenario.write("Email address for access API key: "+base.newEmailId);
         String confirmationLink  = signupPage.getActivateAccountLink(base.newEmailId,getApiKeyMail);
 
         base.driver.get(confirmationLink);
@@ -234,5 +236,17 @@ public class End2EndSteps  {
          stakeAvailable = Double.parseDouble(mintTokensPage.getStakeAvailable().replace(",",""));
          stakeAmount = Double.parseDouble(mintTokensPage.getStakeAmount().replace(",",""));
          remainingStake = Double.parseDouble(mintTokensPage.getRemainingStake().replace(",",""));
+    }
+
+    @Given("test mail search")
+    public void testMailSerach() {
+
+        GmailInteractions gmailInteractions = new GmailInteractions();
+        String emailBody = gmailInteractions.readEmail("qa.automation+801@ost.com","Access Your API and WebHook Keys");
+
+        System.out.println("email body: "+emailBody);
+        String confirmationLink = gmailInteractions.getActivateLink(emailBody);
+        System.out.println("Confirmation Link: "+confirmationLink);
+
     }
 }
