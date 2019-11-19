@@ -106,6 +106,27 @@
       "aux_chain_id":"205",
       "origin_chain_id":"3",
       "recivery_owner_address":"0xfb46d4ae82a4ece718ae045d9c81a94fcf6085eb"
+    },
+    {
+      "symbol": "MODE",
+      "conversion_factor": "123",
+      "tokenId": "1018",
+      "email_Id": "yogesh50008@gmail.com",
+      "password": "pepo1234",
+      "apiKey":"6af14c50593bb86cbcb60044777e7993",
+      "secretKey":"61462b9d2eb6c9187c6b0a3ea54866b6c07640f986d9e77c4878144572f29e93",
+      "company_Id":"c2400bd0-16d9-46d8-be35-051ba4c394b2",
+      "company_TH":"0x5e0a2c9ead59ddfbb88e38c79bcac2e23f72b7eb",
+      "user_Id":"",
+      "user_TH":"",
+      "pricer_TR":"",
+      "directTransfer_TR":"",
+      "device_address":"",
+      "session_address":"",
+      "transaction_Id" : "",
+      "aux_chain_id":"",
+      "origin_chain_id":"",
+      "recivery_owner_address":""
     }
 
   ]
