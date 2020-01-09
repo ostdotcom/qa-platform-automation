@@ -1,7 +1,7 @@
 {
   "apiEndpoint":"https://api.stagingost.com/testnet/v2",
-  "url": "https://ost:Ax23!sdQ*kN-201~96@platform.stagingost.com/",
-  "economy": [
+  "url":"https://ost:Ax23!sdQ*kN-201~96@platform.stagingost.com/",
+  "economy":[
     {
       "symbol": "T201",
       "conversion_factor": "100",
@@ -105,7 +105,7 @@
       "transaction_Id" : "1b8c2e2f-14d3-4ac5-b9f5-b41a2e9d85d9",
       "aux_chain_id":"197",
       "origin_chain_id":"3",
-      "recivery_owner_address":"0xda91eb09b9ac6afacac10817e13f5364ea06c5ff"
+      "recovery_owner_address":"0xda91eb09b9ac6afacac10817e13f5364ea06c5ff"
     },
     {
       "symbol": "SC1",

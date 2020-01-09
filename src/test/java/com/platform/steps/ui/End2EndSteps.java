@@ -207,7 +207,7 @@ public class End2EndSteps  {
             Assert.fail("Email sent text not visible");
         }
 
-        Thread.sleep(3000);
+        Thread.sleep(500);
         //Confirm the mail and browse the URL in the same browser
         SignupPage signupPage = new SignupPage(base.driver);
         base.scenario.write("Email address for access API key: "+base.newEmailId);
@@ -236,17 +236,5 @@ public class End2EndSteps  {
          stakeAvailable = Double.parseDouble(mintTokensPage.getStakeAvailable().replace(",",""));
          stakeAmount = Double.parseDouble(mintTokensPage.getStakeAmount().replace(",",""));
          remainingStake = Double.parseDouble(mintTokensPage.getRemainingStake().replace(",",""));
-    }
-
-    @Given("test mail search")
-    public void testMailSerach() {
-
-        GmailInteractions gmailInteractions = new GmailInteractions();
-        String emailBody = gmailInteractions.readEmail("qa.automation+801@ost.com","Access Your API and WebHook Keys");
-
-        System.out.println("email body: "+emailBody);
-        String confirmationLink = gmailInteractions.getActivateLink(emailBody);
-        System.out.println("Confirmation Link: "+confirmationLink);
-
     }
 }

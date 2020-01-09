@@ -66,7 +66,7 @@ public class GmailInteractions {
                 });
 
                 for (Message message : messages) {
-                    if (message.getAllRecipients()[0].toString().equalsIgnoreCase(recipientMail) && message.getSubject().contains(subject)) {
+                    if (message.getAllRecipients()[0].toString().equalsIgnoreCase(recipientMail) && message.getSubject().toLowerCase().contains(subject.toLowerCase())) {
                         out.println(
                                 "sendDate: " + message.getSentDate()
                                         + " subject:" + message.getSubject());

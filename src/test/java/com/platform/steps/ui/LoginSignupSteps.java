@@ -23,7 +23,7 @@ public class LoginSignupSteps {
 
 
     public static final String signupEmailSubject = "Confirm Your Email Address";
-    public static final String resetPwsEmailSubject = "Reset your Password";     //did not complete the subject because it has minor difference between staging and prod environment
+    public static final String resetPwsEmailSubject = "Reset Your Password";     //did not complete the subject because it has minor difference between staging and prod environment
 
     private static final String dashboardPageTitle = "OST Platform | Dashboard";
     String newPassword = "ostkit@1234";

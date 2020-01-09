@@ -4,7 +4,7 @@ Feature: Verify execute Transactions and Get transaction functionality
   @sanity   @transactions
   Scenario: Verify Execute Transaction DIRECT-TRANSFERS: company to user transaction
     Given The Economy is up for actions
-    When I make POST request of Company transfers 1000000000000000000 UBT in wei to user via direct transfer method
+    When I make POST request of Company transfers 10000000000000 UBT in wei to user via direct transfer method
     Then I should get success status as true
     And I should get Transaction status as SUCCESS
     And Company's balance should be debited
@@ -276,9 +276,9 @@ Feature: Verify execute Transactions and Get transaction functionality
 
     Examples:
     | transaction id                              |
-    | d47af60e-c29e-484f-b7c1-32c637028f33        |
-    | 0x557e631a3d556f7ad62382fe079ed76397f02133  |
-    | fvenrjfner                                  |
+    | 85b02d50-aa85-4f52-9b76-e4b6d4be0d20        |
+#    | 0x557e631a3d556f7ad62382fe079ed76397f02133  |
+#    | fvenrjfner                                  |
 
 
 

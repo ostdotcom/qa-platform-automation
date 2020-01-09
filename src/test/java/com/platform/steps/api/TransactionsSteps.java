@@ -308,8 +308,8 @@ public class TransactionsSteps {
     }
 
 
-    @When("^I make POST request of Company transfers (.+) USD in wei to same user (.+) times via pay method$")
-    public void execute_transactions_multiple_transfers_pay(String usdInWei, int numberOfTransfers) {
+    @When("^I make POST request of Company transfers (.+) (.+) in wei to same user (.+) times via pay method$")
+    public void execute_transactions_multiple_transfers_pay(String usdInWei, String fiatCurrency, int numberOfTransfers) {
 
         base.transactionsService = base.services.transactions;
         company_old_Balance = getBalance(TestDataManager.economy1.company_Id);
@@ -325,9 +325,21 @@ public class TransactionsSteps {
             amount.add(usdInWei);
             to_user_token_holder.add(TestDataManager.economy1.user_TH);
         }
+
+        //Get Conversion factor & Stake currency (Base token) for calculation of USD to UBT
+        TokensSteps tokensSteps = new TokensSteps(base);
+        tokensSteps.get_tokens();
+        String conversion_factor = tokenDriver.get_conversion_factor(base.response);
+        String base_token = tokenDriver.get_base_token(base.response);
+        int base_token_decimals = tokenDriver.get_token_decimal(base.response);
+
+
+        // Get current price
         PricePointSteps pricePointSteps = new PricePointSteps(base);
         pricePointSteps.get_price_point_with_aux_chain_id();
-        String pricePoint = pricePointDriver.get_ost_price(base.response);
+        String pricePoint = pricePointDriver.get_price(base.response,base_token,fiatCurrency);
+        int fiat_decimals = pricePointDriver.get_fiat_decimals(base.response,base_token);
+
 
         HashMap<String, Object> params = new TransactionsDriver.PayParamsBuilder(pricePoint)
                 .setAmount(amount)
@@ -679,7 +691,7 @@ public class TransactionsSteps {
 
         base.transactionsService = base.services.transactions;
         HashMap <String,Object> params = new HashMap<String,Object>();
-        params.put("user_id", "2da08af3-685e-489d-ac57-d2cfa64c53b0");
+        params.put("user_id",TestDataManager.economy1.company_Id);
         params.put("transaction_id",transactionId);
         try {
             base.response = base.transactionsService.get(params);

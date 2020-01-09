@@ -109,7 +109,7 @@ public class Constant {
         public static final String CHROMEDRIVERWINDOWS = "src/test/resources/browser_drivers/windows/chromedriver.exe";
         public static final String GECKODRIVERLINUX = "src/test/resources/browser_drivers/linux/geckdriver";
         public static final String GECKODRIVERWINDOWS = "src/test/resources/browser_drivers/windows/geckdriver.exe";
-        public static final String CHROMEDRIVERMAC = "src/test/resources/browser_drivers/mac/chromedriver_mac_77";
+        public static final String CHROMEDRIVERMAC = "src/test/resources/browser_drivers/mac/chromedriver_mac_79";
         public static final String GECKODRIVERMAC = "src/test/resources/browser_drivers/mac/geckodriver";
 
     }
