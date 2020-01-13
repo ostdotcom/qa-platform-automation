@@ -8,7 +8,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class BrowserFactory{
@@ -20,16 +24,17 @@ public class BrowserFactory{
     {
         if(Constant.PROJECTOS.toLowerCase().contains("mac"))
         {
-            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERMAC);
+           //System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERMAC);
             ChromeOptions options = new ChromeOptions();
              //options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+            System.out.println();
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("linux"))
         {
             System.out.println("In init chrome with Linux OS");
-            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERLINUX);
+           // System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERLINUX);
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
             capabilities = DesiredCapabilities.chrome();
@@ -38,7 +43,7 @@ public class BrowserFactory{
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("windows"))
         {
-            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERWINDOWS);
+            //System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKEYCHROME,Constant.BROWSER_SPECIFICATION.CHROMEDRIVERWINDOWS);
             ChromeOptions options = new ChromeOptions();
             //
             // options.addArguments("--incognito");
@@ -51,7 +56,14 @@ public class BrowserFactory{
             throw new IllegalArgumentException("This OS is not supported as of now");
         }
 
-        return new ChromeDriver(capabilities);
+        URL gamelan = null;
+        try {
+            gamelan = new URL("http://localhost:4444/wd/hub");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+       return new RemoteWebDriver(gamelan, capabilities);
+        //return new ChromeDriver(capabilities);
     }
 
 
@@ -60,24 +72,22 @@ public class BrowserFactory{
     {
         if(Constant.PROJECTOS.toLowerCase().contains("mac"))
         {
-            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKRYFIREFOX,Constant.BROWSER_SPECIFICATION.GECKODRIVERMAC);
+           // System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKRYFIREFOX,Constant.BROWSER_SPECIFICATION.GECKODRIVERMAC);
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("linux"))
         {
-            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKRYFIREFOX,Constant.BROWSER_SPECIFICATION.GECKODRIVERLINUX);
+           // System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKRYFIREFOX,Constant.BROWSER_SPECIFICATION.GECKODRIVERLINUX);
         }
         else if(Constant.PROJECTOS.toLowerCase().contains("windows"))
         {
-            System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKRYFIREFOX,Constant.BROWSER_SPECIFICATION.GECKODRIVERWINDOWS);
+           //System.setProperty(Constant.BROWSER_SPECIFICATION.PROPERTYKRYFIREFOX,Constant.BROWSER_SPECIFICATION.GECKODRIVERWINDOWS);
         }
         else{
             throw new IllegalArgumentException("This OS is not supported as of now");
         }
 
-
         return new FirefoxDriver();
     }
-
 
 
     public static WebDriver initIEBrowser()
