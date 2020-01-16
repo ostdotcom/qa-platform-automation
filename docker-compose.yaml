@@ -4,6 +4,7 @@ version: '2'
 services:
   firefox:
     image: selenium/node-firefox:3.141.59-yttrium
+    restart: always
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -13,6 +14,7 @@ services:
 
   chrome:
     image: selenium/node-chrome:3.141.59-yttrium
+    restart: always
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -22,6 +24,7 @@ services:
 
   hub:
     image: selenium/hub:3.141.59-yttrium
+    restart: always
     ports:
       - "4444:4444"
 
