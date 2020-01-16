@@ -58,7 +58,7 @@ public class BrowserFactory{
 
         URL gamelan = null;
         try {
-            gamelan = new URL("http://localhost:4444/wd/hub");
+            gamelan = new URL("https://junk.stagingost.com/:4444/wd/hub");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

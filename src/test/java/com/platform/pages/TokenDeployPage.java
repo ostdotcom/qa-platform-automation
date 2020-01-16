@@ -51,7 +51,7 @@ public class TokenDeployPage extends Base_UI {
 
     public boolean verifyCurrentText(String expectedText)
     {
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver,20);
         wait.until(ExpectedConditions.visibilityOf(currentStepTxt));
 
         if(currentStepTxt.getText().equals(expectedText))
