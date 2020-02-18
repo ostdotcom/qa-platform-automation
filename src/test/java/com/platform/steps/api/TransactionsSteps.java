@@ -727,6 +727,7 @@ public class TransactionsSteps {
         statusArray.add("SUBMITTED");
         statusArray.add("SUCCESS");
         statusArray.add("FAILED");
+        statusArray.add("MINED");
         params.put("status", statusArray);
 
         try {
