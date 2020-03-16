@@ -967,6 +967,8 @@ public class TransactionsSteps {
 
 
         base.response = transactionsDriver.postExecuteTransaction(map, UserData.getInstance().user_id,UserData.getInstance().api_signer_private);
+        System.out.println("Params : "+ map.toString() );
+
         base.scenario.write("Params: \n"+map.toString()+"\n");
         String formattedData=new GsonBuilder().setPrettyPrinting()
                 .create().toJson(base.response);
@@ -1074,4 +1076,89 @@ public class TransactionsSteps {
         System.out.println("base.response: \n"+formattedData+"\n");
     }
 
+    @When("I redeemed (.+) (.+) or (.+) UBT in wei from Company")
+    public void iRedeemedINROrUBTInWeiFromCompany(String fiatCurrency, String currencyCode, String amountInWei) throws IOException, InterruptedException {
+
+
+        //Update token holder in UserData.getInstance()
+        UsersSteps usersSteps = new UsersSteps(base);
+        usersSteps.get_user_with_userID(UserData.getInstance().user_id);
+
+        UserData.getInstance().user_token_holder = new UsersDriver().get_token_holder(base.response);
+
+        // We need to fund newly created user so, that user can make transfer to another one. Running company to user transaction
+        ArrayList<String> fromAddress= new ArrayList<String>();
+        fromAddress.add(UserData.getInstance().user_token_holder);
+        execute_transaction_c2u_direct(amountInWei, fromAddress);
+        verify_transaction_status("SUCCESS");
+//
+
+        //List<String> token holder addresses list to where amounts need to be sent
+        List<String> tokenHolderAddresses = Arrays.asList(TestDataManager.economy1.company_TH);    //This user from test_data.json
+
+        // List amount size should be same as list of addresses
+        List<String> amounts = Arrays.asList(amountInWei);
+
+
+        String ruleName = Constant.TRANSACTIONS.DIRECTTRANSFERS;
+        String ruleAddress = TestDataManager.economy1.directTransfer_TR;
+
+        String userId = UserData.getInstance().user_id;
+
+
+        String callData = new DirectTransferHelper().getTransactionExecutableData(tokenHolderAddresses, amounts);
+        String rawCallData = new DirectTransferHelper().getTransactionRawCallData(tokenHolderAddresses, amounts);
+        String spendingBtAmountInWei = new DirectTransferHelper().calDirectTransferSpendingLimit(amounts);
+
+
+        // Get nonce from sessions (Change the nonce value to fail this transaction on block chain)
+        SessionSteps sessionSteps = new SessionSteps(base);
+        sessionSteps.get_session_with_user_and_sessionAddress(UserData.getInstance().user_id, UserData.getInstance().session_address_public);
+
+        SessionDriver sessionDriver = new SessionDriver();
+        String nonce = sessionDriver.get_nonce(base.response);
+
+        //Generating message hash
+        String messageHash = createEIP1077TxnHash(callData, ruleAddress, Integer.parseInt(nonce));
+
+
+        //Generating signature
+        String signature = signWithSession(UserData.getInstance().session_address_private,messageHash);
+
+
+        HashMap <String,Object> metaProperty = new HashMap<String,Object>();
+        metaProperty.put("name", "redemptions"); // like, download
+        metaProperty.put("type", "user_to_company"); // user_to_user, company_to_user, user_to_company
+        metaProperty.put("details","details"); // memo field to add additional info about the transaction
+
+
+        HashMap <String,Object> redemptionProperty = new HashMap<String,Object>();
+        redemptionProperty.put("redeemable_sku_id", "4");
+        redemptionProperty.put("amount_in_fiat", fiatCurrency);
+        redemptionProperty.put("country_iso_code", "INR");
+        redemptionProperty.put("currency_iso_code", "INR");
+        redemptionProperty.put("email", "bhavik@ost.com");
+
+
+        Map<String, Object> map = new TransactionsDriver.ExecuteRuleRequestBuilder()
+                .setToAddress(ruleAddress)
+                .setCallData(callData)
+                .setNonce(nonce)
+                .setRawCallData(rawCallData)
+                .setSignature(signature)
+                .setSigner(UserData.getInstance().session_address_public)
+                .setMetaProperty(metaProperty)
+                .setRedemptionMeta(redemptionProperty)
+                .build();
+
+
+        base.response = transactionsDriver.postExecuteTransaction(map, UserData.getInstance().user_id,UserData.getInstance().api_signer_private);
+        System.out.println("Params : "+ map.toString() );
+
+        base.scenario.write("Params: \n"+map.toString()+"\n");
+        String formattedData=new GsonBuilder().setPrettyPrinting()
+                .create().toJson(base.response);
+        base.scenario.write(formattedData+"\n");
+        System.out.println("base.response: \n"+formattedData+"\n");
+    }
 }

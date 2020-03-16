@@ -6,7 +6,7 @@ Feature: Verify Token setup & Stake and Mint functionality
     And navigate to platform ost site
 
 
-  @sanity @ui
+  @sanity @ui @tokenSetup
   Scenario: Perform Token setup and Stake & mint with OST staked currency
     Given User is on sign up page for platform website
     When User registered with all details

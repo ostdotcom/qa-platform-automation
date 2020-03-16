@@ -140,7 +140,7 @@ public class TransactionsDriver {
         public ExecuteTransactionParamBuilder() {
 
             this.userId = TestDataManager.economy1.company_Id;
-            this.meta_name = "gtest";
+            this.meta_name = "redemptions";
             this.meta_type = "company_to_user";
             this.meta_details= "details of meta";
             this.user2TokenHolderAddress.add(TestDataManager.economy1.user_TH);
@@ -307,7 +307,9 @@ public class TransactionsDriver {
         private static final String SIGNATURE = "signature";
         private static final String SIGNER = "signer";
         private static final String MATA_PROPERTY = "meta_property";
+        private static final String REDEMPTION_META = "redemption_meta";
         private String toAddress = "0x0";
+
 
         public ExecuteRuleRequestBuilder setToAddress(String toAddress) {
             this.toAddress = toAddress;
@@ -344,12 +346,18 @@ public class TransactionsDriver {
             return this;
         }
 
+        public ExecuteRuleRequestBuilder setRedemptionMeta(Map<String, Object> redemption_meta) {
+            this.redemption_meta = redemption_meta;
+            return this;
+        }
+
         private String rawCallData = new String();
         private String nonce = "0";
         private String callData = "0x0";
         private String signature = "0x0";
         private String signer = "0x0";
         private Map<String, Object> metaProperty = new HashMap<>();
+        private Map<String, Object> redemption_meta = new HashMap<>();
 
 
         public ExecuteRuleRequestBuilder() {
@@ -364,8 +372,8 @@ public class TransactionsDriver {
             map.put(SIGNATURE, signature);
             map.put(SIGNER, signer);
             map.put(MATA_PROPERTY, metaProperty);
+            map.put(REDEMPTION_META, redemption_meta);
             return map;
         }
     }
-
 }

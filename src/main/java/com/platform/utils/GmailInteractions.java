@@ -28,10 +28,11 @@ public class GmailInteractions {
         String emailBody = null;
         Session session = Session.getDefaultInstance(new Properties( ));
         Store store = null;
+        Folder inbox = null;
       //  boolean emailFound = false;
 
         outerloop:
-        for(int j = 0; j<10; j++) {
+        for(int j = 0; j<20; j++) {
 
             try {
                 Thread.sleep(1000);
@@ -42,7 +43,7 @@ public class GmailInteractions {
                 store = session.getStore("imaps");
 
                 store.connect("imap.googlemail.com", 993, emailId, password);
-                Folder inbox = store.getFolder("INBOX");
+                inbox = store.getFolder("INBOX");
                 inbox.open(Folder.READ_WRITE);
                 // inbox.search()
 
@@ -106,7 +107,19 @@ public class GmailInteractions {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            finally {
+                try
+                {
+                    out.println("Closing gmail connections");
+                    if (inbox != null && inbox.isOpen()) { inbox.close(true); }
+                    if (store != null) { store.close(); }
+                }
+                catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+
         return emailBody;
     }
 
